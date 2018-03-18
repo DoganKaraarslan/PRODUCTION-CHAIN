@@ -2,11 +2,13 @@
 background-color: #008CBA;
 border-radius: 4px;
 border: none;
-padding: 8px 100px;
+padding: 8px 10px;
 color: white;
 text-align: center;
 font-size: 16px;
 cursor: pointer;
+width: 150px;
+margin: auto;
 }
 
 du{
