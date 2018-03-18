@@ -6,30 +6,30 @@
   <title xml:lang="en">BIG Smart Production</title>
   <link rel="stylesheet" type="text/css" href="styles/custom.css">
 </head>
-<body>
+<body style="background-color:#d9deeb;">
   <div class="header">
     <h1>
       <img src="images/big-logo-small.png" alt="Logo">
       BIG Smart Production</h1>
     </div>
+  <div class="center" style="width:390px; margin-top:150px; margin-bottom:100px;">
     <h2>Anmelden</h2>
-    <p>
-      <label for="benutzername">Benutzername:</label>
-    </p>
-    <p>
-      <input type="text" id="benutzername" name="Benutzername" />
-    </p>
-    <p>
-      <label for="passwort">Passwort:</label>
-    </p>
-    <p>
-      <input type="text" id="passwort" name="Passwort" />
-    </p>
-    <p>
-      <button class="button">Anmelden</button>
-    </p>
-    <footer>
-      &copy; 2018 BIG Smart Production
-    </footer>
+    <form action="options.html">
+      <div>
+      <label for="benutzername" id="name" >Benutzername:</label>
+      <input type="text" id="benutzername" name="Benutzername" placeholder="Benutzername"/>
+    </div>
+    <div style="margin: 8px 0;">
+      <label for="passwort" id:"pw">Passwort:</label>
+      <input type="text" id="passwort" name="Passwort"  placeholder="Passwort"/>
+    </div>
+    <div>
+      <input type="submit" class="button" value="Anmelden">
+    </div>
+    </form>
+  </div>
+    <div class="footer">
+      <p>&copy; 2018 BIG Smart Production<p>
+    </div>
   </body>
   </html>
