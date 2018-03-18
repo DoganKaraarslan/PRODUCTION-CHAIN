@@ -10,3 +10,8 @@ font-size: 16px;
 margin: 4px 2px;
 cursor: pointer;
 }
+
+du{
+    text-decoration: 1px underline;
+    text-decoration-style: dotted;
+}
