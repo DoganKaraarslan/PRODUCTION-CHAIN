@@ -1,48 +1,61 @@
 .container{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 150px;
-  max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    max-width: 400px;
 }
 
 .button{
-background-color: #008CBA;
-border-radius: 4px;
-border: none;
-padding: 8px 10px;
-color: white;
-text-align: center;
-font-size: 16px;
-cursor: pointer;
-width: 150px;
-margin: auto;
+    background-color: #008CBA;
+    border-radius: 4px;
+    border: none;
+    padding: 8px 10px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+    margin: auto;
+}
+
+form > .button{
+    background-color: grey;
+    border-radius: 4px;
+    border: none;
+    padding: 8px 10px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+    margin: auto;
 }
 
 .bodybackground{
-  background: linear-gradient(#f4f6f9, #d3d8e8);
-  background-attachment: fixed;
+    background: linear-gradient(#f4f6f9, #d3d8e8);
+    background-attachment: fixed;
 }
 
 .header{
-  min-width: 399px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  background: linear-gradient(#ffd540, #ff9c14);
+    min-width: 399px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(#ffd540, #ff9c14);
 }
 
 .header > label{
-  position: absolute;
-  height: 70px;
-  line-height: 70px;
-  font-size: 24px;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  opacity: 0.7;
+    position: absolute;
+    height: 70px;
+    line-height: 70px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    opacity: 0.7;
 }
 
 .header > img {
@@ -50,11 +63,11 @@ margin: auto;
 }
 
 input[type = text]{
-  border: 3px solid #ccc;
-  box-sizing: border-box;
-  border-radius: 4px;
-  float: right;
-  width: 50%;
+    border: 3px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    float: right;
+    width: 50%;
 }
 
 .footer{
@@ -66,6 +79,9 @@ input[type = text]{
 }
 
 du{
-    text-decoration:  underline;
+    text-decoration: underline;
     text-decoration-style: dotted;
 }
+
+
+input:valid#psw ~ input:valid#pswconf ~ #exsub {background-color: #008CBA}
