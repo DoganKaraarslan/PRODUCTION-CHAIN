@@ -9,9 +9,9 @@
 }
 
 .button{
-    background-color: #008CBA;
+    background: linear-gradient(#1f82ad, #145187);
     border-radius: 4px;
-    border: none;
+    border: solid 1px #145187;
     padding: 8px 10px;
     color: white;
     text-align: center;
@@ -21,16 +21,15 @@
     margin: auto;
 }
 
-form > .button{
-    background-color: grey;
+input ~ .button{
+    background: linear-gradient(#cccccc, #999999);
     border-radius: 4px;
-    border: none;
-    padding: 8px 10px;
-    color: white;
+    border: solid 1px #999999;
+    color: #494949;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
-    width: 150px;
+    width: 40%;
     margin: auto;
 }
 
@@ -85,3 +84,5 @@ du{
 
 
 input:valid#psw ~ input:valid#pswconf ~ #exsub {background-color: #008CBA}
+
+input:valid#passwort ~ #exsub {background-color: #008CBA}
