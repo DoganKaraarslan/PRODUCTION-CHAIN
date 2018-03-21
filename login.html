@@ -14,12 +14,10 @@
     <div class = "container">
         <h2>Anmelden</h2>
         <form action="overview.html">
-            <div>
-                <label for="benutzername" id="name" >Benutzername:</label>
-                <input type="text" id="benutzername" name="Benutzername" placeholder="Benutzername"/>
-            </div>
+            <label for="benutzername" id="name" >Benutzername:</label>
+            <input type="text" id="benutzername" name="Benutzername" placeholder="Benutzername"/>
             <label for="passwort" id:"pw">Passwort:</label>
-            <input type="password" id="passwort" name="Passwort" placeholder="Passwort" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}"/>
+            <input type="password" id="passwort" name="Passwort" placeholder="Passwort" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" required/>
             <input type="submit" class="button" id="exsub" value="Anmelden"/>
         </form>
     </div>
