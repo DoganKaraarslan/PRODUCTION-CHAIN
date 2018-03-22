@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="author" content="WE"/>
-    <title xml:lang="en">BIG Smart Production</title>
-    <link rel="stylesheet" type="text/css" href="styles/custom.css">
+  <meta charset="utf-8"/>
+  <meta name="author" content="WE"/>
+  <title xml:lang="en">BIG Smart Production</title>
+  <link rel="stylesheet" type="text/css" href="styles/custom.css">
 </head>
-<body class="bodybackground" class="flex-container">
-    <div class="header">
-        <img src="images/big-logo-small.png" alt="Logo"></img>
-        <label>BIG Smart Production</label>
-    </div>
-    <div class = "container">
-        <h2>Anmelden</h2>
-        <form action="overview.html">
-            <label for="benutzername" id="name" >Benutzername:</label>
-            <input class="input" type="text" id="benutzername" name="Benutzername" placeholder="Benutzername"/>
-            <label for="passwort" id:"pw">Passwort:</label>
-            <input class="input" type="password" id="passwort" name="Passwort" placeholder="Passwort" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" required/>
-            <input type="submit" class="button" id="exsub" value="Anmelden"/>
-        </form>
-    </div>
-    <div class="footer">
-        <p>&copy; 2018 <du>BIG</du> Smart Production</p>
-    </div>
+<body class="bodybackground">
+  <div class="header">
+    <img src="images/big-logo-small.png" alt="Logo"></img>
+    <label>BIG Smart Production</label>
+  </div>
+  <div class ="container">
+    <h1 class="first-header">Anmelden</h1>
+    <form action="overview.html">
+      <div class="flex-box">
+        <label for="benutzername" id="name" >Benutzername:</label>
+        <input class="input" type="text" id="benutzername" name="Benutzername" placeholder="Benutzername"/>
+      </div>
+      <div class="flex-box">
+        <label for="passwort" id:"pw">Passwort:</label>
+        <input class="input" type="password" id="passwort" name="Passwort" placeholder="Passwort" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" required/>
+      </div>
+      <input type="submit" class="button" id="exsub" value="Anmelden"/>
+    </form>
+  </div>
+  <div class="footer">
+    <p>&copy; 2018 <du>BIG</du> Smart Production</p>
+  </div>
 </body>
 </html>

@@ -1,33 +1,105 @@
+/* ----------------- overall styles for all html files ----------------- */
+
+.bodybackground{
+    background: linear-gradient(#f4f6f9, #d3d8e8);
+    background-attachment: fixed;
+}
+.header{
+    min-width: 320px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(#ffd540, #ff9c14);
+}
+.header > label{
+    position: absolute;
+    height: 70px;
+    line-height: 70px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    opacity: 0.7;
+}
+.header > img {
+    padding: 10px;
+}
+.first-header{
+  font-family: Lucida, sans-serif;
+  opacity: 0.8;
+}
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+du{
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+/* ----------------- flex-box style (used in login.html) ----------------- */
+
 .container{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
+    max-width: 800px;
     margin-top: 150px;
-    max-width: 400px;
+    justify-content: space-between;
 }
-
-.flex-container-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-container-row {
+.flex-box{
   display: flex;
   flex-direction: row;
-  align-content: space-between;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.flex-box > label{
+  height: 26px;
+  line-height: 26px;
+  font-size: 15px;
+  font-family: Lucida, sans-serif;
+  font-weight: bold;
+  opacity: 0.8;
+}
+.flex-box > input{
+  height: 30px;
 }
 
-.border-in-box{
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+/* ----------------- validation form (used in login.html)----------------- */
+
+.input{
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    max-width: 400px;
+    width: 100%;
+}
+form > input[type="submit"]{
+    background: linear-gradient(#cccccc, #999999);
+    border-radius: 4px;
+    border: solid 1px #999999;
+    color: #494949;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 350px;
+}
+form:valid #exsub{
+    background: linear-gradient(#1f82ad, #145187);
+    color: white;
 }
 
+/* ----------------- remaining styles ----------------- */
 .button{
     background: linear-gradient(#1f82ad, #145187);
     border-radius: 4px;
@@ -41,72 +113,23 @@
     margin: auto;
 }
 
-form > .button{
-    background: linear-gradient(#cccccc, #999999);
-    border-radius: 4px;
-    border: solid 1px #999999;
-    color: #494949;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    width: auto;
-    margin: auto;
-}
 
-.bodybackground{
-    background: linear-gradient(#f4f6f9, #d3d8e8);
-    background-attachment: fixed;
+/*
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-.header{
-    min-width: 399px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background: linear-gradient(#ffd540, #ff9c14);
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  align-items: center;
 }
-
-.header > label{
-    position: absolute;
-    height: 70px;
-    line-height: 70px;
-    font-size: 24px;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    opacity: 0.7;
+.border-in-box{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
-
-.header > img {
-    padding: 10px;
-}
-
-.input{
-    border: 2px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 4px;
-    float: right;
-    width: 50%;
-}
-
-.footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-
-du{
-    text-decoration: underline;
-    text-decoration-style: dotted;
-}
-
-.pswlabel{
-  float: left;
-}
-
-form:valid #exsub{
-    background: linear-gradient(#1f82ad, #145187);
-    color: white;
-}
+*/
