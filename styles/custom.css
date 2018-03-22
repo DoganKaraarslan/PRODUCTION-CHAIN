@@ -106,7 +106,7 @@ du{
   float: left;
 }
 
-
-
-
-form:valid #exsub{background: linear-gradient(#1f82ad, #145187); color: white;}
+form:valid #exsub{
+    background: linear-gradient(#1f82ad, #145187);
+    color: white;
+}
