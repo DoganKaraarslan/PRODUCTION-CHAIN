@@ -57,6 +57,20 @@ a {
     text-decoration: none;
 }
 
+.overview-form-box {
+  width: 170px;
+  height: 60px;
+  list-style-type: none;
+  padding-left: 0px;
+  margin: 10px;
+  margin-left: 0px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /* ----------------- MEDIA QUERIES ----------------- */
 
 @media (max-width: 325px){
@@ -209,7 +223,7 @@ a {
   #hamburger-menu{
     display: none;
   }
-  
+
   a > .button{
     display: inline-block;
     float: right;
