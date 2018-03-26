@@ -1,40 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="author" content="WE"/>
-  <title xml:lang="en">BIG Smart Production | Passwort ändern</title>
-  <link rel="stylesheet" type="text/css" href="styles/custom.css">
+    <meta charset="utf-8"/>
+    <meta name="author" content="WE"/>
+    <title>BIG Smart Production | Passwort ändern</title>
+    <link rel="stylesheet" type="text/css" href="styles/custom.css">
 </head>
 <body class="bodybackground">
-  <header class="header">
-    <img src="images/big-logo-small.png" alt="Logo">
-    <label>BIG Smart Production</label>
-    <div style="float:right;">
-      <button type="button" class="button">Übersicht</button>
-      <button type="button" class="button">Anmelden</button>
+    <header class="header">
+        <img src="images/big-logo-small.png" alt="Logo">
+        <label id="options-header-label">BIG Smart Production</label>
+        <a href="login.html"><span class="button">Abmelden</span></a>
+        <a href="overview.html"><span class="button">Übersicht</span></a>
+        <div class="dropdown" id="hamburger-menu">
+            <button type="button" class="button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="dropdown-content">
+                <a href="overview.html"><span class="button">Übersicht</span></a>
+                <a href="login.html"><span class="button">Abmelden</span></a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h1 class="first-header">Passwort ändern</h1>
+        <form action="overview.html">
+            <div class="box">
+                <label class="pswlabel" for="oldpw">Altes Passwort:</label>
+                <input class="input border-in-box" placeholder=" Altes Passwort" type="password" id="oldpw" name="oldpw" required>
+            </div>
+            <div class="box">
+                <label class="pswlabel" for="psw">Neues Passwort:</label>
+                <input class="input border-in-box" placeholder=" Neues Passwort" type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" title="Passwort muss mindestens 8 und maximal 12 Zeichen enthalten. Außerdem mindestens eine Zahl und mindestens jeweils ein Groß- und ein Kleinbuchstabe" required>
+            </div>
+            <div class="box">
+                <label class="pswlabel" for="pswconf">Passwort wiederholen:</label>
+                <input class="input border-in-box" placeholder=" Neues Passwort wiederholen" type="password" id="pswconf" name="pswconf" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" title="Passwort muss mindestens 8 und maximal 12 Zeichen enthalten. Außerdem mindestens eine Zahl und mindestens jeweils ein Groß- und ein Kleinbuchstabe" required>
+            </div>
+            <input type="submit" class="button" id="exsub" value="Änderung speichern">
+        </form>
     </div>
-  </header>
-  <div class="container">
-    <h1 class="first-header">Passwort ändern</h1>
-    <form action="overview.html">
-      <div class="flex-box">
-        <label class="pswlabel" for="oldpw">Altes Passwort:</label>
-        <input class="input border-in-box" placeholder="Altes Passwort" type="password" id="oldpw" name="oldpw" required>
-      </div>
-      <div class="flex-box">
-        <label class="pswlabel" for="psw">Neues Passwort:</label>
-        <input class="input border-in-box" placeholder="Neues Passwort" type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" title="Passwort muss mindestens 8 und maximal 12 Zeichen enthalten. Außerdem mindestens eine Zahl und mindestens jeweils ein Groß- und ein Kleinbuchstabe" required>
-      </div>
-      <div class="flex-box">
-        <label class="pswlabel" for="pswconf">Passwort bestätigen:</label>
-        <input class="input border-in-box" placeholder="Neues Passwort wiederholen" type="password" id="pswconf" name="pswconf" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" title="Passwort muss mindestens 8 und maximal 12 Zeichen enthalten. Außerdem mindestens eine Zahl und mindestens jeweils ein Groß- und ein Kleinbuchstabe" required>
-      </div>
-      <input type="submit" class="button" id="exsub" value="Änderung speichern">
-    </form>
-  </div>
-  <div class="footer">
-    <p>&copy; 2018 <du>BIG</du> Smart Production</p>
-  </div>
+    <div class="footer">
+        &copy; 2018 <span class="du">BIG</span> Smart Production
+    </div>
 </body>
 </html>
