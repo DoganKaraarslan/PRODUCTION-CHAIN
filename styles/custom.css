@@ -1,86 +1,92 @@
-/* ----------------- overall styles for all html files ----------------- */
+/* ----------------- STYLES FOR ALL HTML FILES ----------------- */
 
 .bodybackground{
-    background: linear-gradient(#f4f6f9, #d3d8e8);
-    background-attachment: fixed;
+  background: linear-gradient(#f4f6f9, #d3d8e8);
+  background-attachment: fixed;
 }
 .header{
-    min-width: 320px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background: linear-gradient(#ffd540, #ff9c14);
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(#ffd540, #ff9c14);
+  box-shadow: 0 4px 8px 0 grey;
 }
 .header > label{
-    position: absolute;
-    height: 70px;
-    line-height: 70px;
-    font-size: 24px;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    opacity: 0.7;
-}
-.header > img {
-    padding: 10px;
-}
-.first-header{
-  font-family: Lucida, sans-serif;
+  position: absolute;
+  height: 70px;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: sans-serif;
   opacity: 0.8;
-}
-.footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-du{
-    text-decoration: underline;
-    text-decoration-style: dotted;
-}
-
-/* ----------------- flex-box style (used in login.html) ----------------- */
-
-.container{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 800px;
-    margin-top: 150px;
-    justify-content: space-between;
-}
-.flex-box{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 20px;
 }
-.flex-box > label{
-  height: 26px;
-  line-height: 26px;
-  font-size: 15px;
-  font-family: Lucida, sans-serif;
-  font-weight: bold;
+.header > img {
+  padding: 10px;
+}
+.first-header{
+  font-size: 25px;
+  font-family: sans-serif;
   opacity: 0.8;
+  margin-bottom: 30px;
 }
-.flex-box > input{
-  height: 30px;
+.footer{
+  font-size: 15px;
+  font-family: sans-serif;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  opacity: 0.5;
+}
+.du{
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+.container{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  margin-top: 120px;
+  justify-content: space-between;
 }
 
-/* ----------------- validation form (used in login.html)----------------- */
+a {
+    text-decoration: none;
+}
 
-.input{
+/* ----------------- MEDIA QUERIES ----------------- */
+
+@media (max-width: 325px){
+  #login-header-label{
+    margin-top: 5px;
+    max-width: 250px;
+  }
+}
+@media (max-width: 375px) {
+  #options-header-label{
+    margin-top: 5px;
+    max-width: 250px;
+  }
+}
+
+/* ----------------- FOR HANDY DISPLAY ----------------- */
+
+@media (max-width: 399px){
+
+  .box{
+    margin-bottom: 10px;
+  }
+  .input{
     border: 2px solid #ccc;
     box-sizing: border-box;
     border-radius: 4px;
-    max-width: 400px;
+    height: 30px;
     width: 100%;
-}
-form > input[type="submit"]{
+  }
+  form > input[type="submit"]{
     background: linear-gradient(#cccccc, #999999);
     border-radius: 4px;
     border: solid 1px #999999;
@@ -90,46 +96,124 @@ form > input[type="submit"]{
     cursor: pointer;
     display: block;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
-    max-width: 350px;
-}
-form:valid #exsub{
+
+  }
+  form:valid #exsub{
     background: linear-gradient(#1f82ad, #145187);
     color: white;
+  }
 }
 
-/* ----------------- remaining styles ----------------- */
-.button{
-    background: linear-gradient(#1f82ad, #145187);
+/* ----------------- FOR BIGGER DISPLAYS ----------------- */
+
+@media (min-width: 400px) {
+  .box{
+    margin-top: 20px;
+  }
+  .input{
+    float: right;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
     border-radius: 4px;
-    border: solid 1px #145187;
-    padding: 8px;
-    color: white;
-    text-align: center;
+    height: 30px;
+    min-width: 45%;
+  }
+  form > input[type="submit"]{
+    background: linear-gradient(#cccccc, #999999);
+    border-radius: 4px;
+    border: solid 1px #999999;
+    color: #494949;
+    padding: 12px;
     font-size: 16px;
     cursor: pointer;
-    width: 150px;
-    margin: auto;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 45%;
+  }
+  form:valid #exsub{
+    background: linear-gradient(#1f82ad, #145187);
+    color: white;
+  }
 }
 
+.box > label{
+  height: 26px;
+  line-height: 26px;
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: bold;
+  opacity: 0.8;
+}
+.button{
+  background: linear-gradient(#1f82ad, #145187);
+  border-radius: 4px;
+  border: solid 1px #145187;
+  padding: 8px;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+  margin: auto;
+  font-family: sans-serif;
+}
 
-/*
-.flex-container-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.dropdown > .button{
+    padding: 12px;
+    width: auto;
 }
-.flex-container-row {
-  display: flex;
-  flex-direction: row;
-  align-content: space-between;
-  align-items: center;
+
+.bar{
+    width: 10px;
+    height: 1.5px;
+    background-color: white;
+    margin: 3px;
+    display:block;
 }
-.border-in-box{
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+
+/* ----------------- DROPDOWN FOR HAMBURGER-MENU ----------------- */
+
+@media (max-width: 629px) {
+  a > .button{
+    display: none;
+  }
+  .dropdown {
+    position: relative;
+    float: right;
+    padding: 15px;
+  }
+
+  .dropdown-content{
+    background-color: white;
+    display: none;
+    position: absolute;
+    right: 15px;
+    padding-top: 5px;
+    border-radius: 4px;
+  }
+
+  .dropdown:hover .dropdown-content {
+      display: block;
+  }
+
+  .dropdown-content > a > .button {
+      margin: 0px 5px 5px 5px;
+      display: block;
+  }
 }
-*/
+
+@media (min-width: 630px) {
+  #hamburger-menu{
+    display: none;
+  }
+  
+  a > .button{
+    display: inline-block;
+    float: right;
+    margin: 15px 5px 0 0;
+    text-decoration: none;
+  }
+}
