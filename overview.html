@@ -1,191 +1,191 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="author" content="WE"/>
-  <title>BIG Smart Production | Übersicht</title>
-  <link rel="stylesheet" type="text/css" href="styles/custom.css">
+    <meta charset="utf-8"/>
+    <meta name="author" content="WE"/>
+    <title>BIG Smart Production | Übersicht</title>
+    <link rel="stylesheet" type="text/css" href="styles/custom.css">
 </head>
 <body class="bodybackground">
-  <div class="header">
-    <img src="images/big-logo-small.png" alt="">
-    <label id="login-header-label">BIG Smart Production</label>
-  </div>
-  <div class="scrollable-box">
-      <div class="inbox">
-        <div style="width: 725px; margin-bottom: 20px;">
-          <label style="font-family: sans-serif; font-size: 24px; font-weight: bold; opacity: 0.8;">Produktionskette</label>
-          <label style="float: right; display: block; margin-top: 8px; font-family: sans-serif; font-size: 15px; font-weight: bold; opacity: 0.6;">8 Elemente - 9 Pfeile - 0 Produkte</label>
-        </div>
-        <div style="position: relative; margin-top: 10px;">
-          <img src="images/arrows.png" alt="Produktionskette" style="z-index: -1; border: 2px solid #D3D3D3;">
-          <img src="images/item_generator.svg" alt="3D-Drucker"  style="position: absolute; height:95px; width:120px; top: 50px; left: 60px; cursor: move;"/>
-          <img src="images/machine.svg" alt="Maschine" style="position: absolute; height:95px; width:120px; top: 50px; left: 315px; cursor: move;"/>
-          <img src="images/item_generator.svg" alt="3D-Drucker"  style="position: absolute; height:95px; width:120px; top: 50px; left: 535px; cursor: move;"/>
-          <img src="images/conveyor.svg" alt="Förderband"  style="position: absolute; height:95px; width:120px; top: 230px; left: 183px; cursor: move;"/>
-          <img src="images/intelligent_conveyor.svg" alt="Intelligentes Förderband"  style="position: absolute; height:95px; width:120px; top: 230px; left:430px; cursor: move;"/>
-          <img src="images/trash_storage.svg" alt="Mülllager"  style="position: absolute; height:95px; width:120px; bottom:75px; left: 70px; cursor: move;"/>
-          <img src="images/interim_storage.svg" alt="Temporäres Lager"  style="position: absolute; height:95px; width:120px; bottom:75px; left: 305px; cursor: move;"/>
-          <img src="images/end_storage.svg" alt="Endlager" style="position: absolute; height:95px; width:120px; bottom: 75px; left: 535px; cursor: move;"/>
-        </div>
-        <div>
-          <div class="overview-form-box">
-            <label class="overview-big-label" for="state">3D-Drucker</label>
-            <label class="overview-small-label">(Zustand)</label>
-            <select class="overview-elem" id="state" name="state">
-              <option value="teilweise"> Teilweise fertig</option>
-              <option value="unfertig">Unfertig</option>
-              <option value="fertig"> Fertig</option>
-            </select>
-          </div>
-          <div class="overview-form-box">
-            <label class="overview-big-label" for="machine">Maschine</label>
-            <label class="overview-small-label">(Temperatur)</label>
-            <input class="overview-elem" id="machine" placeholder=" 35" type="text"  name="machine" required>
-          </div>
-          <div class="overview-form-box">
-            <label class="overview-big-label" for="tmp_storage">Temporäres Lager</label>
-            <label class="overview-small-label">(Anzahl)</label>
-            <input class="overview-elem" id="tmp_storage" placeholder=" 7" type="text"  name="tmp_storage" required>
-          </div>
-          <div class="overview-form-box">
-            <label class="overview-big-label" for="end_storage">Endlager</label>
-            <label class="overview-small-label">(Anzahl)</label>
-            <input class="overview-elem" id="end_storage" placeholder=" 4" type="text"  name="end_storage" required>
-          </div>
-          <div class="overview-form-box">
-            <label class="overview-big-label" for="trash_storage">Mülllager</label>
-            <label class="overview-small-label">(Anzahl)</label>
-            <input class="overview-elem" id="trash_storage" placeholder=" 3" type="text"  name="thrash_storage" required>
-          </div>
-          <div class="overview-form-box">
-            <label class="overview-big-label" for="custom_checkbox_con1" style="position: relative; top: -13px;">Förderband</label>
-            <label class="overview-small-label" style="position: relative; top: -13px;">(Ein/Aus)</label>
-            <div class="overview_checkbox">
-              <input type="checkbox" id="custom_checkbox_con1" name="conveyor_check"/>
-              <label for="custom_checkbox_con1"></label>
+    <div class="header">
+        <img src="images/big-logo-small.png" alt="">
+        <label id="login-header-label">BIG Smart Production</label>
+    </div>
+    <div class="scrollable-box">
+        <div class="inbox">
+            <div style="width: 725px; margin-bottom: 20px;">
+                <label style="font-family: sans-serif; font-size: 24px; font-weight: bold; opacity: 0.8;">Produktionskette</label>
+                <label style="float: right; display: block; margin-top: 8px; font-family: sans-serif; font-size: 15px; font-weight: bold; opacity: 0.6;">8 Elemente - 9 Pfeile - 0 Produkte</label>
             </div>
-          </div>
-          <div class="overview-form-box">
-            <label class="overview-big-label" for="custom_checkbox_con2" style="position: relative; top: 0px;">Intelligentes Förderband</label>
-            <label class="overview-small-label">(Ein/Aus)</label>
-            <div class="overview_checkbox">
-              <input type="checkbox" id="custom_checkbox_con2" name="intel_conveyor_check"/>
-              <label for="custom_checkbox_con2"></label>
+            <div style="position: relative; margin-top: 10px;">
+                <img src="images/arrows.png" alt="Produktionskette" style="z-index: -1; border: 2px solid #D3D3D3;">
+                <img src="images/item_generator.svg" alt="3D-Drucker"  style="position: absolute; height:95px; width:120px; top: 50px; left: 60px; cursor: move;"/>
+                <img src="images/machine.svg" alt="Maschine" style="position: absolute; height:95px; width:120px; top: 50px; left: 315px; cursor: move;"/>
+                <img src="images/item_generator.svg" alt="3D-Drucker"  style="position: absolute; height:95px; width:120px; top: 50px; left: 535px; cursor: move;"/>
+                <img src="images/conveyor.svg" alt="Förderband"  style="position: absolute; height:95px; width:120px; top: 230px; left: 183px; cursor: move;"/>
+                <img src="images/intelligent_conveyor.svg" alt="Intelligentes Förderband"  style="position: absolute; height:95px; width:120px; top: 230px; left:430px; cursor: move;"/>
+                <img src="images/trash_storage.svg" alt="Mülllager"  style="position: absolute; height:95px; width:120px; bottom:75px; left: 70px; cursor: move;"/>
+                <img src="images/interim_storage.svg" alt="Temporäres Lager"  style="position: absolute; height:95px; width:120px; bottom:75px; left: 305px; cursor: move;"/>
+                <img src="images/end_storage.svg" alt="Endlager" style="position: absolute; height:95px; width:120px; bottom: 75px; left: 535px; cursor: move;"/>
             </div>
-          </div>
-          <div class="overview-form-box">
-            <input type="submit" style="position: relative; top: -10px; width: 100%; height: 40px; border-radius: 4px; font-family: sans-serif;color: white; background: linear-gradient(#1f82ad, #145187);border: solid 1px #145187;" value="Geräte aktualisieren"/>
-          </div>
+            <div>
+                <div class="overview-form-box">
+                    <label class="overview-big-label" for="state">3D-Drucker</label>
+                    <label class="overview-small-label">(Zustand)</label>
+                    <select class="overview-elem" id="state" name="state">
+                        <option value="teilweise"> Teilweise fertig</option>
+                        <option value="unfertig">Unfertig</option>
+                        <option value="fertig"> Fertig</option>
+                    </select>
+                </div>
+                <div class="overview-form-box">
+                    <label class="overview-big-label" for="machine">Maschine</label>
+                    <label class="overview-small-label">(Temperatur)</label>
+                    <input class="overview-elem" id="machine" placeholder=" 35" type="text"  name="machine" required>
+                </div>
+                <div class="overview-form-box">
+                    <label class="overview-big-label" for="tmp_storage">Temporäres Lager</label>
+                    <label class="overview-small-label">(Anzahl)</label>
+                    <input class="overview-elem" id="tmp_storage" placeholder=" 7" type="text"  name="tmp_storage" required>
+                </div>
+                <div class="overview-form-box">
+                    <label class="overview-big-label" for="end_storage">Endlager</label>
+                    <label class="overview-small-label">(Anzahl)</label>
+                    <input class="overview-elem" id="end_storage" placeholder=" 4" type="text"  name="end_storage" required>
+                </div>
+                <div class="overview-form-box">
+                    <label class="overview-big-label" for="trash_storage">Mülllager</label>
+                    <label class="overview-small-label">(Anzahl)</label>
+                    <input class="overview-elem" id="trash_storage" placeholder=" 3" type="text"  name="thrash_storage" required>
+                </div>
+                <div class="overview-form-box">
+                    <label class="overview-big-label" for="custom_checkbox_con1" style="position: relative; top: -13px;">Förderband</label>
+                    <label class="overview-small-label" style="position: relative; top: -13px;">(Ein/Aus)</label>
+                    <div class="overview_checkbox">
+                        <input type="checkbox" id="custom_checkbox_con1" name="conveyor_check"/>
+                        <label for="custom_checkbox_con1"></label>
+                    </div>
+                </div>
+                <div class="overview-form-box">
+                    <label class="overview-big-label" for="custom_checkbox_con2" style="position: relative; top: 0px;">Intelligentes Förderband</label>
+                    <label class="overview-small-label">(Ein/Aus)</label>
+                    <div class="overview_checkbox">
+                        <input type="checkbox" id="custom_checkbox_con2" name="intel_conveyor_check"/>
+                        <label for="custom_checkbox_con2"></label>
+                    </div>
+                </div>
+                <div class="overview-form-box">
+                    <input type="submit" style="position: relative; top: -10px; width: 100%; height: 40px; border-radius: 4px; font-family: sans-serif;color: white; background: linear-gradient(#1f82ad, #145187);border: solid 1px #145187;" value="Geräte aktualisieren"/>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  <div style="margin-left: 790px; position: absolute; top: 100px; background-color: #D3D3D3; width: 1px; height: 80%; z-index: -1;">
-  </div>
-
-  <div style="margin-left: 805px; position: absolute; top: 113px; width: 550px; height: 576px;">
-    <div style="padding:10px;">
-      <p style="font-size:25px; font-weight:bold; margin-top:0px; margin-bottom: 5px;">
-        Verfügbare Verbindungen
-      </p>
-
-      <div class="flex-container">
-
-        <div style="width:48%; height: 55px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px;" class="flex-container">
-          <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
-            <img src="images/arrow.svg" alt="Pfeil" style=" height:20px; width:75px; cursor: move;"/>
-          </div>
-          <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
-              Verbindung
-          </p>
-        </div>
-
-      </div>
+    <div style="margin-left: 790px; position: absolute; top: 100px; background-color: #D3D3D3; width: 1px; height: 80%; z-index: -1;">
     </div>
 
+    <div style="margin-left: 805px; position: absolute; top: 113px; width: 550px; height: 576px;">
+        <div style="padding:10px;">
+            <p style="font-size:25px; font-weight:bold; margin-top:0px; margin-bottom: 5px;">
+                Verfügbare Verbindungen
+            </p>
 
+            <div class="flex-container">
 
-    <div style="padding:10px;">
-      <p style="font-size:25px; font-weight:bold; margin-top:0px; margin-bottom: 5px;">
-        Verfügbare Elemente
-      </p>
+                <div style="width:48%; height: 55px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px;" class="flex-container">
+                    <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
+                        <img src="images/arrow.svg" alt="Pfeil" style=" height:20px; width:75px; cursor: move;"/>
+                    </div>
+                    <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
+                        Verbindung
+                    </p>
+                </div>
 
-      <div style=""class="flex-container">
-
-        <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
-          <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
-            <img src="images/item_generator.svg" alt="3D-Drucker"  style=" height:55px; cursor: move;"/>
-          </div>
-          <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
-              3D-Drucker
-          </p>
+            </div>
         </div>
 
 
-        <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
-          <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
-            <img src="images/machine.svg" alt="Maschine" style=" height:55px; cursor: move;"/>
-          </div>
-          <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
-              Maschine
-          </p>
+
+        <div style="padding:10px;">
+            <p style="font-size:25px; font-weight:bold; margin-top:0px; margin-bottom: 5px;">
+                Verfügbare Elemente
+            </p>
+
+            <div style=""class="flex-container">
+
+                <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
+                    <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
+                        <img src="images/item_generator.svg" alt="3D-Drucker"  style=" height:55px; cursor: move;"/>
+                    </div>
+                    <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
+                        3D-Drucker
+                    </p>
+                </div>
+
+
+                <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
+                    <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
+                        <img src="images/machine.svg" alt="Maschine" style=" height:55px; cursor: move;"/>
+                    </div>
+                    <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
+                        Maschine
+                    </p>
+                </div>
+
+                <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
+                    <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
+                        <img src="images/conveyor.svg" alt="Förderband" style=" height:55px; cursor: move;"/>
+                    </div>
+                    <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
+                        Förderband
+                    </p>
+                </div>
+
+                <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
+                    <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
+                        <img src="images/intelligent_conveyor.svg" alt="Intelligentes Förderband" style=" height:55px; cursor: move;"/>
+                    </div>
+                    <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
+                        Intelligentes <br> Förderband
+                    </p>
+                </div>
+
+
+                <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
+                    <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
+                        <img src="images/interim_storage.svg" alt="Temporäres Lager" style=" height:55px; cursor: move;"/>
+                    </div>
+                    <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
+                        Temporäres Lager
+                    </p>
+                </div>
+
+                <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
+                    <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
+                        <img src="images/end_storage.svg" alt="Endlager" style=" height:55px; cursor: move;"/>
+                    </div>
+                    <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
+                        Endlager
+                    </p>
+                </div>
+
+
+                <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
+                    <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
+                        <img src="images/trash_storage.svg" alt="Mülllager" style=" height:55px; cursor: move;"/>
+                    </div>
+                    <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
+                        Mülllager
+                    </p>
+                </div>
+
+
+            </div>
+
+
         </div>
-
-        <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
-          <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
-            <img src="images/conveyor.svg" alt="Förderband" style=" height:55px; cursor: move;"/>
-          </div>
-          <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
-              Förderband
-          </p>
-        </div>
-
-        <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
-          <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
-            <img src="images/intelligent_conveyor.svg" alt="Intelligentes Förderband" style=" height:55px; cursor: move;"/>
-          </div>
-          <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
-              Intelligentes <br> Förderband
-          </p>
-        </div>
-
-
-        <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
-          <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
-            <img src="images/interim_storage.svg" alt="Temporäres Lager" style=" height:55px; cursor: move;"/>
-          </div>
-          <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
-              Temporäres Lager
-          </p>
-        </div>
-
-        <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
-          <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
-            <img src="images/end_storage.svg" alt="Endlager" style=" height:55px; cursor: move;"/>
-          </div>
-          <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
-              Endlager
-          </p>
-        </div>
-
-
-        <div style="width:48%; height: 100px; box-shadow: 0 4px 8px 0 grey; border-radius:4px; background-color: white; margin: 5px; " class="flex-container">
-          <div style="background:linear-gradient(#f4f6f9, #d3d8e8); justify-content: center; align-content: center; height:100%; width: 100px; border-radius: 4px 0 0 4px" class="flex-container">
-            <img src="images/trash_storage.svg" alt="Mülllager" style=" height:55px; cursor: move;"/>
-          </div>
-          <p style="color:black; font-size:17px; height: 60%; padding: 10px;">
-              Mülllager
-          </p>
-        </div>
-
-
-        </div>
-
-
     </div>
-  </div>
-  <footer class="footer" style="position: relative;">
-    <p>&copy; 2018 <span class="du">BIG</span> Smart Production</p>
-</footer>
+    <footer class="footer" style="position: relative;">
+        <p>&copy; 2018 <span class="du">BIG</span> Smart Production</p>
+    </footer>
 </body>
 </html>
