@@ -57,16 +57,6 @@
 a {
     text-decoration: none;
 }
-
-.overview-form-box {
-  width: 170px;
-  height: 60px;
-  list-style-type: none;
-  padding-left: 0px;
-  margin: 10px;
-  margin-left: 0px;
-}
-
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -233,4 +223,102 @@ a {
     margin: 15px 5px 0 0;
     text-decoration: none;
   }
+}
+
+/* ----------------- SCROLLABLE BOX ----------------- */
+
+.scrollable-box{
+  overflow-y: hidden;
+  margin-top: 120px;
+  margin-left: 50px;
+  width: 750px;
+  height: 605px;
+}
+
+.scrollable-box:hover{
+  overflow-y: auto;
+}
+
+/* ----------------- OVERVIEW FORM BOX ----------------- */
+
+.overview-form-box{
+  display: inline-block;
+  width: 160px;
+  height: 50px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.overview-form-box > input[type="text"]{
+    width: 100%;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    height: 25px;
+}
+.overview-form-box > input[type="checkbox"]{
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    bottom: auto;
+}
+.overview-form-box > select{
+  width: 100%;
+  margin-top: 10px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  height: 30px;
+}
+.overview-big-label{
+  display: block;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+.overview-small-label{
+  display: block;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+
+
+/* ----------------- CUSTOMIZED CHECKBOX ----------------- */
+.overview_checkbox {
+  position: relative;
+  visibility: hidden;
+  top: 6px;
+  left: -2px;
+}
+.overview_checkbox > label {
+  position: absolute;
+  visibility: visible;
+  top: 2px;
+  left: 3px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  background: #DCDCDC;
+  border: 1px solid silver;
+  border-radius: 4px;
+}
+.overview_checkbox > label:after {
+  position: absolute;
+  content: '';
+  width: 8px;
+  height: 4px;
+  top: 3px;
+  left: 2px;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.overview_checkbox input[type=checkbox]:checked + label:after {
+  opacity: 1;
 }

@@ -11,123 +11,75 @@
     <img src="images/big-logo-small.png" alt="Logo">
     <label id="login-header-label">BIG Smart Production</label>
   </div>
-  <div style="margin-top: 120px; margin-left: 50px; width: 750px;">
-    <div style="width: 725px;">
-    <label style="font-family: sans-serif; font-size: 24px; font-weight: bold; opacity: 0.8;">Produktionskette</label>
-    <label style="float: right; display: block; margin-top: 8px; font-family: sans-serif; font-size: 15px; font-weight: bold;">8 Elemente - 9 Pfeile - 0 Produkte</label>
-  </div>
-  <div style="position: relative; margin-top: 10px;">
-    <img src="images/arrows.png" style="z-index: -1; border: 2px solid #D3D3D3;" alt="Arrows">
-    <img src="images/item_generator.svg" alt="item_generator1"  style="position: absolute; height:95px; width:120px; top: 50px; left: 60px; cursor: move;"/>
-    <img src="images/machine.svg" alt="machine" style="position: absolute; height:95px; width:120px; top: 50px; left: 315px; cursor: move;"/>
-    <img src="images/item_generator.svg" alt="item_generator2"  style="position: absolute; height:95px; width:120px; top: 50px; right: 95px; cursor: move;"/>
-    <img src="images/conveyor.svg" alt="conveyor"  style="position: absolute; height:95px; width:120px; top: 230px; left: 183px; cursor: move;"/>
-    <img src="images/intelligent_conveyor.svg" alt="intelligent_conveyor"  style="position: absolute; height:95px; width:120px; top: 230px; right:200px; cursor: move;"/>
-    <img src="images/trash_storage.svg" alt="trash_storage"  style="position: absolute; height:95px; width:120px; bottom:75px; left: 70px; cursor: move;"/>
-    <img src="images/interim_storage.svg" alt="interim_storage"  style="position: absolute; height:95px; width:120px; bottom:75px; left: 305px; cursor: move;"/>
-    <img src="images/end_storage.svg" alt="end_storage" style="position: absolute; height:95px; width:120px; bottom: 75px; right: 95px; cursor: move;"/>
-  </div>
-  <div style="margin-right: auto; max-width: 1000px; justify-content: space-between;">
-    <form class="flex-container">
-      <ul class="overview-form-box" >
-        <li>
-          <label style="font-weight: bold;">3D-Drucker</label>
-          </li>
-          <li>
-            <label>(Zustand)</label>
-          </li>
-          <li>
-            <select style="width: 100%; height: 20px; margin-top: 10px;" id="state" name="state">
-              <option value="teilweise">Teilweise fertig</option>
-              <option value="unfertig">Unfertig</option>
-              <option value="fertig">Fertig</option>
-            </select>
-          </li>
-        </ul>
-
-
-        <ul class="overview-form-box">
-          <li>
-            <label style="font-weight: bold;">Maschine</label>
-            </li>
-            <li>
-              <label>(Temperatur)</label>
-            </li>
-            <li>
-              <input style="width: 100%; height: 20px; margin-top: 10px;" placeholder="35" type="text"  name="oldpw" required>
-            </li>
-          </ul>
-
-
-          <ul class="overview-form-box">
-              <li>
-                <label style="font-weight: bold;">Temporäres Lager</label>
-              </li>
-              <li>
-                <label>(Anzahl)</label>
-              </li>
-              <li>
-                <input style="width: 100%; height: 20px; margin-top: 10px;" placeholder="7" type="text"  name="oldpw" required>
-              </li>
-            </ul>
-
-
-            <ul class="overview-form-box">
-                <li>
-                  <label style="font-weight: bold;">Endlager</label>
-                </li>
-                <li>
-                  <label>(Anzahl)</label>
-                </li>
-                <li>
-                  <input style="height: 20px; margin-top: 10px;" placeholder="4" type="text"  name="oldpw" required>
-                </li>
-              </ul>
-
-
-              <ul class="overview-form-box">
-                  <li>
-                    <label style="font-weight: bold;">Mülllager</label>
-                  </li>
-                  <li>
-                    <label>(Anzahl)</label>
-                  </li>
-                  <li>
-                    <input style="height: 20px; margin-top: 10px;" placeholder="3" type="text"  name="oldpw" required>
-                  </li>
-                </ul>
-
-
-                <ul class="overview-form-box">
-                    <li>
-                      <label style="font-weight: bold;">Förderband</label>
-                    </li>
-                    <li>
-                      <label>(Ein/Aus)</label>
-                    </li>
-                    <li style="margin-top: 17px;">
-                      <input type="checkbox"  name="oldpw" required>
-                    </li>
-                  </ul>
-
-
-
-                  <ul class="overview-form-box">
-                      <li>
-                        <label style="font-weight: bold;">Intelligentes Förderband</label>
-                      </li>
-                      <li>
-                        <label>(Ein/Aus)</label>
-                      </li>
-                      <li>
-                        <input style="background-color: grey;" type="checkbox"  name="oldpw" required>
-                      </li>
-                    </ul>
-
-            <input type="submit" style="width:170px; height: 35px; margin-top: auto; padding: 5px; font-size: 12px; color: white; background: linear-gradient(#1f82ad, #145187);border: solid 1px #145187;" value="Geräte aktualisieren">
-          </form>
+  <div class="scrollable-box">
+      <div class="inbox">
+        <div style="width: 725px; margin-bottom: 20px;">
+          <label style="font-family: sans-serif; font-size: 24px; font-weight: bold; opacity: 0.8;">Produktionskette</label>
+          <label style="float: right; display: block; margin-top: 8px; font-family: sans-serif; font-size: 15px; font-weight: bold; opacity: 0.6;">8 Elemente - 9 Pfeile - 0 Produkte</label>
         </div>
-  </div>
+        <div style="position: relative; margin-top: 10px;">
+          <img src="images/arrows.png" alt="Arrows" style="z-index: -1; border: 2px solid #D3D3D3;">
+          <img src="images/item_generator.svg" alt="item_generator1"  style="position: absolute; height:95px; width:120px; top: 50px; left: 60px; cursor: move;"/>
+          <img src="images/machine.svg" alt="machine" style="position: absolute; height:95px; width:120px; top: 50px; left: 315px; cursor: move;"/>
+          <img src="images/item_generator.svg" alt="item_generator2"  style="position: absolute; height:95px; width:120px; top: 50px; left: 535px; cursor: move;"/>
+          <img src="images/conveyor.svg" alt="conveyor"  style="position: absolute; height:95px; width:120px; top: 230px; left: 183px; cursor: move;"/>
+          <img src="images/intelligent_conveyor.svg" alt="intelligent_conveyor"  style="position: absolute; height:95px; width:120px; top: 230px; left:430px; cursor: move;"/>
+          <img src="images/trash_storage.svg" alt="trash_storage"  style="position: absolute; height:95px; width:120px; bottom:75px; left: 70px; cursor: move;"/>
+          <img src="images/interim_storage.svg" alt="interim_storage"  style="position: absolute; height:95px; width:120px; bottom:75px; left: 305px; cursor: move;"/>
+          <img src="images/end_storage.svg" alt="end_storage" style="position: absolute; height:95px; width:120px; bottom: 75px; left: 535px; cursor: move;"/>
+        </div>
+        <div>
+          <div class="overview-form-box">
+            <label class="overview-big-label">3D-Drucker</label>
+            <label class="overview-small-label">(Zustand)</label>
+            <select class="overview-elem" id="state" name="state">
+              <option value="teilweise"> Teilweise fertig</option>
+              <option value="unfertig">Unfertig</option>
+              <option value="fertig"> Fertig</option>
+            </select>
+          </div>
+          <div class="overview-form-box">
+            <label class="overview-big-label">Maschine</label>
+            <label class="overview-small-label">(Temperatur)</label>
+            <input class="overview-elem" placeholder=" 35" type="text"  name="machine" required>
+          </div>
+          <div class="overview-form-box">
+            <label class="overview-big-label">Temporäres Lager</label>
+            <label class="overview-small-label">(Anzahl)</label>
+            <input class="overview-elem" placeholder=" 7" type="text"  name="tmp_storage" required>
+          </div>
+          <div class="overview-form-box">
+            <label class="overview-big-label">Endlager</label>
+            <label class="overview-small-label">(Anzahl)</label>
+            <input class="overview-elem" placeholder=" 4" type="text"  name="end_storage" required>
+          </div>
+          <div class="overview-form-box">
+            <label class="overview-big-label">Mülllager</label>
+            <label class="overview-small-label">(Anzahl)</label>
+            <input class="overview-elem" placeholder=" 3" type="text"  name="thrash_storage" required>
+          </div>
+          <div class="overview-form-box">
+            <label class="overview-big-label" style="position: relative; top: -13px;">Förderband</label>
+            <label class="overview-small-label" style="position: relative; top: -13px;">(Ein/Aus)</label>
+            <div class="overview_checkbox">
+              <input type="checkbox" id="custom_checkbox_con1" name="conveyor_check"/>
+              <label for="custom_checkbox_con1"></label>
+            </div>
+          </div>
+          <div class="overview-form-box">
+            <label class="overview-big-label" style="position: relative; top: 0px;">Intelligentes Förderband</label>
+            <label class="overview-small-label">(Ein/Aus)</label>
+            <div class="overview_checkbox">
+              <input type="checkbox" id="custom_checkbox_con2" name="intel_conveyor_check"/>
+              <label for="custom_checkbox_con2"></label>
+            </div>
+          </div>
+          <div class="overview-form-box">
+            <input type="submit" style="position: relative; top: -10px; width: 100%; height: 40px; border-radius: 4px; font-family: sans-serif;color: white; background: linear-gradient(#1f82ad, #145187);border: solid 1px #145187;" value="Geräte aktualisieren"/>
+          </div>
+        </div>
+      </div>
+    </div>
   <div style="margin-left: 790px; position: absolute; top: 100px; background-color: #D3D3D3; width: 1px; height: 100%;">
   </div>
 
