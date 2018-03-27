@@ -30,7 +30,7 @@
         </div>
         <div>
           <div class="overview-form-box">
-            <label class="overview-big-label">3D-Drucker</label>
+            <label class="overview-big-label" for="state">3D-Drucker</label>
             <label class="overview-small-label">(Zustand)</label>
             <select class="overview-elem" id="state" name="state">
               <option value="teilweise"> Teilweise fertig</option>
@@ -39,27 +39,27 @@
             </select>
           </div>
           <div class="overview-form-box">
-            <label class="overview-big-label">Maschine</label>
+            <label class="overview-big-label" for="machine">Maschine</label>
             <label class="overview-small-label">(Temperatur)</label>
-            <input class="overview-elem" placeholder=" 35" type="text"  name="machine" required>
+            <input class="overview-elem" id="machine" placeholder=" 35" type="text"  name="machine" required>
           </div>
           <div class="overview-form-box">
-            <label class="overview-big-label">Temporäres Lager</label>
+            <label class="overview-big-label" for="tmp_storage">Temporäres Lager</label>
             <label class="overview-small-label">(Anzahl)</label>
-            <input class="overview-elem" placeholder=" 7" type="text"  name="tmp_storage" required>
+            <input class="overview-elem" id="tmp_storage" placeholder=" 7" type="text"  name="tmp_storage" required>
           </div>
           <div class="overview-form-box">
-            <label class="overview-big-label">Endlager</label>
+            <label class="overview-big-label" for="end_storage">Endlager</label>
             <label class="overview-small-label">(Anzahl)</label>
-            <input class="overview-elem" placeholder=" 4" type="text"  name="end_storage" required>
+            <input class="overview-elem" id="end_storage" placeholder=" 4" type="text"  name="end_storage" required>
           </div>
           <div class="overview-form-box">
-            <label class="overview-big-label">Mülllager</label>
+            <label class="overview-big-label" for="trash_storage">Mülllager</label>
             <label class="overview-small-label">(Anzahl)</label>
-            <input class="overview-elem" placeholder=" 3" type="text"  name="thrash_storage" required>
+            <input class="overview-elem" id="trash_storage" placeholder=" 3" type="text"  name="thrash_storage" required>
           </div>
           <div class="overview-form-box">
-            <label class="overview-big-label" style="position: relative; top: -13px;">Förderband</label>
+            <label class="overview-big-label" for="custom_checkbox_con1" style="position: relative; top: -13px;">Förderband</label>
             <label class="overview-small-label" style="position: relative; top: -13px;">(Ein/Aus)</label>
             <div class="overview_checkbox">
               <input type="checkbox" id="custom_checkbox_con1" name="conveyor_check"/>
@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="overview-form-box">
-            <label class="overview-big-label" style="position: relative; top: 0px;">Intelligentes Förderband</label>
+            <label class="overview-big-label" for="custom_checkbox_con2" style="position: relative; top: 0px;">Intelligentes Förderband</label>
             <label class="overview-small-label">(Ein/Aus)</label>
             <div class="overview_checkbox">
               <input type="checkbox" id="custom_checkbox_con2" name="intel_conveyor_check"/>
