@@ -37,7 +37,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  margin-top: 45px;
+  margin-top: 30px;
   width: 100%;
   text-align: center;
   opacity: 0.5;
@@ -56,12 +56,6 @@
 
 a {
     text-decoration: none;
-}
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  display: -webkit-flex;
-  -webkit-align-items: center;
 }
 
 /* ----------------- MEDIA QUERIES ----------------- */
@@ -183,7 +177,7 @@ a {
 
 /* ----------------- DROPDOWN FOR HAMBURGER-MENU ----------------- */
 
-@media (max-width: 629px) {
+@media (max-width: 630px) {
   a > .button{
     display: none;
   }
@@ -229,8 +223,7 @@ a {
 
 .scrollable-box{
   overflow-y: hidden;
-  margin-top: 120px;
-  margin-left: 50px;
+  display: inline-block;
   width: 750px;
   height: 605px;
 }
@@ -285,7 +278,6 @@ a {
 }
 
 
-
 /* ----------------- CUSTOMIZED CHECKBOX ----------------- */
 .overview_checkbox {
   position: relative;
@@ -293,6 +285,7 @@ a {
   top: 6px;
   left: -2px;
 }
+
 .overview_checkbox > label {
   position: absolute;
   visibility: visible;
@@ -321,4 +314,213 @@ a {
 }
 .overview_checkbox input[type=checkbox]:checked + label:after {
   opacity: 1;
+}
+
+
+.flex-box{
+  display: flex;
+  flex-direction: row;
+}
+.element-box{
+  display: inline-block;
+  min-width: 220px;
+  width:48%;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 grey;
+  border-radius:4px;
+  background-color: white;
+  margin: 5px;
+  cursor: move;
+}
+
+.image-box{
+  display: inline-flex;
+  background:linear-gradient(#f4f6f9, #d3d8e8);
+  justify-content: center;
+  align-content: center;
+  height: 100px;
+  min-width: 100px;
+  border-radius: 4px 0 0 4px;
+}
+.info-box{
+  display: inline;
+  position: relative;
+}
+.element-name-label{
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-family: sans-serif;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.element-pre-label{
+  display: block;
+  position: initial;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-family: sans-serif;
+  font-size: 13px;
+  opacity: 0.6;
+}
+.element-post-label{
+  display:block;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-family: sans-serif;
+  font-size: 13px;
+  opacity: 0.6;
+}
+#prozess_title_klein{
+  position: relative;
+  left: -22px;
+}
+
+#prozess_klein{
+  display: none;
+}
+
+#vert_trennlinie{
+  display: inline-block;
+  background-color: silver;
+  position: relative;
+  width: 1px;
+  height: 600px;
+  z-index: -1;
+  margin-right: 25px;
+}
+
+#horz_trennlinie{
+  display: none;
+  background-color: silver;
+  position: relative;
+  width: 100%;
+  height: 1px;
+  z-index: -1;
+}
+
+#elemente{
+  display: inline-block;
+  height: 576px;
+}
+
+@media (min-width: 1300px) {
+  #vert_trennlinie{
+    position: absolute;
+    display: inline-block;
+  }
+  #horz_trennlinie{
+    display: none;
+  }
+  #elemente{
+    position: absolute;
+    display: inline-block;
+    margin-left: 25px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1300px){
+  #overview{
+    height: auto;
+  }
+  .element-box{
+    max-width: 300px;
+    width: 100%;
+  }
+  #elemente{
+    position: absolute;
+    display: inline-block;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  #vert_trennlinie{
+    display: none;
+  }
+  #horz_trennlinie{
+    display: block;
+    margin: 25px;
+  }
+  #overview{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
+  #produktionskette{
+    display: block;
+    overflow: visible;
+    height: auto;
+  }
+  #elemente{
+    display: block;
+    width: 750px;
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  #vert_trennlinie{
+    display: none;
+  }
+  #horz_trennlinie{
+    display: none;
+  }
+  #overview{
+    display: flex;
+    justify-content: center;
+  }
+  .scrollable-box{
+    height: auto;
+  }
+  #prozess_klein{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #prozess_groß{
+    display: none;
+  }
+  #overview-setting-box, .overview-form-box{
+    display: none;
+  }
+  #elemente{
+    display: none;
+  }
+  #prozess_title{
+    margin-left: 5px;
+    margin-bottom: 10px;
+  }
+  #prozess_title_klein{
+    position: relative;
+    left: -13px;
+  }
+  .element-box{
+    height: 120px;
+  }
+  .image-box{
+    height: 120px;
+  }
+}
+
+@media (max-width: 700px) {
+  #vert_trennlinie{
+    display: none;
+  }
+  #horz_trennlinie{
+    display: none;
+  }
+  #prozess_klein{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .element-box{
+    width: 100%;
+    height: 150px;
+  }
+  .image-box{
+    height: 150px;
+  }
+  #prozess_title_klein{
+    position: relative;
+    left: -3px;
+  }
 }
