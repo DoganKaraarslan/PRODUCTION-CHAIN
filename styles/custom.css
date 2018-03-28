@@ -54,171 +54,6 @@
   justify-content: space-between;
 }
 
-a {
-    text-decoration: none;
-}
-
-/* ----------------- MEDIA QUERIES ----------------- */
-
-@media (max-width: 325px){
-  #login-header-label{
-    margin-top: 5px;
-    max-width: 250px;
-  }
-}
-@media (max-width: 375px) {
-  #options-header-label{
-    margin-top: 5px;
-    max-width: 250px;
-  }
-}
-
-/* ----------------- FOR HANDY DISPLAY ----------------- */
-
-@media (max-width: 399px){
-
-  .box{
-    margin-bottom: 10px;
-  }
-  .input{
-    border: 2px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 4px;
-    height: 30px;
-    width: 100%;
-  }
-  form > input[type="submit"]{
-    background: linear-gradient(#cccccc, #999999);
-    border-radius: 4px;
-    border: solid 1px #999999;
-    color: #494949;
-    padding: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 100%;
-
-  }
-  form:valid #exsub{
-    background: linear-gradient(#1f82ad, #145187);
-    color: white;
-  }
-}
-
-/* ----------------- FOR BIGGER DISPLAYS ----------------- */
-
-@media (min-width: 400px) {
-  .box{
-    margin-top: 20px;
-  }
-  .input{
-    float: right;
-    border: 2px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 4px;
-    height: 30px;
-    min-width: 45%;
-  }
-  form > input[type="submit"]{
-    background: linear-gradient(#cccccc, #999999);
-    border-radius: 4px;
-    border: solid 1px #999999;
-    color: #494949;
-    padding: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 45%;
-  }
-  form:valid #exsub{
-    background: linear-gradient(#1f82ad, #145187);
-    color: white;
-  }
-}
-
-.box > label{
-  height: 26px;
-  line-height: 26px;
-  font-size: 15px;
-  font-family: sans-serif;
-  font-weight: bold;
-  opacity: 0.8;
-}
-.button{
-  background: linear-gradient(#1f82ad, #145187);
-  border-radius: 4px;
-  border: solid 1px #145187;
-  padding: 8px;
-  color: white;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-  width: 100px;
-  margin: auto;
-  font-family: sans-serif;
-}
-
-.dropdown > .button{
-    padding: 12px;
-    width: auto;
-}
-
-.bar{
-    width: 10px;
-    height: 1.5px;
-    background-color: white;
-    margin: 3px;
-    display:block;
-}
-
-/* ----------------- DROPDOWN FOR HAMBURGER-MENU ----------------- */
-
-@media (max-width: 630px) {
-  a > .button{
-    display: none;
-  }
-  .dropdown {
-    position: relative;
-    float: right;
-    padding: 15px;
-  }
-
-  .dropdown-content{
-    background-color: white;
-    display: none;
-    position: absolute;
-    right: 15px;
-    padding-top: 5px;
-    border-radius: 4px;
-  }
-
-  .dropdown:hover .dropdown-content {
-      display: block;
-  }
-
-  .dropdown-content > a > .button {
-      margin: 0px 5px 5px 5px;
-      display: block;
-  }
-}
-
-@media (min-width: 630px) {
-  #hamburger-menu{
-    display: none;
-  }
-
-  a > .button{
-    display: inline-block;
-    float: right;
-    margin: 15px 5px 0 0;
-    text-decoration: none;
-  }
-}
-
 /* ----------------- SCROLLABLE BOX ----------------- */
 
 .scrollable-box{
@@ -227,7 +62,6 @@ a {
   width: 750px;
   height: 605px;
 }
-
 .scrollable-box:hover{
   overflow-y: auto;
 }
@@ -268,7 +102,6 @@ a {
   font-weight: bold;
   opacity: 0.7;
 }
-
 .overview-small-label{
   display: block;
   font-family: sans-serif;
@@ -277,15 +110,14 @@ a {
   opacity: 0.7;
 }
 
-
 /* ----------------- CUSTOMIZED CHECKBOX ----------------- */
+
 .overview_checkbox {
   position: relative;
   visibility: hidden;
   top: 6px;
   left: -2px;
 }
-
 .overview_checkbox > label {
   position: absolute;
   visibility: visible;
@@ -316,11 +148,8 @@ a {
   opacity: 1;
 }
 
+/* ----------------- DEVICE VIEW ON OVERVIEW ----------------- */
 
-.flex-box{
-  display: flex;
-  flex-direction: row;
-}
 .element-box{
   display: inline-block;
   min-width: 220px;
@@ -332,7 +161,10 @@ a {
   margin: 5px;
   cursor: move;
 }
-
+.flex-box{
+  display: flex;
+  flex-direction: row;
+}
 .image-box{
   display: inline-flex;
   background:linear-gradient(#f4f6f9, #d3d8e8);
@@ -354,7 +186,6 @@ a {
   font-size: 18px;
   opacity: 0.7;
 }
-
 .element-pre-label{
   display: block;
   position: initial;
@@ -372,15 +203,108 @@ a {
   font-size: 13px;
   opacity: 0.6;
 }
+
+/* ----------------- ELEMENT DESIGN FOR LOGIN & OPTIONS ----------------- */
+
+.box{
+  margin-top: 20px;
+}
+.input{
+  float: right;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 30px;
+  min-width: 45%;
+}
+form > input[type="submit"]{
+  background: linear-gradient(#cccccc, #999999);
+  border-radius: 4px;
+  border: solid 1px #999999;
+  color: #494949;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 45%;
+}
+form:valid #exsub{
+  background: linear-gradient(#1f82ad, #145187);
+  color: white;
+}
+.box > label{
+  height: 26px;
+  line-height: 26px;
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: bold;
+  opacity: 0.8;
+}
+.button{
+  background: linear-gradient(#1f82ad, #145187);
+  border-radius: 4px;
+  border: solid 1px #145187;
+  padding: 8px;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+/* ----------------- HAMBURGER-MENU & DROPDOWN DESIGN ----------------- */
+
+#hamburger-menu{
+  display: none;
+}
+a {
+  text-decoration: none;
+}
+.dropdown {
+  position: relative;
+  float: right;
+  padding: 15px;
+}
+.dropdown-content{
+  background-color: white;
+  display: none;
+  position: absolute;
+  right: 15px;
+  padding-top: 5px;
+  border-radius: 4px;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content > a > .button {
+    margin: 0px 5px 5px 5px;
+    display: block;
+}
+.dropdown > .button{
+    padding: 12px;
+    width: auto;
+}
+.bar{
+    width: 10px;
+    height: 1.5px;
+    background-color: white;
+    margin: 3px;
+    display:block;
+}
+
+/* ----------------- SINGLE ELEMENT DESIGN ----------------- */
+
 #prozess_title_klein{
   position: relative;
   left: -22px;
 }
-
-#prozess_klein{
+#prozess_view_klein{
   display: none;
 }
-
 #vert_trennlinie{
   display: inline-block;
   background-color: silver;
@@ -390,7 +314,6 @@ a {
   z-index: -1;
   margin-right: 25px;
 }
-
 #horz_trennlinie{
   display: none;
   background-color: silver;
@@ -399,12 +322,66 @@ a {
   height: 1px;
   z-index: -1;
 }
-
 #elemente{
   display: inline-block;
   height: 576px;
 }
 
+/* ----------------- MEDIA QUERIES ----------------- */
+
+/* HEADER LABEL LOGIN */
+@media (max-width: 325px){
+  #login-header-label{
+    margin-top: 5px;
+    max-width: 250px;
+  }
+}           /* HEADER LABEL LOGIN */
+/* HEADER LABEL OPTIONS */
+@media (max-width: 375px) {
+  #options-header-label{
+    margin-top: 5px;
+    max-width: 250px;
+  }
+}
+/* FOR HANDY DISPLAY */
+@media (max-width: 399px){
+  .box{
+    margin-bottom: 10px;
+  }
+  .input{
+    height: 30px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  form > input[type="submit"]{
+    width: 100%;
+  }
+}
+/* FOR BIGGER SCREENS  */
+@media (min-width: 400px){
+  .box{
+    margin-top: 20px;
+  }
+}
+/* FOR HAMBURGER-MENU */
+@media (max-width: 630px) {
+  a > .button{
+    display: none;
+  }
+  #hamburger-menu{
+    display: block;
+  }
+}
+@media (min-width: 630px) {
+  a > .button{
+    display: inline-block;
+    float: right;
+    margin: 15px 5px 0 0;
+    text-decoration: none;
+  }
+}
+
+/* FOR OVERVIEW.HTML */
 @media (min-width: 1300px) {
   #vert_trennlinie{
     position: absolute;
@@ -419,18 +396,17 @@ a {
     margin-left: 25px;
   }
 }
-
 @media (min-width: 1024px) and (max-width: 1300px){
   #overview{
     height: auto;
   }
-  .element-box{
-    max-width: 300px;
-    width: 100%;
-  }
   #elemente{
     position: absolute;
     display: inline-block;
+  }
+  .element-box{
+    max-width: 300px;
+    width: 100%;
   }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -457,7 +433,6 @@ a {
     margin-bottom: 50px;
   }
 }
-
 @media (max-width: 768px) {
   #vert_trennlinie{
     display: none;
@@ -469,14 +444,11 @@ a {
     display: flex;
     justify-content: center;
   }
-  .scrollable-box{
-    height: auto;
-  }
-  #prozess_klein{
+  #prozess_view_klein{
     display: flex;
     flex-wrap: wrap;
   }
-  #prozess_groß{
+  #prozess_view_groß{
     display: none;
   }
   #overview-setting-box, .overview-form-box{
@@ -493,6 +465,9 @@ a {
     position: relative;
     left: -13px;
   }
+  .scrollable-box{
+    height: auto;
+  }
   .element-box{
     height: 120px;
   }
@@ -500,7 +475,6 @@ a {
     height: 120px;
   }
 }
-
 @media (max-width: 700px) {
   #vert_trennlinie{
     display: none;
@@ -508,7 +482,11 @@ a {
   #horz_trennlinie{
     display: none;
   }
-  #prozess_klein{
+  #prozess_title_klein{
+    position: relative;
+    left: -3px;
+  }
+  #prozess_view_klein{
     display: flex;
     flex-wrap: wrap;
   }
@@ -518,9 +496,5 @@ a {
   }
   .image-box{
     height: 150px;
-  }
-  #prozess_title_klein{
-    position: relative;
-    left: -3px;
   }
 }
