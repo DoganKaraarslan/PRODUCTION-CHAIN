@@ -22,10 +22,10 @@ function Controls(form) {
 
 
     // Listen for updates
-    form.submit(event => {
+    /*form.submit(event => {
         event.preventDefault();
         updateDevices();
-    });
+    });*/
 
     // Load initial values
     updateDevices();
@@ -35,6 +35,9 @@ function Controls(form) {
      */
     function updateDevices() {
         // TODO controls: get values of all controls of the form and call updateDevice on each device
+        for(i = 0; i < devices.length; i++){
+          devices[i].updateDevice(values[i]);
+        }
     }
 
     /**

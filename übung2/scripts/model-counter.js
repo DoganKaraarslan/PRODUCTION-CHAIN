@@ -18,6 +18,8 @@ function Counter(element) {
      */
     function alterCount(difference) {
         // TODO counter: adapt counter and update counter in overview.html
+        count += difference;
+        element.innerHTML = count;
     }
 
     // Export methods
