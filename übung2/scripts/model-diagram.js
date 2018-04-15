@@ -41,6 +41,9 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
 
 
     // TODO diagram: add variables for drawing mode and to store selected devices and arrows
+    var drawing_mode;
+    var selected_device;
+    var current_arrows;
 
 
     // Initialize events

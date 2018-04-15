@@ -46,6 +46,7 @@ function Controls(form) {
      */
     function addDevice(device) {
         // TODO controls: add dropped device to list and update the state of the device
+        devices.push(device);
     }
 
     /**
@@ -54,6 +55,10 @@ function Controls(form) {
      */
     function removeDevice(device) {
         // TODO controls: remove deleted device from list
+        var index = devices.indexOf(device);
+        if(index > -1){
+          devices.splice(index, 1);
+        }
     }
 
     // Export public methods
