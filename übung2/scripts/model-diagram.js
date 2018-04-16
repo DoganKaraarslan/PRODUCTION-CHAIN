@@ -54,10 +54,20 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
      */
     function attachEventHandlers() {
         // TODO diagram: prevent standard context menu inside of diagram
+        document.getElementById("diagram").setAttribute("oncontextmenu","return false");
 
         // TODO diagram: attach mouse move event and draw arrow if arrow active mode is on
 
         // TODO diagram: add device drop functionality by jquery ui droppable and prevent dropping outside the diagram
+        $("body").droppable({
+          disabled: true
+        });
+        $("#diagram").droppable({
+          tolerance: 'fit',
+          drop: function(event, ui){
+            addDevice(event, ui);
+          }
+        });
 
         // TODO diagram: attach mousedown event to body element and remove all active modes like arrow drawing active mode or selected device mode
 
@@ -125,6 +135,16 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
          *                 + add device to Controls
          *                 + adapt device counter of controls
          */
+         var newDevice = ui.helper.clone(false);
+         newDevice.removeClass('ui-draggable-dragging');
+         var coor = getRelativeCoordinates(event.pageX, event.pageY);
+         newDevice.css({
+           position: "absolute",
+           left: coor[0] - 50,
+           top: coor[1] - 55,
+           cursor: "move",
+         });
+         $("#diagram-list").append(newDevice);
     }
 
     /**

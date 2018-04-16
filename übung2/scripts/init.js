@@ -1,3 +1,5 @@
+var out_label;
+
 var device_counter;
 var arrow_counter;
 var product_counter;
@@ -21,38 +23,52 @@ $(document).ready(function() {
 
     // TODO init: add drag functionality to devices in sidebar
     $("#item-generator").draggable({
+      cursor: "move",
+      cursorAt: { top: 50, left: 45 },
       helper: function(){
-        return $("<div style='width: 100px;'>" + images["item-generator"] + "</div>");
+        return $("<li><div style='width: 100px;'>" + images["item-generator"] + "</div></li>");
       }
     });
     $("#machine").draggable({
+      cursor: "move",
+      cursorAt: { top: 50, left: 45 },
       helper: function(){
-        return $("<div style='width: 100px;'>" + images["machine"] + "</div>");
+        return $("<li><div style='width: 100px;'>" + images["machine"] + "</div></li>");
       }
     });
     $("#conveyor").draggable({
+      cursor: "move",
+      cursorAt: { top: 50, left: 45 },
       helper: function(){
-        return $("<div style='width: 100px;'>" + images["conveyor"] + "</div>");
+        return $("<li><div style='width: 100px;'>" + images["conveyor"] + "</div></li>");
       }
     });
     $("#intelligent-conveyor").draggable({
+      cursor: "move",
+      cursorAt: { top: 50, left: 45 },
       helper: function(){
-        return $("<div style='width: 100px;'>" + images["intelligent-conveyor"] + "</div>");
+        return $("<li><div style='width: 100px;'>" + images["intelligent-conveyor"] + "</div></li>");
       }
     });
     $("#interim-storage").draggable({
+      cursor: "move",
+      cursorAt: { top: 50, left: 45 },
       helper: function(){
-        return $("<div style='width: 100px;'>" + images["interim-storage"] + "</div>");
+        return $("<li><div style='width: 100px;'>" + images["interim-storage"] + "</div></li>");
       }
     });
     $("#end-storage").draggable({
+      cursor: "move",
+      cursorAt: { top: 50, left: 45 },
       helper: function(){
-        return $("<div style='width: 100px;'>" + images["end-storage"] + "</div>");
+        return $("<li><div style='width: 100px;'>" + images["end-storage"] + "</div></li>");
       }
     });
     $("#trash-storage").draggable({
+      cursor: "move",
+      cursorAt: { top: 50, left: 45 },
       helper: function(){
-        return $("<div style='width: 100px;'>" + images["trash-storage"] + "</div>");
+        return $("<li><div style='width: 100px;'>" + images["trash-storage"] + "</div></li>");
       }
     });
 });
