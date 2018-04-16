@@ -65,7 +65,9 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
         $("#diagram").droppable({
           tolerance: 'fit',
           drop: function(event, ui){
-            addDevice(event, ui);
+            if(selected_device == undefined){
+              addDevice(event, ui);
+            }
           }
         });
 
@@ -136,6 +138,15 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
          *                 + adapt device counter of controls
          */
          var newDevice = ui.helper.clone(false);
+         newDevice.draggable({
+           containment: $("#diagram"),
+           start: function(event, ui) {
+             selected_device = $(this);
+           },
+           stop: function(event, ui){
+             selected_device = undefined;
+           }
+         });
          newDevice.removeClass('ui-draggable-dragging');
          var coor = getRelativeCoordinates(event.pageX, event.pageY);
          newDevice.css({
@@ -145,6 +156,8 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
            cursor: "move",
          });
          $("#diagram-list").append(newDevice);
+
+         device_counter.alterCount(1);
     }
 
     /**
