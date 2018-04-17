@@ -18,6 +18,16 @@ const update = {
 function updateItemGenerator(container, min, max, value) {
     // TODO update svg: see assignment document
 
+    if(value <= min){
+      container.contents().find(".thirdPlane").attr("opacity", "0");
+      container.contents().find(".secondPlane").attr("opacity", "0");
+    }else if(value >= max){
+      container.contents().find(".thirdPlane").attr("opacity", "1");
+      container.contents().find(".secondPlane").attr("opacity", "1");
+    }else{
+      container.contents().find(".thirdPlane").attr("opacity", "0");
+      container.contents().find(".secondPlane").attr("opacity", "1");
+    }
 }
 
 /**
@@ -42,6 +52,11 @@ function updateMachine(container, min, max, value) {
 function updateConveyor(container, min, max, value) {
     // TODO update svg: see assignment document
 
+    if(value == true){
+      container.contents().find(".package").attr("opacity", "1");
+    }else{
+      container.contents().find(".package").attr("opacity", "0");
+    }
 }
 
 /**
@@ -77,5 +92,12 @@ function updateInterimStorage(container, min, max, value) {
  */
 function updateStorage(container, min, max, value) {
     // TODO update svg: see assignment document
-
+    
+    if(value <= min){
+      container.contents().find("tspan").html(min);
+    }else if(value >= max){
+      container.contents().find("tspan").html(max);
+    }else{
+      container.contents().find("tspan").html(value);
+    }
 }

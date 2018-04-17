@@ -1,238 +1,287 @@
 /**
- * Class for the complete diagram
- * @param {string} areaSelector
- * @param {string} arrowButtonSelector
- * @param {Counter} devicesCounter
- * @param {Counter} arrowsCounter
- * @param {Controls} controls
- * @class
- */
+* Class for the complete diagram
+* @param {string} areaSelector
+* @param {string} arrowButtonSelector
+* @param {Counter} devicesCounter
+* @param {Counter} arrowsCounter
+* @param {Controls} controls
+* @class
+*/
 function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounter, controls) {
-    "use strict";
-    const _this = this;
+  "use strict";
+  const _this = this;
+
+  /**
+  * The jQuery object containing the diagram wrapper
+  * @const
+  */
+  this.area = $(areaSelector);
+
+  /**
+  * The jQuery object containing the arrow button in the sidebar
+  */
+  const arrowButton = $(arrowButtonSelector);
+
+  /**
+  * The jQuery object containing the arrows svg area
+  * @const
+  */
+  this.arrows = this.area.find(".arrows svg");
+
+  /**
+  * The jQuery object containing the device list
+  * @const
+  */
+  this.devices = this.area.find(".devices");
+
+  /**
+  * The jQuery object containing the context menu
+  */
+  const context = $(".contextMenu");
+
+
+  // TODO diagram: add variables for drawing mode and to store selected devices and arrows
+  var drawing_mode;
+  var selected_device;
+  var current_arrows;
+
+  var device_counter = {
+    'item-generator' : 0,
+    'machine': 0,
+    'conveyor': 0,
+    'intelligent-conveyor': 0,
+    'interim-storage': 0,
+    'end-storage': 0,
+    'trash-storage': 0
+  };
+
+
+  // Initialize events
+  attachEventHandlers();
+
+  /**
+  * Add the event handlers for the diagram
+  */
+  function attachEventHandlers() {
+    // TODO diagram: prevent standard context menu inside of diagram
+
+    // TODO diagram: attach mouse move event and draw arrow if arrow active mode is on
+
+    // TODO diagram: add device drop functionality by jquery ui droppable and prevent dropping outside the diagram
+    $("body").droppable({
+      disabled: true
+    });
+    $("#diagram").droppable({
+      tolerance: 'fit',
+      drop: function(event, ui){
+        if(selected_device == undefined){
+          addDevice(event, ui);
+        }
+      }
+    });
+
+    // TODO diagram: attach mousedown event to body element and remove all active modes like arrow drawing active mode or selected device mode
+
+    // TODO diagram: attach keyup event to html element for 'ENTF' ('DEL') (delete device or arrow) and 'a'/'A' (toggle arrow active mode)
+
+    // TODO diagram: attach events for context menu items ('Detailseite', 'Löschen')
+  }
+
+  /**
+  * Toggle whether drawing arrows is active or not
+  */
+  function toggleArrowActive() {
+    // TODO diagram: toggle arrow active mode (call deactivateArrowDrawing() or activateArrowDrawing()
+  }
+
+  /**
+  * Append the currently drawn arrow to the diagram
+  */
+  function addArrow() {
+    // TODO diagram: if drawing arrow mode is on, create Arrow object
+  }
+
+  /**
+  * Set arrow drawing to active
+  */
+  function activateArrowDrawing() {
+    // TODO diagram: reset selected arrows and selected devices, enable arrow active mode and add active class to arrow button in sidebar
+  }
+
+  /**
+  * Set arrow drawing to inactive and delete the temporary arrow
+  */
+  function deactivateArrowDrawing() {
+    // TODO diagram: disable arrow active mode and remove active class to arrow button in sidebar
+  }
+
+  /**
+  * TODO diagram: use this function to get relative coordinates of devices inside diagram
+  * Determine the coordinates relative to the diagram area's top left corner
+  * @param {number} x The absolute x coordinate
+  * @param {number} y The absolute y coordinate
+  * @returns {number[]} An array with two elements containing the relative x and y coordinates
+  */
+  function getRelativeCoordinates(x, y) {
+    return [
+      x - _this.area.offset().left - _this.area[0].clientLeft,
+      y - _this.area.offset().top - _this.area[0].clientTop
+    ];
+  }
+
+  /**
+  * Add a new device on dropping it onto the diagram area
+  * @param event The jQuery event instance
+  * @param ui The jQuery UI instance
+  */
+  function addDevice(event, ui) {
+    // TODO diagram: check if dragged device is inside diagram, if not => do nothing
+    // -> is done by setting tolerance: fit at droppable function
 
     /**
-     * The jQuery object containing the diagram wrapper
-     * @const
-     */
-    this.area = $(areaSelector);
+    * TODO diagram: if dragged device is inside diagram, add dragged device to diagram
+    *                 + get data added to html object in overview
+    *                 + add image of device-resources.js
+    *                 + add update function of device-updating-states.js
+    *                 + create object of Device and transmit parameters
+    *                 + add device to Controls
+    *                 + adapt device counter of controls
+    */
+    if(ui.helper == undefined){
+      return;
+    }else{
+      var coor = getRelativeCoordinates(event.pageX, event.pageY);
+      coor[0] -= 50;
+      coor[1] -= 55;
+      var newDevice = ui.helper.clone(false);
+      var id_of_dragged = newDevice.attr('id');
+      device_counter[id_of_dragged]++;
 
-    /**
-     * The jQuery object containing the arrow button in the sidebar
-     */
-    const arrowButton = $(arrowButtonSelector);
+      newDevice.attr("id", id_of_dragged + device_counter[id_of_dragged]);
+      newDevice.draggable({
+        containment: $("#diagram"),
+        start: function(event, ui) {
+          selected_device = $(this);
+        },
+        stop: function(event, ui){
+          selected_device = undefined;
+        }
+      });
+      newDevice.removeClass('ui-draggable-dragging');
+      newDevice.css({
+        position: "absolute",
+        left: coor[0],
+        top: coor[1],
+        cursor: "pointer",
+      });
+      $("#diagram-list").append(newDevice);
 
-    /**
-     * The jQuery object containing the arrows svg area
-     * @const
-     */
-    this.arrows = this.area.find(".arrows svg");
-
-    /**
-     * The jQuery object containing the device list
-     * @const
-     */
-    this.devices = this.area.find(".devices");
-
-    /**
-     * The jQuery object containing the context menu
-     */
-    const context = $(".contextMenu");
-
-
-    // TODO diagram: add variables for drawing mode and to store selected devices and arrows
-    var drawing_mode;
-    var selected_device;
-    var current_arrows;
-
-
-    // Initialize events
-    attachEventHandlers();
-
-    /**
-     * Add the event handlers for the diagram
-     */
-    function attachEventHandlers() {
-        // TODO diagram: prevent standard context menu inside of diagram
-        document.getElementById("diagram").setAttribute("oncontextmenu","return false");
-
-        // TODO diagram: attach mouse move event and draw arrow if arrow active mode is on
-
-        // TODO diagram: add device drop functionality by jquery ui droppable and prevent dropping outside the diagram
-        $("body").droppable({
-          disabled: true
-        });
-        $("#diagram").droppable({
-          tolerance: 'fit',
-          drop: function(event, ui){
-            if(selected_device == undefined){
-              addDevice(event, ui);
-            }
-          }
-        });
-
-        // TODO diagram: attach mousedown event to body element and remove all active modes like arrow drawing active mode or selected device mode
-
-        // TODO diagram: attach keyup event to html element for 'ENTF' ('DEL') (delete device or arrow) and 'a'/'A' (toggle arrow active mode)
-
-        // TODO diagram: attach events for context menu items ('Detailseite', 'Löschen')
+      var obj;
+      var index = $("#diagram-list li").length - 1;
+      switch(id_of_dragged){
+        case "item-generator":
+        obj = new Device($(this), index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 2, id_of_dragged, updateItemGenerator);
+        break;
+        case "machine":
+        obj = new Device($(this), index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 25, 100, id_of_dragged, updateMachine);
+        break;
+        case "conveyor":
+        obj = new Device($(this), index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 1, id_of_dragged, updateConveyor);
+        break;
+        case "intelligent-conveyor":
+        obj = new Device($(this), index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 1, id_of_dragged, updateIntelligentConveyor);
+        break;
+        case "interim-storage":
+        obj = new Device($(this), index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateInterimStorage);
+        break;
+        case "end-storage":
+        obj = new Device($(this), index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateStorage);
+        break;
+        case "trash-storage":
+        obj = new Device($(this), index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateStorage);
+        break;
+        default:
+        return;
+      }
+      controls.addDevice(obj);
+      devicesCounter.alterCount(1);
     }
+  }
 
+  /**
+  * Callback for clicking on an arrow
+  * @param {Arrow} arrow the arrow instance
+  */
+  function arrowClick(arrow) {
+    // TODO diagram: call selectArrow() with arrow, if arrow!=selectedArrow, otherwise with null
+  }
+
+  /**
+  * Callback for opening the context menu for the given device
+  * @param {Device} device the device instance
+  * @param event The jQuery Event instance
+  */
+  function showContextMenu(device, event) {
+    // TODO diagram: show context menu + select device + deactivate arrow drawing
+
+  }
+
+  /**
+  * Callback for mouse down on a device
+  * @param {Device} device the device instance
+  */
+  function deviceMouseDown(device) {
     /**
-     * Toggle whether drawing arrows is active or not
-     */
-    function toggleArrowActive() {
-        // TODO diagram: toggle arrow active mode (call deactivateArrowDrawing() or activateArrowDrawing()
-    }
+    * TODO diagram: this method should be called in model-device.js if device a device is clicked
+    *              + if arrow drawing mode is enabled and no device is selected before, create new object of Arrow for drawingArrow
+    *              + if arrow drawing mode is enabled and a device was already selected before, add the drawn arrow between two devices
+    *              + if selected device before is equal to new selected device, disable arrow drawing mode and delete drawn arrow from device to mouse position
+    */
+    //
+  }
 
-    /**
-     * Append the currently drawn arrow to the diagram
-     */
-    function addArrow() {
-        // TODO diagram: if drawing arrow mode is on, create Arrow object
-    }
+  /**
+  * Callback for releasing the mouse over a device (end of mouse movement)
+  * @param {Device} device the device instance
+  */
+  function deviceMouseUp(device) {
+    // TODO diagram: if drawing arrow mode is enabled and start device != end device, set end device of drawing arrow and add drawing arrow with addArrow()
+  }
 
-    /**
-     * Set arrow drawing to active
-     */
-    function activateArrowDrawing() {
-        // TODO diagram: reset selected arrows and selected devices, enable arrow active mode and add active class to arrow button in sidebar
-    }
+  /**
+  * Select the given arrow
+  * @param {?Arrow} arrow The arrow to select, or null to unselect
+  */
+  function selectArrow(arrow) {
+    // TODO diagram: select arrow
+  }
 
-    /**
-     * Set arrow drawing to inactive and delete the temporary arrow
-     */
-    function deactivateArrowDrawing() {
-        // TODO diagram: disable arrow active mode and remove active class to arrow button in sidebar
-    }
+  /**
+  * Select the given device
+  * @param {?Device} device The device to select, or null to unselect
+  */
+  function selectDevice(device) {
+    // TODO diagram: select device
+  }
 
-    /**
-     * TODO diagram: use this function to get relative coordinates of devices inside diagram
-     * Determine the coordinates relative to the diagram area's top left corner
-     * @param {number} x The absolute x coordinate
-     * @param {number} y The absolute y coordinate
-     * @returns {number[]} An array with two elements containing the relative x and y coordinates
-     */
-    function getRelativeCoordinates(x, y) {
-        return [
-            x - _this.area.offset().left - _this.area[0].clientLeft,
-            y - _this.area.offset().top - _this.area[0].clientTop
-        ];
-    }
+  /**
+  * Remove the selected arrow
+  */
+  function deleteSelectedArrow() {
+    // TODO diagram: delete selected arrow
+  }
 
-    /**
-     * Add a new device on dropping it onto the diagram area
-     * @param event The jQuery event instance
-     * @param ui The jQuery UI instance
-     */
-    function addDevice(event, ui) {
-        // TODO diagram: check if dragged device is inside diagram, if not => do nothing
+  /**
+  * Completely remove the selected device
+  */
+  function deleteSelectedDevice() {
+    // TODO diagram: delete selected device
+  }
 
-        /**
-         * TODO diagram: if dragged device is inside diagram, add dragged device to diagram
-         *                 + get data added to html object in overview
-         *                 + add image of device-resources.js
-         *                 + add update function of device-updating-states.js
-         *                 + create object of Device and transmit parameters
-         *                 + add device to Controls
-         *                 + adapt device counter of controls
-         */
-         var newDevice = ui.helper.clone(false);
-         newDevice.draggable({
-           containment: $("#diagram"),
-           start: function(event, ui) {
-             selected_device = $(this);
-           },
-           stop: function(event, ui){
-             selected_device = undefined;
-           }
-         });
-         newDevice.removeClass('ui-draggable-dragging');
-         var coor = getRelativeCoordinates(event.pageX, event.pageY);
-         newDevice.css({
-           position: "absolute",
-           left: coor[0] - 50,
-           top: coor[1] - 55,
-           cursor: "move",
-         });
-         $("#diagram-list").append(newDevice);
-
-         device_counter.alterCount(1);
-    }
-
-    /**
-     * Callback for clicking on an arrow
-     * @param {Arrow} arrow the arrow instance
-     */
-    function arrowClick(arrow) {
-        // TODO diagram: call selectArrow() with arrow, if arrow!=selectedArrow, otherwise with null
-    }
-
-    /**
-     * Callback for opening the context menu for the given device
-     * @param {Device} device the device instance
-     * @param event The jQuery Event instance
-     */
-    function showContextMenu(device, event) {
-        // TODO diagram: show context menu + select device + deactivate arrow drawing
-    }
-
-    /**
-     * Callback for mouse down on a device
-     * @param {Device} device the device instance
-     */
-    function deviceMouseDown(device) {
-        /**
-         * TODO diagram: this method should be called in model-device.js if device a device is clicked
-         *              + if arrow drawing mode is enabled and no device is selected before, create new object of Arrow for drawingArrow
-         *              + if arrow drawing mode is enabled and a device was already selected before, add the drawn arrow between two devices
-         *              + if selected device before is equal to new selected device, disable arrow drawing mode and delete drawn arrow from device to mouse position
-         */
-        //
-    }
-
-    /**
-     * Callback for releasing the mouse over a device (end of mouse movement)
-     * @param {Device} device the device instance
-     */
-    function deviceMouseUp(device) {
-        // TODO diagram: if drawing arrow mode is enabled and start device != end device, set end device of drawing arrow and add drawing arrow with addArrow()
-    }
-
-    /**
-     * Select the given arrow
-     * @param {?Arrow} arrow The arrow to select, or null to unselect
-     */
-    function selectArrow(arrow) {
-        // TODO diagram: select arrow
-    }
-
-    /**
-     * Select the given device
-     * @param {?Device} device The device to select, or null to unselect
-     */
-    function selectDevice(device) {
-        // TODO diagram: select device
-    }
-
-    /**
-     * Remove the selected arrow
-     */
-    function deleteSelectedArrow() {
-        // TODO diagram: delete selected arrow
-    }
-
-    /**
-     * Completely remove the selected device
-     */
-    function deleteSelectedDevice() {
-        // TODO diagram: delete selected device
-    }
-
-    // Export some methods
-    this.activateArrowDrawing = activateArrowDrawing;
-    this.arrowClick = arrowClick;
-    this.showContextMenu = showContextMenu;
-    this.deviceMouseDown = deviceMouseDown;
-    this.deviceMouseUp = deviceMouseUp;
+  // Export some methods
+  this.activateArrowDrawing = activateArrowDrawing;
+  this.arrowClick = arrowClick;
+  this.showContextMenu = showContextMenu;
+  this.deviceMouseDown = deviceMouseDown;
+  this.deviceMouseUp = deviceMouseUp;
 }

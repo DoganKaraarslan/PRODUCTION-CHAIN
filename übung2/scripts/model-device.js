@@ -64,6 +64,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     const object = $(
         // TODO device: create html container
+        "<div style='width: 100px;'>" + images[image] + "</div>"
     );
 
     // TODO device: add variables if necessary
@@ -71,6 +72,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
 
     // TODO device: append the device DOM object to the diagram area
 
+    $("#"+this.title).html(object);
 
     // TODO device: initialize the device position
 
