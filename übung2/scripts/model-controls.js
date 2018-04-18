@@ -22,10 +22,10 @@ function Controls(form) {
 
 
     // Listen for updates
-    /*form.submit(event => {
+    form.submit(event => {
         event.preventDefault();
         updateDevices();
-    });*/
+    });
 
     // Load initial values
     updateDevices();

@@ -16,7 +16,7 @@ $(document).ready(function() {
     product_counter = new Counter(document.getElementById("product-counterID"));
 
     // TODO init: initialize controls
-    controls = new Controls(document.getElementById("controls"));
+    controls = new Controls($("#controls"));
 
     // TODO init: initialize diagram and transfer counters and controls
     diagram = new Diagram(document.getElementById("diagram"), document.getElementById("arrow-sidebar-add"), device_counter, arrow_counter, controls);
