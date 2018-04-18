@@ -106,6 +106,7 @@ function updateInterimStorage(container, min, max, value) {
         container.contents().find(".packageBottom").attr("opacity", "1");
     } else {
         container.contents().find(".packageTop").attr("opacity", "1");
+        container.contents().find(".packageBottom").attr("opacity", "1");
     }
     if(value < 1){
         container.contents().find(".packageBottom").attr("opacity", "0");
