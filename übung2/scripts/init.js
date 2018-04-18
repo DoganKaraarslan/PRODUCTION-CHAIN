@@ -1,5 +1,3 @@
-var out_label;
-
 var device_counter;
 var arrow_counter;
 var product_counter;
