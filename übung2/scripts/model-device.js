@@ -75,7 +75,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
     $("#"+_this.title).html(object);
 
     // TODO device: initialize the device position
-
+    this.position = position;
     // Initialize the event handlers
     attachEventHandlers();
 

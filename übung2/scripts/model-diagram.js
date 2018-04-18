@@ -187,7 +187,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
       });
       $("#diagram-list").append(newDevice);
       var obj;
-      var index = $("#diagram-list li").length - 1;
+      var index = $("#diagram-list li").length;
       switch(id_of_dragged){
         case "item-generator":
         obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 2, id_of_dragged, updateItemGenerator);
@@ -233,8 +233,11 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function showContextMenu(device, event) {
     // TODO diagram: show context menu + select device + deactivate arrow drawing
-    document.getElementById("arrow-counterID").innerHTML = "hallo";
-
+    document.getElementById("arrow-counterID").innerHTML = "" +device.type + device.index;
+    $("#"+device.type + device.index).addClass("device");
+    $("#"+device.type + device.index).addClass("active");
+    $(".contextMenu").attr("style", "display: block; top:"+event.pageY+"px; left:"+event.pageX+"px;");
+    event.preventDefault();
   }
 
   /**
