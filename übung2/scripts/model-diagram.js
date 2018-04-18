@@ -190,25 +190,25 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
       var index = $("#diagram-list li").length - 1;
       switch(id_of_dragged){
         case "item-generator":
-        obj = new Device(this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 2, id_of_dragged, updateItemGenerator);
+        obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 2, id_of_dragged, updateItemGenerator);
         break;
         case "machine":
-        obj = new Device(this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 25, 100, id_of_dragged, updateMachine);
+        obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 100, id_of_dragged, updateMachine);
         break;
         case "conveyor":
-        obj = new Device(this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 1, id_of_dragged, updateConveyor);
+        obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 1, id_of_dragged, updateConveyor);
         break;
         case "intelligent-conveyor":
-        obj = new Device(this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 1, id_of_dragged, updateIntelligentConveyor);
+        obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 1, id_of_dragged, updateIntelligentConveyor);
         break;
         case "interim-storage":
-        obj = new Device(this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateInterimStorage);
+        obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateInterimStorage);
         break;
         case "end-storage":
-        obj = new Device(this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateStorage);
+        obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateStorage);
         break;
         case "trash-storage":
-        obj = new Device(this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateStorage);
+        obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateStorage);
         break;
         default:
         return;

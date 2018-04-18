@@ -72,7 +72,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
 
     // TODO device: append the device DOM object to the diagram area
 
-    $("#"+this.title).html(object);
+    $("#"+_this.title).html(object);
 
     // TODO device: initialize the device position
 
@@ -84,7 +84,9 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     function attachEventHandlers() {
         // TODO device: attach context menu to device (call showContextMenu() in model-diagram.js if context menu is called)
-
+        $("#"+title).contextmenu(function(ev){
+          diagram.showContextMenu(_this, ev);
+        });
         // TODO device: attach events for functionality like in assignment-document described
 
         // TODO device: attach drag & drop functionality
