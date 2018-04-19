@@ -64,21 +64,18 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     const object = $(
         // TODO device: create html container
-        "<div style='width: 100px;'>" + images[image] + "</div>"
+        "<li id='"+title+"' style='width: 100px; position: absolute; left:"+ position[0] +"; top: " +position[1]+"; cursor: pointer;'>" + images[image] + "</li>"
     );
 
     // TODO device: add variables if necessary
 
     // TODO device: append the device DOM object to the diagram area
-    diagram.devices.append("<li id='"+title+"'></li>");
-    $("#"+title).html(object);
+    diagram.devices.append(object);
 
     // TODO device: initialize the device position
     $("#"+title).css({
-      position: "absolute",
       left: position[0],
-      top: position[1],
-      cursor: "pointer",
+      top: position[1]
     });
 
     // Initialize the event handlers
@@ -93,20 +90,27 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
           diagram.showContextMenu(_this, ev);
         });
         // TODO device: attach events for functionality like in assignment-document described
-        $("#"+title).on("click", function(event) {
-          _this.setActive(true);
+        $("#"+title).mousedown(function(event){
+          return false;
+        });
+        $("#"+title).click(function(event){
+          diagram.deviceMouseDown(_this);
         });
 
-        $("#"+title).on("dblclick", function(event) {
+        $("#"+title).dblclick(function(event) {
           alert("Ausgewähltes Gerät: "+ title);
         });
 
         var x = $("#arrow-device-add-reference").clone();
-        x.attr("id", "arrow-symbol-device");
+        x.attr("id", "arrow-symbol-"+ title);
+        $("#"+title).append(x);
         $("#"+title).hover(function(event){
-          $("#"+title).append(x);
+          x.attr("style", "display: block;");
         }, function(event){
-          $("#arrow-symbol-device").remove();
+          x.attr("style", "display: none;");
+        });
+        x.click(function(event){
+          diagram.activateArrowDrawing();
         });
 
         $("#"+title).removeClass('ui-draggable-dragging');
@@ -126,15 +130,12 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
     function setActive(active) {
         // TODO device: set/remove active class of device
         if(active){
-          diagram.selectDevice(_this);
           $("#"+title).addClass("device");
           $("#"+title).addClass("active");
         }else{
-          diagram.selectDevice(null);
           $("#"+title).removeClass("device");
           $("#"+title).removeClass("active");
         }
-
     }
 
     /**
@@ -264,4 +265,5 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
     this.addArrowOut = addArrowOut;
     this.deleteArrow = deleteArrow;
     this.deleteDevice = deleteDevice;
+    this.getCenterCoordinates = getCenterCoordinates;
 }

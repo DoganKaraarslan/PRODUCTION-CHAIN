@@ -1,3 +1,4 @@
+var arrow_index = 0;
 /**
  * A class representing one arrow
  *
@@ -21,19 +22,20 @@ function Arrow(diagram, startDevice) {
      */
     this.endDevice = null;
 
+    this.id = 'arrow' + (++arrow_index);
+
     /**
      * The jQuery DOM object representing this arrow
      */
     const object = $(
         // TODO arrow: create jQuery object for the SVG path
-        "#arrow-image"
-    ).clone();
-
+        "<div id='"+_this.id+"'style='height: inherit; width:inherit; display: inline; position: absolute;'><svg width='100%' height='100%'>"+$(".arrow-image svg").html()+"</svg></div>"
+    );
 
     // TODO arrow: add variables if necessary
 
-
     // TODO arrow: append the arrow DOM object to the arrows svg
+    object.insertBefore($("#diagram .arrows #svg_marker"));
 
     // Initialize the event handlers
     attachEventHandlers();
@@ -77,6 +79,11 @@ function Arrow(diagram, startDevice) {
     function updateEndPosition(endPosition) {
         // TODO arrow: draw an arrow between the start device and the given end position
         // HINT You can use Device.getIntersectionCoordinates to calculate the coordinates for the start device
+
+        var end_x = endPosition[0] - diagram.area.offset().left;
+        var end_y = endPosition[1] - diagram.area.offset().top;
+        var start_coords = startDevice.getIntersectionCoordinates([end_x, end_y]);
+        $("#"+_this.id).contents().find("path").attr("d","M"+start_coords[0]+","+start_coords[1]+ " L" + end_x + "," + end_y);
     }
 
     /**
@@ -85,6 +92,13 @@ function Arrow(diagram, startDevice) {
     function updateArrow() {
         // TODO arrow: draw an arrow between the start and end device
         // HINT You can use Device.getCenterCoordinates and Device.getIntersectionCoordinates
+        if(add()){
+          var start_coords = startDevice.getIntersectionCoordinates(_this.endDevice.getCenterCoordinates());
+          var end_coords = _this.endDevice.getIntersectionCoordinates(startDevice.getCenterCoordinates());
+          $("#"+_this.id).contents().find("path").attr("d","M"+start_coords[0]+","+start_coords[1]+ " L" + end_coords[0] + "," + end_coords[1]);
+        }else{
+          deleteArrow();
+        }
     }
 
     /**
@@ -101,6 +115,7 @@ function Arrow(diagram, startDevice) {
      */
     function deleteArrow() {
         // TODO arrow: delete arrow from HTML DOM and from the devices of the endpoints of the arrow
+        $("#"+_this.id).remove();
     }
 
     // Export some of the methods
