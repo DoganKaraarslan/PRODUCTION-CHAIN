@@ -47,8 +47,7 @@ function Arrow(diagram, startDevice) {
     function attachEventHandlers() {
         // TODO arrow: attach events for functionality like in assignment-document described
         $("#"+_this.id).click(function(event){
-          active = !active;
-          setActive(active);
+          diagram.arrowClick(_this);
         });
 
         // TODO arrow optional: attach events for bonus points for 'TAB' to switch between arrows and to select arrow
@@ -79,6 +78,7 @@ function Arrow(diagram, startDevice) {
      */
     function setActive(active) {
         // TODO arrow: set/remove active class of arrow
+
         if(active){
           $("#"+_this.id).contents().addClass("active");
         }else{
@@ -122,6 +122,7 @@ function Arrow(diagram, startDevice) {
     function setEndDevice(device) {
         _this.endDevice = device;
         updateArrow();
+        diagram.addArrow();
     }
 
     /**

@@ -94,7 +94,10 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
         selected_device = undefined;
       }
       if(selected_arrow != undefined){
-        selected_arrow.deleteArrow();
+         if(drawing_mode){
+            selected_arrow.deleteArrow();
+         }
+        selected_arrow.setActive(false);
         selected_arrow = undefined;
       }
       deactivateArrowDrawing();
@@ -104,6 +107,9 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
     $("html").keydown(function(event){
         if(selected_device != undefined && event.which == "46"){
           deleteSelectedDevice();
+        }
+        if(selected_arrow != undefined && event.which == "46"){
+          deleteSelectedArrow();
         }
         if(event.which == "65"){
           drawing_mode = !drawing_mode;
@@ -138,6 +144,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function addArrow() {
     // TODO diagram: if drawing arrow mode is on, create Arrow object
+    arrowsCounter.alterCount(1);
   }
 
   /**
@@ -246,6 +253,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function arrowClick(arrow) {
     // TODO diagram: call selectArrow() with arrow, if arrow!=selectedArrow, otherwise with null
+    selectArrow(arrow);
   }
 
   /**
@@ -263,7 +271,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
 
     deactivateArrowDrawing();
     if(selected_arrow != undefined){
-      deleteSelectedArrow();
+        selected_arrow.setActive(false);
     }
     context.attr("style", "display: block; top:"+event.pageY+"px; left:"+event.pageX+"px;");
     event.preventDefault();
@@ -291,10 +299,16 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
           deleteSelectedArrow();
         }
       }else{
+        var connected = selected_device.isConnectedTo(device);
         selected_device.setActive(false);
         selectDevice(device);
         if(drawing_mode){
-          selected_arrow.setEndDevice(device);
+          if(!connected){
+              selected_arrow.setEndDevice(device);
+          } else {
+              selected_arrow.deleteArrow();
+              selected_arrow = undefined;
+          }
           deactivateArrowDrawing();
           selected_arrow = undefined;
         }
@@ -316,8 +330,13 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function selectArrow(arrow) {
     // TODO diagram: select arrow
-    selected_arrow = arrow;
-    arrow.setActive();
+    if (selected_arrow === arrow){
+        arrow.setActive(false);
+        selected_arrow = undefined;
+    } else {
+        arrow.setActive(true);
+        selected_arrow = arrow;
+    }
   }
 
   /**
@@ -358,4 +377,5 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   this.showContextMenu = showContextMenu;
   this.deviceMouseDown = deviceMouseDown;
   this.deviceMouseUp = deviceMouseUp;
+  this.addArrow = addArrow;
 }
