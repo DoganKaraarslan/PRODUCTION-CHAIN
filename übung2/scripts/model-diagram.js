@@ -216,7 +216,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
       device_counter[id_of_dragged]++;
 
       var obj;
-      var index = $("#diagram-list li").length;
+      var index = $("#diagram-list li").length + 1;
       switch(id_of_dragged){
         case "item-generator":
         obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 2, id_of_dragged, updateItemGenerator);

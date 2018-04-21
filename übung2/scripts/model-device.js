@@ -59,15 +59,25 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     let arrowsOut = [];
 
+    // TODO device: add variables if necessary
+    const name = {
+        'item-generator' : '3D-Drucker',
+        'machine': 'Maschine',
+        'conveyor': 'Förderband',
+        'intelligent-conveyor': 'Intelligentes Förderband',
+        'interim-storage': 'Temporäres Lager',
+        'end-storage': 'Endlager',
+        'trash-storage': 'Mülllager'
+    }
+
     /**
      * The jQuery DOM object representing this device
      */
     const object = $(
         // TODO device: create html container
-        "<li id='"+title+"' style='width: 100px; position: absolute; left:"+ position[0] +"; top: " +position[1]+"; cursor: pointer;'><div class='device-image'>" + images[image] + "</div></li>"
+        "<li id='"+title+"' style='width: 100px; position: absolute; left:"+ position[0] +"; top: " +position[1]+"; cursor: pointer;'><dl class='device-properties'><dt class='accessibility'>Maschinentyp</dt><dd id='device-in-area-"+index+"' class='device-name'>"+name[type]+" "+index+"</dd><dt>Vorgänger:</dt><dd class='device-neighbour'></dd><dt>Nachfolger:</dt><dd class='device-neighbour'></dd></dl><div class='device-image'>" + images[image] + "</div></li>"
     );
 
-    // TODO device: add variables if necessary
 
     // TODO device: append the device DOM object to the diagram area
     diagram.devices.append(object);
@@ -146,6 +156,19 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     function updatePredecessors() {
         // TODO device: update predecessors in overview.html of device like in UE1
+        /*$("#device-in-area-"+index).siblings("dd:nth-of-type(2)").html(function(){
+            arrowsIn.forEach(function(arrow){
+                return arrow.startDevice.type + " " + arrow.startDevice.index;
+            })
+        });*/
+        $("#device-in-area-"+index).siblings("dd:nth-of-type(2)").html("");
+        for(i = arrowsIn.length-1; i >= 0; i--){
+            if(i != 0){
+                $("#device-in-area-"+index).siblings("dd:nth-of-type(2)").append(name[arrowsIn[i].startDevice.type] + " " + arrowsIn[i].startDevice.index + ", ");
+            } else {
+                $("#device-in-area-"+index).siblings("dd:nth-of-type(2)").append(name[arrowsIn[i].startDevice.type] + " " + arrowsIn[i].startDevice.index);
+            }
+        }
     }
 
     /**
@@ -153,6 +176,14 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     function updateSuccessors() {
         // TODO device: update successors in overview.html of device like in UE1
+        $("#device-in-area-"+index).siblings("dd:nth-of-type(3)").html("");
+        for(i = arrowsOut.length-1; i >= 0; i--){
+            if(i != 0){
+                $("#device-in-area-"+index).siblings("dd:nth-of-type(3)").append(name[arrowsOut[i].endDevice.type] + " " + arrowsOut[i].endDevice.index + ", ");
+            } else {
+                $("#device-in-area-"+index).siblings("dd:nth-of-type(3)").append(name[arrowsOut[i].endDevice.type] + " " + arrowsOut[i].endDevice.index);
+            }
+        }
     }
 
     /**
@@ -238,10 +269,12 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
         var i = arrowsIn.indexOf(arrow);
         if(i > -1){
             arrowsIn.splice(i, 1);
+            updatePredecessors();
         }
         i = arrowsOut.indexOf(arrow);
         if(i > -1){
             arrowsOut.splice(i, 1);
+            updateSuccessors();
         }
     }
 
