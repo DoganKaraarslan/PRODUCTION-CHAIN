@@ -364,9 +364,10 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function deleteSelectedDevice() {
     // TODO diagram: delete selected device
-    selected_device.deleteDevice();
+    let counter = selected_device.deleteDevice();
     context.attr("style","display:none;")
     devicesCounter.alterCount(-1);
+    arrowsCounter.alterCount(-counter);
     selected_device = undefined;
   }
 

@@ -64,7 +64,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     const object = $(
         // TODO device: create html container
-        "<li id='"+title+"' style='width: 100px; position: absolute; left:"+ position[0] +"; top: " +position[1]+"; cursor: pointer;'>" + images[image] + "</li>"
+        "<li id='"+title+"' style='width: 100px; position: absolute; left:"+ position[0] +"; top: " +position[1]+"; cursor: pointer;'><div class='device-image'>" + images[image] + "</div></li>"
     );
 
     // TODO device: add variables if necessary
@@ -214,18 +214,18 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     function deleteDevice() {
         // TODO device: delete device from HTML DOM and delete connected arrows
+        var deletedArrows = 0;
+        for(i = arrowsIn.length-1; i >= 0; i--){
+            var arrow = arrowsIn[i];
+            arrow.deleteArrow();
+            deletedArrows++;
+        }
+        for(i = arrowsOut.length-1; i >= 0; i--){
+            var arrow = arrowsOut[i];
+            arrow.deleteArrow();
+            deletedArrows++;
+        }
         $("#"+title).remove();
-        arrowsIn.forEach(function(arrow){
-            deleteArrow(arrow);
-            diagram.selectArrow(arrow);
-            diagram.deleteSelectedArrow();
-        });
-        arrowsOut.forEach(function(arrow){
-            deleteArrow(arrow);
-            diagram.selectArrow(arrow);
-            diagram.deleteSelectedArrow();
-        });
-        let deletedArrows = 0;
         return deletedArrows;
     }
 
