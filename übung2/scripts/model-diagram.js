@@ -378,4 +378,6 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   this.deviceMouseDown = deviceMouseDown;
   this.deviceMouseUp = deviceMouseUp;
   this.addArrow = addArrow;
+  this.selectArrow = selectArrow;
+  this.deleteSelectedArrow = deleteSelectedArrow;
 }

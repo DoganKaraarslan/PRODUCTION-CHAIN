@@ -215,6 +215,16 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
     function deleteDevice() {
         // TODO device: delete device from HTML DOM and delete connected arrows
         $("#"+title).remove();
+        arrowsIn.forEach(function(arrow){
+            deleteArrow(arrow);
+            diagram.selectArrow(arrow);
+            diagram.deleteSelectedArrow();
+        });
+        arrowsOut.forEach(function(arrow){
+            deleteArrow(arrow);
+            diagram.selectArrow(arrow);
+            diagram.deleteSelectedArrow();
+        });
         let deletedArrows = 0;
         return deletedArrows;
     }
@@ -225,6 +235,14 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     function deleteArrow(arrow) {
         // TODO device: delete arrow from arrowsIn/arrowsOut and update predecessors and successors
+        var i = arrowsIn.indexOf(arrow);
+        if(i > -1){
+            arrowsIn.splice(i, 1);
+        }
+        i = arrowsOut.indexOf(arrow);
+        if(i > -1){
+            arrowsOut.splice(i, 1);
+        }
     }
 
     /**
