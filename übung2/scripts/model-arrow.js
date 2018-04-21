@@ -29,13 +29,14 @@ function Arrow(diagram, startDevice) {
      */
     const object = $(
         // TODO arrow: create jQuery object for the SVG path
-        "<div id='"+_this.id+"'style='height: inherit; width:inherit; display: inline; position: absolute;'><svg width='100%' height='100%'>"+$(".arrow-image svg").html()+"</svg></div>"
+        '<svg id="'+_this.id+'"><path class="arrow-path" d="M0,10 L70,10"></path></svg>'
     );
 
     // TODO arrow: add variables if necessary
+    var active = false;
 
     // TODO arrow: append the arrow DOM object to the arrows svg
-    object.insertBefore($("#diagram .arrows #svg_marker"));
+    $(".arrows #svg-marker").append(object);
 
     // Initialize the event handlers
     attachEventHandlers();
@@ -45,6 +46,10 @@ function Arrow(diagram, startDevice) {
      */
     function attachEventHandlers() {
         // TODO arrow: attach events for functionality like in assignment-document described
+        $("#"+_this.id).click(function(event){
+          active = !active;
+          setActive(active);
+        });
 
         // TODO arrow optional: attach events for bonus points for 'TAB' to switch between arrows and to select arrow
     }
@@ -60,7 +65,7 @@ function Arrow(diagram, startDevice) {
 
         _this.startDevice.addArrowOut(_this);
         _this.endDevice.addArrowIn(_this);
-        object.addClass("arrow-path-added");
+        object.contents().addClass("arrow-path-added");
         return true;
     }
 
@@ -70,6 +75,11 @@ function Arrow(diagram, startDevice) {
      */
     function setActive(active) {
         // TODO arrow: set/remove active class of arrow
+        if(active){
+          $("#"+_this.id).contents().addClass("active");
+        }else{
+          $("#"+_this.id).contents().removeClass("active");
+        }
     }
 
     /**
@@ -83,7 +93,7 @@ function Arrow(diagram, startDevice) {
         var end_x = endPosition[0] - diagram.area.offset().left;
         var end_y = endPosition[1] - diagram.area.offset().top;
         var start_coords = startDevice.getIntersectionCoordinates([end_x, end_y]);
-        $("#"+_this.id).contents().find("path").attr("d","M"+start_coords[0]+","+start_coords[1]+ " L" + end_x + "," + end_y);
+        $("#"+_this.id).contents().attr("d","M"+start_coords[0]+","+start_coords[1]+ " L" + end_x + "," + end_y);
     }
 
     /**
@@ -95,7 +105,7 @@ function Arrow(diagram, startDevice) {
         if(add()){
           var start_coords = startDevice.getIntersectionCoordinates(_this.endDevice.getCenterCoordinates());
           var end_coords = _this.endDevice.getIntersectionCoordinates(startDevice.getCenterCoordinates());
-          $("#"+_this.id).contents().find("path").attr("d","M"+start_coords[0]+","+start_coords[1]+ " L" + end_coords[0] + "," + end_coords[1]);
+          $("#"+_this.id).contents().attr("d","M"+start_coords[0]+","+start_coords[1]+ " L" + end_coords[0] + "," + end_coords[1]);
         }else{
           deleteArrow();
         }
