@@ -59,8 +59,12 @@ function Arrow(diagram, startDevice) {
      * @returns {boolean} True if the arrow was added, false if it was already present
      */
     function add() {
-        if (!_this.endDevice || _this.endDevice === _this.startDevice || _this.startDevice.isConnectedTo(_this.endDevice)) {
+        if (!_this.endDevice || _this.endDevice === _this.startDevice) {
             return false;
+        }
+
+        if (_this.startDevice.isConnectedTo(_this.endDevice)){
+            return true;
         }
 
         _this.startDevice.addArrowOut(_this);

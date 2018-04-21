@@ -118,6 +118,9 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
         // TODO device: attach drag & drop functionality
         $("#"+title).draggable({
           containment: diagram.area,
+          drag: function(event){
+              moveDevice();
+          }
         });
 
         // TODO device optional: attach events for bonus points for 'Tab' and 'Enter'
@@ -158,6 +161,12 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
     function moveDevice() {
         // TODO device: update endpoints of arrows
         // HINT You can use Arrow.updateArrow()
+        arrowsIn.forEach(function(arrow){
+            arrow.updateArrow();
+        });
+        arrowsOut.forEach(function(arrow){
+            arrow.updateArrow();
+        });
     }
 
     /**
