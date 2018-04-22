@@ -75,7 +75,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
      */
     const object = $(
         // TODO device: create html container
-        "<li id='"+title+"' class='device'><dl class='device-properties'><dt class='accessibility'>Maschinentyp</dt><dd id='device-in-area-"+index+"' class='device-name'>"+name[type]+" "+index+"</dd><dt>Vorgänger:</dt><dd class='device-neighbour'></dd><dt>Nachfolger:</dt><dd class='device-neighbour'></dd></dl><div class='device-image'>" + images[image] + "</div></li>"
+        "<li id='"+title+"' class='device' aria-labelledby='device-in-area-"+index+"'><dl class='device-properties'><dt class='accessibility'>Maschinentyp</dt><dd id='device-in-area-"+index+"' class='device-name'>"+name[type]+" "+index+"</dd><dt>Vorgänger:</dt><dd class='device-neighbour'></dd><dt>Nachfolger:</dt><dd class='device-neighbour'></dd></dl><div class='device-image' title='"+name[type]+" "+index+"' alt='"+name[type]+" "+index+"'>" + images[image] + "</div></li>"
     );
 
 
