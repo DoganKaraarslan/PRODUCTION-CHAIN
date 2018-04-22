@@ -81,8 +81,10 @@ function Arrow(diagram, startDevice) {
 
         if(active){
           $("#"+_this.id).contents().addClass("active");
+          $("#"+_this.id).contents().attr("style", "outline: 2px solid #add8e6")
         }else{
           $("#"+_this.id).contents().removeClass("active");
+          $("#"+_this.id).contents().attr("style", "outline: none")
         }
     }
 
@@ -109,7 +111,7 @@ function Arrow(diagram, startDevice) {
         if(add()){
           var start_coords = startDevice.getIntersectionCoordinates(_this.endDevice.getCenterCoordinates());
           var end_coords = _this.endDevice.getIntersectionCoordinates(startDevice.getCenterCoordinates());
-          $("#"+_this.id).contents().attr("d","M"+start_coords[0]+","+start_coords[1]+ " L" + end_coords[0] + "," + end_coords[1]);
+          $("#"+_this.id).contents().attr("d","M"+start_coords[0]+","+start_coords[1]+ " L" + (end_coords[0]-5) + "," + end_coords[1]);
         }else{
           deleteArrow();
         }

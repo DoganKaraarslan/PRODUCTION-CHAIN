@@ -1,3 +1,12 @@
+const name = {
+    'item-generator' : '3D-Drucker',
+    'machine': 'Maschine',
+    'conveyor': 'Förderband',
+    'intelligent-conveyor': 'Intelligentes Förderband',
+    'interim-storage': 'Temporäres Lager',
+    'end-storage': 'Endlager',
+    'trash-storage': 'Mülllager'
+}
 /**
  * Function called for updating the image of this device
  *
@@ -60,22 +69,13 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
     let arrowsOut = [];
 
     // TODO device: add variables if necessary
-    const name = {
-        'item-generator' : '3D-Drucker',
-        'machine': 'Maschine',
-        'conveyor': 'Förderband',
-        'intelligent-conveyor': 'Intelligentes Förderband',
-        'interim-storage': 'Temporäres Lager',
-        'end-storage': 'Endlager',
-        'trash-storage': 'Mülllager'
-    }
 
     /**
      * The jQuery DOM object representing this device
      */
     const object = $(
         // TODO device: create html container
-        "<li id='"+title+"' style='width: 100px; position: absolute; left:"+ position[0] +"; top: " +position[1]+"; cursor: pointer;'><dl class='device-properties'><dt class='accessibility'>Maschinentyp</dt><dd id='device-in-area-"+index+"' class='device-name'>"+name[type]+" "+index+"</dd><dt>Vorgänger:</dt><dd class='device-neighbour'></dd><dt>Nachfolger:</dt><dd class='device-neighbour'></dd></dl><div class='device-image'>" + images[image] + "</div></li>"
+        "<li id='"+title+"' class='device'><dl class='device-properties'><dt class='accessibility'>Maschinentyp</dt><dd id='device-in-area-"+index+"' class='device-name'>"+name[type]+" "+index+"</dd><dt>Vorgänger:</dt><dd class='device-neighbour'></dd><dt>Nachfolger:</dt><dd class='device-neighbour'></dd></dl><div class='device-image'>" + images[image] + "</div></li>"
     );
 
 
@@ -108,17 +108,19 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
         });
 
         $("#"+title).dblclick(function(event) {
-          alert("Ausgewähltes Gerät: "+ title);
+          alert("Ausgewähltes Gerät: "+ name[type] +" "+ index);
         });
 
         var x = $("#arrow-device-add-reference").clone();
         x.attr("id", "arrow-symbol-"+ title);
         $("#"+title).append(x);
         $("#"+title).hover(function(event){
-          x.attr("style", "display: block;");
+          if($(window).width() >= 768){
+            x.attr("style", "display: block;");
+          }
         }, function(event){
-          x.attr("style", "display: none;");
-        });
+            x.attr("style", "display: none;");
+          });
         x.click(function(event){
           diagram.activateArrowDrawing();
         });
@@ -127,11 +129,17 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
 
         // TODO device: attach drag & drop functionality
         $("#"+title).draggable({
+          start: function(event){
+            if($(window).width() <= 767){
+              return false;
+            }
+          },
           containment: diagram.area,
           drag: function(event){
               moveDevice();
           }
         });
+
 
         // TODO device optional: attach events for bonus points for 'Tab' and 'Enter'
     }
@@ -143,10 +151,8 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
     function setActive(active) {
         // TODO device: set/remove active class of device
         if(active){
-          $("#"+title).addClass("device");
           $("#"+title).addClass("active");
         }else{
-          $("#"+title).removeClass("device");
           $("#"+title).removeClass("active");
         }
     }

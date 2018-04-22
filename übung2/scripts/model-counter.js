@@ -20,6 +20,7 @@ function Counter(element) {
         // TODO counter: adapt counter and update counter in overview.html
         count += difference;
         element.innerHTML = count;
+        return count;
     }
 
     // Export methods

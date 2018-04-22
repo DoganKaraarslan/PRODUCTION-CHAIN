@@ -119,7 +119,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
 
     // TODO diagram: attach events for context menu items ('Detailseite', 'Löschen')
     $(".contextView").mousedown(function(event) {
-      alert("Ausgewähltes Gerät: "+ selected_device.title);
+      alert("Ausgewähltes Gerät: "+ name[selected_device.type] + " " + selected_device.index);
     });
     $(".contextDelete").mousedown(function(event) {
       deleteSelectedDevice();
@@ -216,7 +216,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
       device_counter[id_of_dragged]++;
 
       var obj;
-      var index = $("#diagram-list li").length + 1;
+      var index = devicesCounter.alterCount(1);
       switch(id_of_dragged){
         case "item-generator":
         obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 2, id_of_dragged, updateItemGenerator);
@@ -240,10 +240,10 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
         obj = new Device(_this, index, coor, id_of_dragged, id_of_dragged + device_counter[id_of_dragged], 0, 10, id_of_dragged, updateStorage);
         break;
         default:
+        devicesCounter.alterCount(-1);
         return;
       }
       controls.addDevice(obj);
-      devicesCounter.alterCount(1);
     }
   }
 
@@ -330,7 +330,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function selectArrow(arrow) {
     // TODO diagram: select arrow
-    if (selected_arrow === arrow){
+    if (selected_arrow == arrow){
         arrow.setActive(false);
         selected_arrow = undefined;
     } else {
@@ -345,6 +345,9 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function selectDevice(device) {
     // TODO diagram: select device
+    if(selected_arrow != undefined){
+      selected_arrow.setActive(false);
+    }
     selected_device = device;
     device.setActive(true);
   }
