@@ -23,13 +23,14 @@ function Arrow(diagram, startDevice) {
     this.endDevice = null;
 
     this.id = 'arrow' + (++arrow_index);
+    var start_coords = startDevice.getCenterCoordinates();
 
     /**
      * The jQuery DOM object representing this arrow
      */
     const object = $(
         // TODO arrow: create jQuery object for the SVG path
-        '<svg id="'+_this.id+'"><path class="arrow-path" d="M0,10 L70,10"></path></svg>'
+        '<svg id="'+_this.id+'"><path class="arrow-path" d="M"'+start_coords[0]+','+start_coords[1]+' L'+start_coords[0] +','+start_coords[1]+'"></path></svg>'
     );
 
     // TODO arrow: add variables if necessary

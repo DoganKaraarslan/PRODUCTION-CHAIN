@@ -108,7 +108,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
         });
 
         $("#"+title).dblclick(function(event) {
-          alert("Ausgewähltes Gerät: "+ name[type] +" "+ index);
+          alert(name[type] +" "+ index);
         });
 
         var x = $("#arrow-device-add-reference").clone();

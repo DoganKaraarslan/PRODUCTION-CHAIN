@@ -119,7 +119,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
 
     // TODO diagram: attach events for context menu items ('Detailseite', 'Löschen')
     $(".contextView").mousedown(function(event) {
-      alert("Ausgewähltes Gerät: "+ name[selected_device.type] + " " + selected_device.index);
+      alert("showing details for device "+ name[selected_device.type] + " " + selected_device.index);
     });
     $(".contextDelete").mousedown(function(event) {
       deleteSelectedDevice();
