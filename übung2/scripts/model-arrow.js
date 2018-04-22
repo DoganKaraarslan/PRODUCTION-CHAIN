@@ -48,10 +48,16 @@ function Arrow(diagram, startDevice) {
     function attachEventHandlers() {
         // TODO arrow: attach events for functionality like in assignment-document described
         $("#"+_this.id).click(function(event){
-          diagram.arrowClick(_this);
+          diagram.selectArrow(_this);
         });
 
         // TODO arrow optional: attach events for bonus points for 'TAB' to switch between arrows and to select arrow
+        $("#"+_this.id).contents().attr("tabindex","0");
+        $("#"+_this.id).keydown(function(event){
+          if(event.which == "13"){
+            diagram.selectArrow(_this);
+          }
+        })
     }
 
     /**
