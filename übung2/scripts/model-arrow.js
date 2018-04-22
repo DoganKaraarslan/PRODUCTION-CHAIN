@@ -58,8 +58,11 @@ function Arrow(diagram, startDevice) {
             diagram.selectArrow(_this);
           }
         })
-        $("#"+_this.id).on("focus", function(event){
-          $("#"+_this.id).contents().attr("style", "border: 2px solid #4f81bc; border-radius: 2px; outline: none;");
+        $("#"+_this.id).contents().on("focus", function(event){
+          $("#"+_this.id).contents().attr("style", "outline: 2px solid #4f81bc");
+        });
+        $("#"+_this.id).contents().focusout(function(event){
+          $("#"+_this.id).contents().attr("style", "outline: none");
         });
     }
 
@@ -91,10 +94,9 @@ function Arrow(diagram, startDevice) {
 
         if(active){
           $("#"+_this.id).contents().addClass("active");
-          $("#"+_this.id).contents().attr("style", "outline: 2px solid #add8e6")
         }else{
           $("#"+_this.id).contents().removeClass("active");
-          $("#"+_this.id).contents().attr("style", "outline: none")
+          $("#"+_this.id).contents().attr("style", "outline: none");
         }
     }
 
