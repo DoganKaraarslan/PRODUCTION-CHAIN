@@ -295,7 +295,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
       }
     }else{
       if(selected_device === device){
-        if(selected_arrow != undefined){
+        if(selected_arrow != undefined && selected_arrow.endDevice == undefined){
           deleteSelectedArrow();
         }
       }else{

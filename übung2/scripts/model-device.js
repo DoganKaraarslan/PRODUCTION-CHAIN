@@ -120,7 +120,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
           }
         }, function(event){
             x.attr("style", "display: none;");
-          });
+        });
         x.click(function(event){
           diagram.activateArrowDrawing();
         });
