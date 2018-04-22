@@ -18,16 +18,6 @@ $(document).ready(function() {
 
     // TODO init: initialize diagram and transfer counters and controls
     diagram = new Diagram("#diagram", "#arrow-sidebar-add", device_counter, arrow_counter, controls);
-    $("#diagram").attr("tabindex","0");
-    // adding onclick to arrow-box in sidebar
-    var arr_box = $("#arrow-sidebar-add");
-    arr_box.click(function(event){
-      if(arr_box.hasClass("active")){
-        diagram.deactivateArrowDrawing();
-      }else{
-        diagram.activateArrowDrawing();
-      }
-    });
 
     // TODO init: add drag functionality to devices in sidebar
     $("#devices li:eq(0)").draggable({

@@ -37,7 +37,7 @@ function Arrow(diagram, startDevice) {
     var active = false;
 
     // TODO arrow: append the arrow DOM object to the arrows svg
-    $(".arrows svg:first").append(object);
+    diagram.arrows.append(object);
 
     // Initialize the event handlers
     attachEventHandlers();

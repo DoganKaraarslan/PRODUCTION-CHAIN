@@ -228,6 +228,7 @@ form:invalid .button, .button:disabled {
 .arrow:hover, .arrow.active {
     box-shadow: 0 0 16px 0 #ff9811;
     outline: none;
+    border: none;
 }
 
 .device:hover {

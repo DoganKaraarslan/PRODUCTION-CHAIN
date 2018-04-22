@@ -26,7 +26,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   * The jQuery object containing the arrows svg area
   * @const
   */
-  this.arrows = this.area.find(".arrows svg");
+  this.arrows = this.area.find(".arrows svg:first");
 
   /**
   * The jQuery object containing the device list
@@ -55,6 +55,9 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
     'trash-storage': 0
   };
 
+  var mouse_x;
+  var mouse_y;
+
 
   // Initialize events
   attachEventHandlers();
@@ -63,6 +66,14 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   * Add the event handlers for the diagram
   */
   function attachEventHandlers() {
+    arrowButton.click(function(event){
+      if(arrowButton.hasClass("active")){
+        diagram.deactivateArrowDrawing();
+      }else{
+        diagram.activateArrowDrawing();
+      }
+    });
+
     // TODO diagram: prevent standard context menu inside of diagram
     $("#diagram").contextmenu(function(event){
       event.preventDefault();
@@ -70,8 +81,10 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
 
     // TODO diagram: attach mouse move event and draw arrow if arrow active mode is on
     _this.area.on("mousemove", function(event){
+      mouse_x = event.pageX;
+      mouse_y = event.pageY;
       if(drawing_mode && selected_arrow != undefined){
-        selected_arrow.updateEndPosition([event.pageX, event.pageY]);
+        selected_arrow.updateEndPosition([mouse_x, mouse_y]);
       }
     });
 
@@ -112,7 +125,13 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
           deleteSelectedArrow();
         }
         if(event.which == "65"){
+          if(selected_device != undefined){
+            drawing_mode = true;
+            arrowButton.addClass("active");
+            pressedKeyDown(event);
+          }else{
             toggleArrowActive();
+          }
         }
         // tab
         if(event.which == "9"){
@@ -142,7 +161,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
     }
     drawing_mode = !drawing_mode;
     if(drawing_mode){
-      $("#arrow-sidebar-add").addClass("active");
+      activateArrowDrawing();
     }else{
       deactivateArrowDrawing();
     }
@@ -286,11 +305,20 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
     event.preventDefault();
   }
 
+  function pressedKeyDown(){
+    context.attr("style", "display: none;");
+    if(selected_arrow == undefined){
+      selected_arrow = new Arrow(_this, selected_device);
+      selected_arrow.updateEndPosition([mouse_x, mouse_y]);
+    }
+  }
+
   /**
   * Callback for mouse down on a device
   * @param {Device} device the device instance
   */
   function deviceMouseDown(device) {
+    context.attr("style", "display: none;");
     /**
     * TODO diagram: this method should be called in model-device.js if device a device is clicked
     *              + if arrow drawing mode is enabled and no device is selected before, create new object of Arrow for drawingArrow
