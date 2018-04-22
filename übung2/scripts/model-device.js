@@ -111,6 +111,12 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
           alert(name[type] +" "+ index);
         });
 
+        $("#"+title).keydown(function(event){
+            if(event.which == "13"){
+                diagram.deviceMouseDown(_this);
+            }
+        });
+
         var x = $("#arrow-device-add-reference").clone();
         x.attr("id", "arrow-symbol-"+ title);
         $("#"+title).append(x);

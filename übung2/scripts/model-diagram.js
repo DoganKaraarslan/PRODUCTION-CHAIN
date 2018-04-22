@@ -112,15 +112,13 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
           deleteSelectedArrow();
         }
         if(event.which == "65"){
-          toggleArrowActive();
-        }
-        // enter
-        if(event.which == "13"){
-            $(":focus").addClass("active");
+            toggleArrowActive();
         }
         // tab
         if(event.which == "9"){
-            $(":focus").removeClass("active");
+            if(!drawing_mode || selected_device == undefined || $(":focus").is("li[id!="+selected_device.title+"]")){
+                $(":focus").removeClass("active");
+            }
         }
     });
 
@@ -144,7 +142,7 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
     }
     drawing_mode = !drawing_mode;
     if(drawing_mode){
-      activateArrowDrawing();
+      $("#arrow-sidebar-add").addClass("active");
     }else{
       deactivateArrowDrawing();
     }
