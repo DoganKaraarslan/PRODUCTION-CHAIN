@@ -252,15 +252,17 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
     function deleteDevice() {
         // TODO device: delete device from HTML DOM and delete connected arrows
         var deletedArrows = 0;
-        for(i = arrowsIn.length-1; i >= 0; i--){
+        var i = arrowsIn.length-1;
+        for(; i >= 0; i--){
             var arrow = arrowsIn[i];
             arrow.deleteArrow();
             deletedArrows++;
         }
-        for(i = arrowsOut.length-1; i >= 0; i--){
-            var arrow = arrowsOut[i];
-            arrow.deleteArrow();
-            deletedArrows++;
+        i = arrowsOut.length-1;
+        for(; i >= 0; i--){
+          var arrow = arrowsOut[i];
+          arrow.deleteArrow();
+          deletedArrows++;
         }
         $("#"+title).remove();
         return deletedArrows;
@@ -274,13 +276,13 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
         // TODO device: delete arrow from arrowsIn/arrowsOut and update predecessors and successors
         var i = arrowsIn.indexOf(arrow);
         if(i > -1){
-            arrowsIn.splice(i, 1);
-            updatePredecessors();
+          arrowsIn.splice(i, 1);
+          updatePredecessors();
         }
         i = arrowsOut.indexOf(arrow);
         if(i > -1){
-            arrowsOut.splice(i, 1);
-            updateSuccessors();
+          arrowsOut.splice(i, 1);
+          updateSuccessors();
         }
     }
 
