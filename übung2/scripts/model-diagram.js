@@ -369,6 +369,9 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function selectArrow(arrow) {
     // TODO diagram: select arrow
+    if(drawing_mode){
+      return;
+    }
     if (selected_arrow == arrow){
         arrow.setActive(false);
         selected_arrow = undefined;
