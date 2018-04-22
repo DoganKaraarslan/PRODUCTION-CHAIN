@@ -234,6 +234,12 @@ form:invalid .button, .button:disabled {
     box-shadow: 0 0 8px 0 #003B7C;
 }
 
+:focus {
+    border: 2px solid #4f81bc;
+    border-radius: 2px;
+    outline: none;
+}
+
 .draggables .device {
     cursor: move;
 }

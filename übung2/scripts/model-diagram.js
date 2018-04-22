@@ -114,6 +114,14 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
         if(event.which == "65"){
           toggleArrowActive();
         }
+        // enter
+        if(event.which == "13"){
+            $(":focus").addClass("active");
+        }
+        // tab
+        if(event.which == "9"){
+            $(":focus").removeClass("active");
+        }
     });
 
     // TODO diagram: attach events for context menu items ('Detailseite', 'Löschen')
