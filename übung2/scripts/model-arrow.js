@@ -47,22 +47,34 @@ function Arrow(diagram, startDevice) {
      */
     function attachEventHandlers() {
         // TODO arrow: attach events for functionality like in assignment-document described
+        var clicked;
         $("#"+_this.id).click(function(event){
+          clicked = true;
           diagram.selectArrow(_this);
+        });
+        $("#"+_this.id).contents().on("dblclick contextmenu", function(event){
+          clicked = true;
+          event.preventDefault();
         });
 
         // TODO arrow optional: attach events for bonus points for 'TAB' to switch between arrows and to select arrow
         $("#"+_this.id).contents().attr("tabindex","0");
+
         $("#"+_this.id).keydown(function(event){
           if(event.which == "13"){
             diagram.selectArrow(_this);
           }
+          if(event.which == "9"){
+            clicked = false;
+          }
         })
-        $("#"+_this.id).contents().on("focus", function(event){
-          $("#"+_this.id).contents().attr("style", "outline: 2px solid #4f81bc");
+        $("#"+_this.id).contents().focusin(function(event){
+          if(!clicked){
+            setActive(true);
+          }
         });
         $("#"+_this.id).contents().focusout(function(event){
-          $("#"+_this.id).contents().attr("style", "outline: none");
+          setActive(false);
         });
     }
 
@@ -94,6 +106,7 @@ function Arrow(diagram, startDevice) {
 
         if(active){
           $("#"+_this.id).contents().addClass("active");
+          $("#"+_this.id).contents().attr("style", "outline: 2px solid #4f81bc");
         }else{
           $("#"+_this.id).contents().removeClass("active");
           $("#"+_this.id).contents().attr("style", "outline: none");

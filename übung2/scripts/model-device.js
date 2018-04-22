@@ -142,7 +142,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
           },
           containment: diagram.area,
           drag: function(event){
-              moveDevice();
+            moveDevice();
           }
         });
 

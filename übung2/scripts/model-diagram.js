@@ -156,6 +156,10 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function toggleArrowActive() {
     // TODO diagram: toggle arrow active mode (call deactivateArrowDrawing() or activateArrowDrawing()
+    if($(window).width() < 767){
+      drawing_mode = false;
+      return;
+    }
     if(selected_arrow != undefined && selected_arrow.endDevice == undefined){
       return;
     }
