@@ -122,7 +122,7 @@ function Device(diagram, index, position, type, title, min, max, image, updateFu
             x.attr("style", "display: none;");
         });
         x.click(function(event){
-          diagram.activateArrowDrawing();
+          diagram.toggleArrowActive();
         });
 
         $("#"+title).removeClass('ui-draggable-dragging');

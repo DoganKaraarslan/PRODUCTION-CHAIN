@@ -112,7 +112,6 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
           deleteSelectedArrow();
         }
         if(event.which == "65"){
-          drawing_mode = !drawing_mode;
           toggleArrowActive();
         }
     });
@@ -132,6 +131,10 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   */
   function toggleArrowActive() {
     // TODO diagram: toggle arrow active mode (call deactivateArrowDrawing() or activateArrowDrawing()
+    if(selected_arrow != undefined && selected_arrow.endDevice == undefined){
+      return;
+    }
+    drawing_mode = !drawing_mode;
     if(drawing_mode){
       activateArrowDrawing();
     }else{
@@ -384,4 +387,5 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
   this.addArrow = addArrow;
   this.selectArrow = selectArrow;
   this.deleteSelectedArrow = deleteSelectedArrow;
+  this.toggleArrowActive = toggleArrowActive;
 }
