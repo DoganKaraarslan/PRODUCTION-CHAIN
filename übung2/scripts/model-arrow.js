@@ -30,7 +30,7 @@ function Arrow(diagram, startDevice) {
      */
     const object = $(
         // TODO arrow: create jQuery object for the SVG path
-        '<svg id="'+_this.id+'"><path class="arrow-path" d="M"'+start_coords[0]+','+start_coords[1]+' L'+start_coords[0] +','+start_coords[1]+'"></path></svg>'
+        '<svg id="'+_this.id+'"><path class="arrow-path" d="M'+start_coords[0]+','+start_coords[1]+' L'+start_coords[0] +','+start_coords[1]+'"></path></svg>'
     );
 
     // TODO arrow: add variables if necessary
@@ -58,6 +58,9 @@ function Arrow(diagram, startDevice) {
             diagram.selectArrow(_this);
           }
         })
+        $("#"+_this.id).on("focus", function(event){
+          $("#"+_this.id).contents().attr("style", "border: 2px solid #4f81bc; border-radius: 2px; outline: none;");
+        });
     }
 
     /**
