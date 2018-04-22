@@ -334,7 +334,9 @@ function Diagram(areaSelector, arrowButtonSelector, devicesCounter, arrowsCounte
       if(selected_device === device){
         if(selected_arrow != undefined && selected_arrow.endDevice == undefined){
           selected_arrow.deleteArrow();
+          selected_arrow = undefined;
         }
+        deactivateArrowDrawing();
       }else{
         var connected = selected_device.isConnectedTo(device);
         selected_device.setActive(false);
