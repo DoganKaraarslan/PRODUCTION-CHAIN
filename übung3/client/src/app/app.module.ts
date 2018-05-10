@@ -5,9 +5,25 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
-import {AppComponent, AvailableDeviceComponent, DiagramComponent} from './components';
+import {AppComponent, AvailableDeviceComponent, DiagramComponent, Test1Component, Test2Component} from './components';
 import {DiagramService} from './services';
 import {MaxValidator, MinValidator} from './validators';
+
+import { RouterModule, Routes } from '@angular/router';
+
+
+
+const appRoutes: Routes = [
+  {
+    path: 'test1',
+    component: Test1Component
+  },
+  { path: 'test2',
+    component: Test2Component,
+  }
+];
+
+
 
 @NgModule({
   imports: [
@@ -15,12 +31,18 @@ import {MaxValidator, MinValidator} from './validators';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    NgxChartsModule
+    NgxChartsModule,
+    RouterModule.forRoot(
+        appRoutes,
+        { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   declarations: [
     AppComponent,
     AvailableDeviceComponent,
     DiagramComponent,
+    Test1Component,
+    Test2Component,
     MaxValidator,
     MinValidator
   ],
