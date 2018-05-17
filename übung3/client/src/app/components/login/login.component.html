@@ -1,18 +1,18 @@
 <div class="main-container">
     <main aria-labelledby="formheadline">
-        <form class="form form-horizontal" method="post" action="overview.html">
+        <form class="form form-horizontal" method="post" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
             <h2 id="formheadline" class="login-headline">Anmelden</h2>
             <div class="form-row">
                 <label class="form-label" for="username-input">Benutzername</label>
                 <input type="text" name="username" id="username-input" required class="form-input"
                        autocomplete="username" placeholder="Benutzername">
-                <span id="username-error" class="error-text"></span>
+                <span id="username-error" class="error-text" *ngIf="display">test</span>
             </div>
             <div class="form-row">
                 <label class="form-label" for="password-input">Passwort</label>
                 <input type="password" name="password" id="password-input" required class="form-input"
                        minlength="4" maxlength="12" autocomplete="current-password" placeholder="Passwort">
-                <span id="password-error" class="error-text"></span>
+                <span id="password-error" class="error-text" *ngIf="display">test</span>
             </div>
             <div class="form-row form-row-center">
                 <button class="button button-submit">Anmelden</button>
