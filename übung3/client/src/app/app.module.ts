@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
-import {AppComponent, AvailableDeviceComponent, DiagramComponent, Test1Component, Test2Component} from './components';
+import {AppComponent, AvailableDeviceComponent, DiagramComponent, Test1Component, Test2Component, LoginComponent, OptionsComponent} from './components';
 import {DiagramService} from './services';
 import {MaxValidator, MinValidator} from './validators';
 
@@ -19,7 +19,15 @@ const appRoutes: Routes = [
     component: Test1Component
   },
   { path: 'test2',
-    component: Test2Component,
+    component: Test2Component
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'options',
+    component: OptionsComponent
   }
 ];
 
@@ -43,6 +51,8 @@ const appRoutes: Routes = [
     DiagramComponent,
     Test1Component,
     Test2Component,
+    LoginComponent,
+    OptionsComponent,
     MaxValidator,
     MinValidator
   ],
