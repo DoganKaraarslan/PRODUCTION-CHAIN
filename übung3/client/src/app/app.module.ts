@@ -6,7 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import {AppComponent, AvailableDeviceComponent, DiagramComponent, LoginComponent, OptionsComponent, OverviewComponent, NavComponent} from './components';
-import {DiagramService} from './services';
+import {DiagramService, AuthService} from './services';
 import {MaxValidator, MinValidator} from './validators';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -25,6 +25,10 @@ const appRoutes: Routes = [
   {
     path: 'overview',
     component: OptionsComponent
+  },
+  { path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
   }
 ];
 
@@ -53,7 +57,8 @@ const appRoutes: Routes = [
     MinValidator
   ],
   providers: [
-    DiagramService
+    DiagramService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
