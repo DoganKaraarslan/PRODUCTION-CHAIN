@@ -15,8 +15,6 @@ export class NavComponent {
     };
 
     isOptionsShown(): boolean {
-      console.log(!this.isOptionsite() && !this.isLoginSite());
-
       return !this.isOptionsite() && !this.isLoginSite();
     }
 
