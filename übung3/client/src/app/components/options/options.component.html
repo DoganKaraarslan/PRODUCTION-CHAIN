@@ -4,7 +4,7 @@
             <h2 id="formheadline" class="options-headline">Passwort ändern</h2>
             <div class="form-row">
                 <label class="form-label" for="old-password-input">Altes Passwort</label>
-                <input type="password" class="form-input" name="password" id="old-password-input"
+                <input type="password" class="form-input" name="currentPassword" id="old-password-input"
                        placeholder="Altes Passwort" required autocomplete="current-password">
                 <span id="old-password-error" class="error-text"></span>
             </div>
@@ -17,7 +17,7 @@
             </div>
             <div class="form-row">
                 <label class="form-label" for="repeat-password-input">Passwort wiederholen</label>
-                <input type="password" class="form-input" name="password" id="repeat-password-input"
+                <input type="password" class="form-input" name="confirmPassword" id="repeat-password-input"
                        placeholder="Neues Passwort wiederholen" required minlength="8" maxlength="12"
                        autocomplete="new-password">
                 <span id="new-password-error" class="error-text"></span>
