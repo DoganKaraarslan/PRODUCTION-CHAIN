@@ -4,7 +4,7 @@
 
 <header aria-labelledby="bannerheadline" class="bannerheader">
 
-    <a routerLink="/overview">
+    <a [routerLink]="isLoginSite() ? '/login' : '/overview'">
         <img class="title-image" src="images/big-logo-small.png" title="BIG Smart Production Logo"
              alt="BIG Smart Production Logo">
     </a>
