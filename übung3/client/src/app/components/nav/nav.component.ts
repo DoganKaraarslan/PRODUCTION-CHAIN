@@ -9,10 +9,14 @@ import {LoginComponent} from "../login/login.component";
 })
 export class NavComponent {
 
+    dontShow: string = 'display:none;';
+
     constructor(private router: Router, private route: ActivatedRoute) {
     };
 
     isOptionsShown(): boolean {
+      console.log(!this.isOptionsite() && !this.isLoginSite());
+
       return !this.isOptionsite() && !this.isLoginSite();
     }
 
@@ -20,13 +24,24 @@ export class NavComponent {
       return !this.isLoginSite();
     }
 
+    isOverviewShown(): boolean {
+        return !this.isOverviewSite() && !this.isLoginSite();
+    }
 
     isOptionsite(): boolean {
-      return this.route.component === OptionsComponent;
+      //return this.route.component === OptionsComponent;
+      return this.router.url === '/options';
+    }
+
+    isOverviewSite(): boolean {
+        return this.router.url === '/overview';
     }
 
 
     isLoginSite(): boolean {
-      return this.route.component === LoginComponent;
+      //return this.route.component === LoginComponent;
+      //console.log(this.router.url);
+      return this.router.url === '/login';
+
     }
 }
