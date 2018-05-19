@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {OptionsComponent} from "../options/options.component";
 import {LoginComponent} from "../login/login.component";
+import { AuthService }  from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,7 @@ export class NavComponent {
 
     dontShow: string = 'display:none;';
 
-    constructor(private router: Router, private route: ActivatedRoute) {
+    constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) {
     };
 
     isOptionsShown(): boolean {
@@ -35,11 +36,14 @@ export class NavComponent {
         return this.router.url === '/overview';
     }
 
-
     isLoginSite(): boolean {
       //return this.route.component === LoginComponent;
-      //console.log(this.router.url);
       return this.router.url === '/login';
 
+    }
+
+
+    logout():void {
+        this.authService.logout();
     }
 }
