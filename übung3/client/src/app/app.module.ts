@@ -5,32 +5,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
-import {AppComponent, AvailableDeviceComponent, DiagramComponent, LoginComponent, OptionsComponent, OverviewComponent, NavComponent} from './components';
+import {AppComponent, AvailableDeviceComponent, DiagramComponent} from './components';
 import {DiagramService} from './services';
 import {MaxValidator, MinValidator} from './validators';
 
-import { RouterModule, Routes } from '@angular/router';
+import {LoginComponent, OptionsComponent, OverviewComponent, NavComponent} from './components';
+
+import { Router } from '@angular/router';
+import {AppRoutingModule} from './app.routing-module';
 
 
-
-const appRoutes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'options',
-    component: OptionsComponent
-  },
-  {
-    path: 'overview',
-    component: OverviewComponent
-  },
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  }
-];
 
 
 @NgModule({
@@ -40,10 +24,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     NgxChartsModule,
-    RouterModule.forRoot(
-        appRoutes,
-        { enableTracing: true } // <-- debugging purposes only
-    )
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
@@ -58,7 +39,6 @@ const appRoutes: Routes = [
   ],
   providers: [
     DiagramService
-    //AuthService
   ],
   bootstrap: [AppComponent]
 })

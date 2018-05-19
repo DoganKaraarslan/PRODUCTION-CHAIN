@@ -23,7 +23,7 @@
                 <ul>
                     <li *ngIf="isOverviewShown()"><a routerLink="/overview" class="button" accesskey="1">Übersicht</a></li>
                     <li *ngIf="isOptionsShown()"><a routerLink="/options" class="button" accesskey="2">Optionen</a></li>
-                    <li *ngIf="isLogoutShown()"><a routerLink="/login" class="button" accesskey="3">Abmelden</a></li>
+                    <li *ngIf="isLogoutShown()"><a (click)="logout()" routerLink="/login" class="button" accesskey="3">Abmelden</a></li>
                 </ul>
             </li>
         </ul>
