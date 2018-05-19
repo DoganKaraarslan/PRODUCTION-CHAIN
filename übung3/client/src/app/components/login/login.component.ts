@@ -34,4 +34,9 @@ export class LoginComponent {
       });
 
     }
+
+    validate(form: NgForm) : boolean {
+        //form.value["password"] == undefined bevor seite komplett geladen ist?
+        return form.value["password"] != undefined && form.valid;
+    }
 }

@@ -5,17 +5,17 @@
             <div class="form-row">
                 <label class="form-label" for="username-input">Benutzername</label>
                 <input type="text" name="username" id="username-input" required class="form-input"
-                       autocomplete="username" placeholder="Benutzername">
+                       autocomplete="username" placeholder="Benutzername" ngModel>
                 <span id="username-error" class="error-text" *ngIf="display">test</span>
             </div>
             <div class="form-row">
                 <label class="form-label" for="password-input">Passwort</label>
                 <input type="password" name="password" id="password-input" required class="form-input"
-                       minlength="4" maxlength="12" autocomplete="current-password" placeholder="Passwort">
+                       minlength="4" maxlength="12" autocomplete="current-password" placeholder="Passwort" ngModel>
                 <span id="password-error" class="error-text" *ngIf="display">test</span>
             </div>
             <div class="form-row form-row-center">
-                <button class="button button-submit">Anmelden</button>
+                <button class="button button-submit" [disabled]="!(validate(loginForm))">Anmelden</button>
             </div>
         </form>
     </main>
