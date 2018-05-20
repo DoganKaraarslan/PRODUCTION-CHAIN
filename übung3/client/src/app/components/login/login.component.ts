@@ -39,6 +39,8 @@ export class LoginComponent {
                 this.router.navigate([redirect]);
               }
           });
+
+
         }else{
           this.display = true;
         }

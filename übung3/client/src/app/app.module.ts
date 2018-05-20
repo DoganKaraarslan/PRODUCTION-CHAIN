@@ -9,7 +9,7 @@ import {AppComponent, AvailableDeviceComponent, DiagramComponent} from './compon
 import {DiagramService} from './services';
 import {MaxValidator, MinValidator} from './validators';
 
-import {LoginComponent, OptionsComponent, OverviewComponent, NavComponent} from './components';
+import {LoginComponent, OptionsComponent, OverviewComponent, NavComponent, SidebarComponent} from './components';
 
 import { Router } from '@angular/router';
 import {AppRoutingModule} from './app.routing-module';
@@ -31,6 +31,7 @@ import {AppRoutingModule} from './app.routing-module';
     AvailableDeviceComponent,
     DiagramComponent,
     OverviewComponent,
+    SidebarComponent,
     LoginComponent,
     OptionsComponent,
     NavComponent,

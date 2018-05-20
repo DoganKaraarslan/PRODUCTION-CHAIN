@@ -6,3 +6,4 @@ export * from './login/login.component';
 export * from './options/options.component';
 export * from './overview/overview.component';
 export * from './nav/nav.component';
+export * from './sidebar/sidebar.component';

@@ -4,9 +4,10 @@
             <h2 id="formheadline" class="options-headline">Passwort ändern</h2>
             <div class="form-row">
                 <label class="form-label" for="old-password-input">Altes Passwort</label>
+                <span id="old-password-error" class="error-text" *ngIf="displayCurrent">fehlgeschlagen</span>
                 <input [(ngModel)]="passwords.oldPassword" type="password" class="form-input" name="currentPassword" id="old-password-input"
                        placeholder="Altes Passwort" required autocomplete="current-password">
-                <span id="old-password-error" class="error-text" *ngIf="displayCurrent">fehlgeschlagen</span>
+
             </div>
             <div class="form-row">
                 <label class="form-label" for="new-password-input">Neues Passwort</label>
@@ -17,10 +18,11 @@
             </div>
             <div class="form-row">
                 <label class="form-label" for="repeat-password-input">Passwort wiederholen</label>
+                <span id="new-password-error" class="error-text" *ngIf="displayNew">fehlgeschlagen</span>
                 <input [(ngModel)]="passwords.newPassword" type="password" class="form-input" name="confirmPassword" id="repeat-password-input"
                        placeholder="Neues Passwort wiederholen" required minlength="8" maxlength="12"
                        autocomplete="new-password">
-                <span id="new-password-error" class="error-text" *ngIf="displayNew">fehlgeschlagen</span>
+
             </div>
             <div class="form-row form-row-center">
                 <button [disabled]="!(optionsForm.form.valid)" id="save-changes-button" class="button button-submit">Änderung speichern</button>
