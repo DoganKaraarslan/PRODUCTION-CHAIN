@@ -10,23 +10,30 @@ import { HttpClient } from '@angular/common/http';
 export class SidebarComponent {
 
   devices : AvailableDevice[];
-  test: AvailableDevice;
 
   constructor(private http: HttpClient) {
   }
+
+  /*
+  "title": "3D-Drucker",
+  "type": "item-generator",
+  "image": "images/item_generator.svg",
+  "control": {
+    "title": "Produktfortschritt einstellen",
+    "type": "enum",
+    "values": [
+      "Unfertig",
+      "Teilweise fertig",
+      "Fertig"
+    ]
+    */
 
   ngOnInit() {
 
 
     this.http.get<AvailableDevices>('http://localhost:8081/getAvailable').subscribe(resp => {
 
-      //array einträge von resp.devices können nicht direkt abgebildet werden auf AvailableDevice[]
       this.devices = resp.devices;
-      this.test = resp.devices[0];
-
-
-
-      console.log(resp.devices);
 
     });
 
