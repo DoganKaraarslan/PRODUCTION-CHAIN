@@ -14,7 +14,7 @@
     const bodyParser = require("body-parser");
     const cors = require("cors");
 
-    let user;
+    let user = {username: "", password: ""}
     let available;
 
     app.use(bodyParser.urlencoded({extended: true}));
@@ -22,6 +22,15 @@
     app.use(cors());
 
     // TODO add REST methods
+    app.post('/authenticate', function (req, res) {
+      authenticate(req,res);
+    });
+    app.post('/changePassword', function (req, res) {
+      changePassword(req,res);
+    });
+    app.get('/getAvailable', function (req, res) {
+      getAvailable(req,res);
+    });
 
     /**
      * Send the list of available devices to the client
@@ -30,6 +39,7 @@
      */
     function getAvailable(req, res) {
         // TODO send list of available devices to the client
+        res.send(available);
     }
 
     /**
@@ -38,7 +48,9 @@
      * @param res The response
      */
     function authenticate(req, res) {
-        // TODO check credentials and respond to client accordingly
+
+        res.send(req.body.username == user.username && req.body.password == user.password);
+
     }
 
     /**
@@ -47,21 +59,75 @@
      * @param res The response
      */
     function changePassword(req, res) {
-        // TODO check old password and store new password
+
+        if (user.password == req.body.oldPassword){
+
+          user.password = req.body.newPassword;
+          var credentials = "username: "+user.username+"\npassword: "+user.password;
+
+          fs.writeFile('./resources/login.config', credentials, 'utf8', (err) => {
+            if (err) throw err;
+
+
+            res.send(true);
+          });
+
+
+        }else{
+          //TODO error: Passwörter stimmen nicht überein
+          res.send(false);
+        }
+
+
     }
 
     /**
      * Read the user data from the login config file, parse it and store it in 'user'
      */
     function readUser() {
-        // TODO load user data from file
+
+
+        fs.readFile('./resources/login.config', 'utf8', function(err, data) {
+          if (err) throw err;
+
+
+          var startIndexU = 10;//username:
+          var endIndexU = -1;
+          var startIndexP = data.search("password: ") + 10;
+          var endIndexP = data.length;
+
+          //line-Endings \n oder \r\n
+          if (data.search("\r\n") == -1){
+            endIndexU = data.indexOf("\n");
+
+          }else{
+            endIndexU = data.indexOf("\r\n");
+          }
+
+          if (endIndexU == -1){
+            //error
+          }
+
+          user.username = data.slice(startIndexU, endIndexU);
+          user.password = data.slice(startIndexP, endIndexP);
+
+
+        });
+
+
     }
 
     /**
      * Read the available devices data from the json file and store it in 'available'
      */
     function readAvailable() {
-        // TODO load available devices from file
+
+        fs.readFile('./resources/devices.json', 'utf8', function(err, data) {
+          if (err) throw err;
+          available = JSON.parse(data);
+
+        });
+
     }
 
     const server = app.listen(8081, function() {
