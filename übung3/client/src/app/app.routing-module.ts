@@ -1,5 +1,5 @@
 import { NgModule }             from '@angular/core';
-import {LoginComponent, OptionsComponent, OverviewComponent, NavComponent} from './components';
+import {LoginComponent, OptionsComponent, OverviewComponent, NavComponent, DetailsComponent} from './components';
 import {AuthGuard, AuthService} from './services';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -17,6 +17,11 @@ const appRoutes: Routes = [
   {
     path: 'overview',
     component: OverviewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'details',
+    component: DetailsComponent,
     canActivate: [AuthGuard]
   },
   { path: '',

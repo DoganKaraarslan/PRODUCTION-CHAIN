@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import { NgZone } from '@angular/core';
 
 import '../models/arrow.model';
 import '../models/device.model';
 
 @Injectable()
 export class DiagramService {
-  devices: Device[] = [];
+  devices: Device<any>[] = [];
   arrows: Arrow[] = [];
 
-  constructor(/* TODO inject other services or core classes if necessary */) {
+  constructor(private router: Router, private zone: NgZone) {
   }
 
   initDevices(func: (device: Device<any>) => void): void {
@@ -16,7 +18,6 @@ export class DiagramService {
 
     for(let device of this.devices){
       func(device);
-      $("#deviceCounter").html(this.devices.length);
     }
 
   }
@@ -26,28 +27,21 @@ export class DiagramService {
 
     for(let arrow of this.arrows){
       func(arrow);
-      $("#arrowCounter").html(this.arrows.length);
     }
   }
 
   afterDeviceAdd(device: Device<any>): void {
     // TODO add the device to some list
     this.devices.push(device);
-    $("#deviceCounter").html(this.devices.length);
 
   }
 
   afterDeviceDelete(device: Device<any>): void {
     // TODO remove the device from that list
 
-    for(let arrow of this.arrows){
-
-    }
-
     var index = this.devices.indexOf(device);
     if (index > -1) {
       this.devices.splice(index, 1);
-      $("#deviceCounter").html(this.devices.length);
     }
 
 
@@ -56,13 +50,13 @@ export class DiagramService {
 
   onDeviceDetails(device: Device<any>): void {
     // TODO navigate to the details view for the given device
-
+    //console.log('AJDHASHDJSHDJSHJHJ  ' + device.control.type);
+    this.zone.run(() => {this.router.navigate(['details'])});
   }
 
   afterArrowAdd(arrow: Arrow): void {
     // TODO add the arrow to some list
     this.arrows.push(arrow);
-    $("#arrowCounter").html(this.arrows.length);
   }
 
   afterArrowDelete(arrow: Arrow): void {
@@ -71,7 +65,6 @@ export class DiagramService {
     var index = this.arrows.indexOf(arrow);
     if (index > -1) {
       this.arrows.splice(index, 1);
-      $("#arrowCounter").html(this.arrows.length);
     }
 
   }

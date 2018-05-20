@@ -10,4 +10,8 @@ import { DiagramService }  from '../../services/diagram.service';
   templateUrl: './overview.component.html'
 })
 export class OverviewComponent {
+
+    constructor(private diagramService: DiagramService){}
+
+
 }
