@@ -38,7 +38,6 @@
      * @param res The response
      */
     function getAvailable(req, res) {
-        // TODO send list of available devices to the client
         res.send(available);
     }
 
@@ -48,9 +47,7 @@
      * @param res The response
      */
     function authenticate(req, res) {
-
         res.send(req.body.username == user.username && req.body.password == user.password);
-
     }
 
     /**
@@ -85,7 +82,6 @@
      * Read the user data from the login config file, parse it and store it in 'user'
      */
     function readUser() {
-
 
         fs.readFile('./resources/login.config', 'utf8', function(err, data) {
           if (err) throw err;

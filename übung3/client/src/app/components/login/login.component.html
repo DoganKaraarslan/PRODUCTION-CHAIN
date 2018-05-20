@@ -4,15 +4,15 @@
             <h2 id="formheadline" class="login-headline">Anmelden</h2>
             <div class="form-row">
                 <label class="form-label" for="username-input">Benutzername</label>
-                <input type="text" name="username" id="username-input" required class="form-input"
+                <input  [(ngModel)]="authreq.username" type="text" name="username" id="username-input" required class="form-input"
                        autocomplete="username" placeholder="Benutzername" ngModel>
-                <span id="username-error" class="error-text" *ngIf="display">test</span>
+                <span id="username-error" class="error-text" *ngIf="display">fehlgeschlagen</span>
             </div>
             <div class="form-row">
                 <label class="form-label" for="password-input">Passwort</label>
-                <input type="password" name="password" id="password-input" required class="form-input"
+                <input  [(ngModel)]="authreq.password" type="password" name="password" id="password-input" required class="form-input"
                        minlength="4" maxlength="12" autocomplete="current-password" placeholder="Passwort" ngModel>
-                <span id="password-error" class="error-text" *ngIf="display">test</span>
+                <span id="password-error" class="error-text" *ngIf="display">fehlgeschlagen</span>
             </div>
             <div class="form-row form-row-center">
                 <button class="button button-submit" [disabled]="!(validate(loginForm))">Anmelden</button>
