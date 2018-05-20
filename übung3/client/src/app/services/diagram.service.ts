@@ -16,6 +16,7 @@ export class DiagramService {
 
     for(let device of this.devices){
       func(device);
+      $("#deviceCounter").html(this.devices.length);
     }
 
   }
@@ -25,12 +26,14 @@ export class DiagramService {
 
     for(let arrow of this.arrows){
       func(arrow);
+      $("#arrowCounter").html(this.arrows.length);
     }
   }
 
   afterDeviceAdd(device: Device<any>): void {
     // TODO add the device to some list
     this.devices.push(device);
+    $("#deviceCounter").html(this.devices.length);
 
   }
 
@@ -44,6 +47,7 @@ export class DiagramService {
     var index = this.devices.indexOf(device);
     if (index > -1) {
       this.devices.splice(index, 1);
+      $("#deviceCounter").html(this.devices.length);
     }
 
 
@@ -58,6 +62,7 @@ export class DiagramService {
   afterArrowAdd(arrow: Arrow): void {
     // TODO add the arrow to some list
     this.arrows.push(arrow);
+    $("#arrowCounter").html(this.arrows.length);
   }
 
   afterArrowDelete(arrow: Arrow): void {
@@ -66,6 +71,7 @@ export class DiagramService {
     var index = this.arrows.indexOf(arrow);
     if (index > -1) {
       this.arrows.splice(index, 1);
+      $("#arrowCounter").html(this.arrows.length);
     }
 
   }

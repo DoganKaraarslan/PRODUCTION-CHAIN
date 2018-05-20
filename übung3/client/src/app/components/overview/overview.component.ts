@@ -10,17 +10,4 @@ import { DiagramService }  from '../../services/diagram.service';
   templateUrl: './overview.component.html'
 })
 export class OverviewComponent {
-
-  deviceCounter: number;
-  arrowCounter: number;
-
-  constructor(private diagramService: DiagramService) {
-  }
-
-  ngOnInit(){
-    this.deviceCounter = 10;
-    this.arrowCounter = this.diagramService.arrows.length;
-  }
-
-
 }
