@@ -10,7 +10,8 @@ import {PasswordChangeRequest} from '../../models/password.change.request';
 })
 export class OptionsComponent {
 
-  display: boolean = false;
+  displayCurrent: boolean = false;
+  displayNew: boolean = false;
   passwords: PasswordChangeRequest = {oldPassword : "", newPassword : ""};
 
 
@@ -21,16 +22,20 @@ export class OptionsComponent {
   }
 
   onSubmit(form: NgForm) : void{
-    alert("Weiterschicken an Server zum Ändern -> ergebnis als Alert anzeigen.");
-
-
-    this.http.post('http://localhost:8081/changePassword', this.passwords, {responseType: 'text'}).subscribe(resp => {
-      if (eval(resp)){
-        this.display = false;
-      }else{
-        this.display = true;
-      }
-    });
+    //alert("Weiterschicken an Server zum Ändern -> ergebnis als Alert anzeigen.");
+    if(this.compare(form)) {
+        this.displayNew = false;
+        this.http.post('http://localhost:8081/changePassword', this.passwords, {responseType: 'text'}).subscribe(resp => {
+          if (eval(resp)){
+            this.displayCurrent = false;
+            alert("Passwort erfolgreich geändert.");
+          }else{
+            this.displayCurrent = true;
+          }
+        });
+    } else {
+        this.displayNew = true;
+    }
   }
 
 
