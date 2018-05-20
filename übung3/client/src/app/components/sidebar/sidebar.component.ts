@@ -14,19 +14,6 @@ export class SidebarComponent {
   constructor(private http: HttpClient) {
   }
 
-  /*
-  "title": "3D-Drucker",
-  "type": "item-generator",
-  "image": "images/item_generator.svg",
-  "control": {
-    "title": "Produktfortschritt einstellen",
-    "type": "enum",
-    "values": [
-      "Unfertig",
-      "Teilweise fertig",
-      "Fertig"
-    ]
-    */
 
   ngOnInit() {
 
