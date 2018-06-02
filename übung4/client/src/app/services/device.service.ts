@@ -46,8 +46,14 @@ export class DeviceService {
       var con = event.target as WebSocket;
     };
     this.connection.onmessage = event => {
-        var msg = event.data;
-        console.log(msg);
+        var index = JSON.parse(event.data).index;
+        var value = JSON.parse(event.data).value;
+        var device = this.getDevice(index).subscribe(
+        suc => {
+            console.log(suc);
+        });
+        this.setDeviceValue(device, value);
+        console.log(event.data);
     }
   }
 
@@ -108,9 +114,7 @@ export class DeviceService {
 
   updateDevice<T>(device: Device<Control<T>>, value: T): void {
     // TODO Send updated values to server via WebSocket
-
-         this.con.send(JSON.stringify({device: device, value: value}));
-
+    this.connection.send(JSON.stringify({device: device, value: value}));
     this.setDeviceValue(device, value);
   }
 

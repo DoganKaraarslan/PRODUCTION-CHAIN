@@ -38,6 +38,7 @@
     // TODO Create a WebSocket that clients can connect to
     // TODO Check validity of JWT tokens on requests
     var expressWs = require('express-ws')(app);
+    var webSocket;
 
     app.use(function (req, res, next) {
       console.log('middleware');
@@ -51,9 +52,11 @@
     });
 
     app.ws('/subscribe', function(ws, req) {
+        webSocket = ws;
       ws.on('message', function(msg) {
-        console.log(msg);
-        //ws.send(msg);
+        var device = JSON.parse(msg).device;
+        var value = JSON.parse(msg).value;
+        devices[device.index].control.current = value;
       });
       console.log('socket', req.testing);
     });
@@ -223,6 +226,7 @@
      */
     function sendUpdatedValue(index, value) {
         // TODO Send the data to connected WebSocket clients
+        webSocket.send(JSON.stringify({index: index, value: value}));
     }
 
     /**
