@@ -38,7 +38,24 @@
 
     // TODO Create a WebSocket that clients can connect to
     // TODO Check validity of JWT tokens on requests
-    var expressWs = require('express-ws')(app);
+    var options = {
+        key: fs.readFileSync('./cert/localhost.key'),
+        cert: fs.readFileSync('./cert/localhost.crt')
+    };
+
+    const server = https.createServer(options, app).listen(8081,()=>{
+        console.log('HTTPS server started!');
+        readUser();
+        readAvailable();
+        simulation.simulateSmartProduction(devices, sendUpdatedValue);
+
+        const host = server.address().address;
+        const port = server.address().port;
+
+        console.log("Server for HTTPS listening at http://%s:%s", host, port);
+    });
+    var expressWs = require('express-ws');
+    var expressWs = expressWs(app, server);
     var aWss = expressWs.getWss('/subscribe');
 
     app.use(function (req, res, next) {
@@ -271,20 +288,5 @@
         });
     }
 
-    var options = {
-        key: fs.readFileSync('./cert/localhost.key'),
-        cert: fs.readFileSync('./cert/localhost.crt')
-    };
 
-    const server = https.createServer(options, app).listen(8081,()=>{
-        console.log('HTTPS server started!');
-        readUser();
-        readAvailable();
-        simulation.simulateSmartProduction(devices, sendUpdatedValue);
-
-        const host = server.address().address;
-        const port = server.address().port;
-
-        console.log("Server for HTTPS listening at http://%s:%s", host, port);
-    });
 })();

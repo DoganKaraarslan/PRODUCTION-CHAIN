@@ -42,7 +42,7 @@ export class DeviceService {
     this.logUpdates = new Subject();
 
     // TODO Create a WebSocket and subscribe to incoming messages
-    this.connection = new WebSocket("ws://localhost:8081/subscribe");
+    this.connection = new WebSocket("wss://localhost:8081/subscribe");
     this.connection.onopen = function (event) {
       var con = event.target as WebSocket;
     };
