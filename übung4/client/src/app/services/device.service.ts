@@ -48,11 +48,14 @@ export class DeviceService {
     this.connection.onmessage = event => {
         var index = JSON.parse(event.data).index;
         var value = JSON.parse(event.data).value;
-        var device = this.getDevice(index).subscribe(
-        suc => {
-            console.log(suc);
-        });
-        this.setDeviceValue(device, value);
+        this.getDevice(index).subscribe(
+            suc => {
+                this.setDeviceValue(suc, value);
+            }
+          );
+
+
+
         console.log(event.data);
     }
   }

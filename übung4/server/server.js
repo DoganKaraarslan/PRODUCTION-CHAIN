@@ -39,6 +39,7 @@
     // TODO Check validity of JWT tokens on requests
     var expressWs = require('express-ws')(app);
     var webSocket;
+    var aWss = expressWs.getWss('/subscribe');
 
     app.use(function (req, res, next) {
       console.log('middleware');
@@ -226,7 +227,14 @@
      */
     function sendUpdatedValue(index, value) {
         // TODO Send the data to connected WebSocket clients
-        webSocket.send(JSON.stringify({index: index, value: value}));
+        /*
+        if (webSocket != undefined){
+          webSocket.send(JSON.stringify({index: index, value: value}));
+        }
+        */
+        aWss.clients.forEach(function (client) {
+          client.send(JSON.stringify({index: index, value: value}));
+        });
     }
 
     /**
