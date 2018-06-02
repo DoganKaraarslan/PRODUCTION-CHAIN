@@ -8,6 +8,9 @@ import {DeviceService} from '../../services';
   templateUrl: './overview.component.html'
 })
 export class OverviewComponent {
+
+
+
   constructor(private readonly deviceService: DeviceService) {
   }
 
@@ -19,7 +22,12 @@ export class OverviewComponent {
     return this.deviceService.getArrowCount();
   }
 
+  get productCount(): Observable<number> {
+    return this.deviceService.getProductCount();
+  }
+
   get available(): Observable<AvailableDevice[]> {
     return this.deviceService.getAvailable();
   }
+
 }

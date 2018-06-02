@@ -38,7 +38,6 @@
     // TODO Create a WebSocket that clients can connect to
     // TODO Check validity of JWT tokens on requests
     var expressWs = require('express-ws')(app);
-    var webSocket;
     var aWss = expressWs.getWss('/subscribe');
 
     app.use(function (req, res, next) {
@@ -52,14 +51,22 @@
       res.end();
     });
 
-    app.ws('/subscribe', function(ws, req) {
-        webSocket = ws;
+    app.ws('/subscribe', function(ws, req, res) {
       ws.on('message', function(msg) {
-        var device = JSON.parse(msg).device;
-        var value = JSON.parse(msg).value;
-        devices[device.index].control.current = value;
+
+        try {
+          var device = JSON.parse(msg).device;
+          var value = JSON.parse(msg).value;
+          devices[device.index].control.current = value;
+          ws.send(JSON.stringify({type: 'success'}));
+        }
+        catch(err) {
+          ws.send(JSON.stringify({type: 'error'}));
+        }
+
       });
       console.log('socket', req.testing);
+
     });
 
 
@@ -227,13 +234,8 @@
      */
     function sendUpdatedValue(index, value) {
         // TODO Send the data to connected WebSocket clients
-        /*
-        if (webSocket != undefined){
-          webSocket.send(JSON.stringify({index: index, value: value}));
-        }
-        */
         aWss.clients.forEach(function (client) {
-          client.send(JSON.stringify({index: index, value: value}));
+          client.send(JSON.stringify({type: "data",index: index, value: value}));
         });
     }
 

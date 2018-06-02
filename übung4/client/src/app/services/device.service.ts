@@ -46,6 +46,13 @@ export class DeviceService {
       var con = event.target as WebSocket;
     };
     this.connection.onmessage = event => {
+      var data = JSON.parse(event.data);
+      if (data.type == "error"){
+        console.log("error on server");
+      }else if(data.type == "success"){
+        console.log("update successful")
+      }
+      else if (data.type == "data"){
         var index = JSON.parse(event.data).index;
         var value = JSON.parse(event.data).value;
         this.getDevice(index).subscribe(
@@ -54,10 +61,14 @@ export class DeviceService {
             }
           );
 
-
-
         console.log(event.data);
+      }
+
     }
+
+    this.connection.onclose = function () {
+      console.info("close");
+    };
   }
 
   getAvailable(): Observable<AvailableDevice[]> {
@@ -78,6 +89,34 @@ export class DeviceService {
 
   getDeviceCount(): Observable<number> {
     return this.devices.map(devices => devices.length);
+  }
+
+  getProductCount(): Observable<number> {
+
+    var sum = 0;
+      /*
+
+    devices.forEach(function(device){
+      sum += device.value;
+    });
+
+
+    return Observable.of(sum);
+    */
+
+    var endStorages = this.devices.map(devices => devices.filter(d => d.type === "end-storage"));
+
+    endStorages.subscribe(
+      val =>
+        for(let device of val){
+          sum += device.control.current;
+        };
+    );
+
+    console.log(sum);
+
+    return endStorages.map(val => sum);
+
   }
 
   addDevice(device: Device<any>): void {
