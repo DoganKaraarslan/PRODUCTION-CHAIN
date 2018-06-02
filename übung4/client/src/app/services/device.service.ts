@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/of';
 
 import {AvailableDevice, Control, LogEntry} from '../models';
 import {DeviceClient} from '../rest';
@@ -94,30 +95,20 @@ export class DeviceService {
   getProductCount(): Observable<number> {
 
     var sum = 0;
-      /*
-
-    devices.forEach(function(device){
-      sum += device.value;
-    });
-
-
-    return Observable.of(sum);
-    */
 
     var endStorages = this.devices.map(devices => devices.filter(d => d.type === "end-storage"));
 
-    endStorages.subscribe(
-      val =>
+    endStorages.subscribe(val =>{
         for(let device of val){
           sum += device.control.current;
         };
+      }
     );
 
     console.log(sum);
 
-    return endStorages.map(val => sum);
+    return Observable.of(sum);
 
- 
   }
 
   addDevice(device: Device<any>): void {

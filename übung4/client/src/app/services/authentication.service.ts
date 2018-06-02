@@ -23,4 +23,5 @@ export class AuthenticationService {
   logout(): void {
     this.sessionStorageService.setLoggedIn(false);
   }
+  
 }
