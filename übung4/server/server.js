@@ -15,11 +15,11 @@
     const jwt = require("jsonwebtoken");
     const cors = require("cors");
     const simulation = require("./simulation.js");
+    const https = require('https');
 
     let user;
     let available;
     let devices = {};
-
 
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
@@ -54,20 +54,17 @@
 
     app.ws('/subscribe', function(ws, req, res) {
       ws.on('message', function(msg) {
-
-        try {
-          var device = JSON.parse(msg).device;
-          var value = JSON.parse(msg).value;
-          devices[device.index].control.current = value;
-          ws.send(JSON.stringify({type: 'success'}));
-        }
-        catch(err) {
-          ws.send(JSON.stringify({type: 'error'}));
-        }
+          try{
+              var device = JSON.parse(msg).device;
+              var value = JSON.parse(msg).value;
+              devices[device.index].control.current = value;
+              ws.send(JSON.stringify({type: 'success'}));
+          } catch(err) {
+              ws.send(JSON.stringify({type: 'error'}));
+          }
 
       });
       console.log('socket', req.testing);
-
     });
 
 
@@ -236,7 +233,7 @@
     function sendUpdatedValue(index, value) {
         // TODO Send the data to connected WebSocket clients
         aWss.clients.forEach(function (client) {
-          client.send(JSON.stringify({type: "data",index: index, value: value}));
+          client.send(JSON.stringify({type: 'data', index: index, value: value}));
         });
     }
 
@@ -274,13 +271,20 @@
         });
     }
 
-    const server = app.listen(8081, function() {
+    var options = {
+        key: fs.readFileSync('./cert/localhost.key'),
+        cert: fs.readFileSync('./cert/localhost.crt')
+    };
+
+    const server = https.createServer(options, app).listen(8081,()=>{
+        console.log('HTTPS server started!');
         readUser();
         readAvailable();
         simulation.simulateSmartProduction(devices, sendUpdatedValue);
 
         const host = server.address().address;
         const port = server.address().port;
-        console.log("Big Smart Production Server listening at http://%s:%s", host, port);
+
+        console.log("Server for HTTPS listening at http://%s:%s", host, port);
     });
 })();
