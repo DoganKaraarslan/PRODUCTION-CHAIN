@@ -117,6 +117,7 @@ export class DeviceService {
 
     return endStorages.map(val => sum);
 
+ 
   }
 
   addDevice(device: Device<any>): void {

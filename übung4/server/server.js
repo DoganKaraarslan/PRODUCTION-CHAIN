@@ -20,6 +20,7 @@
     let available;
     let devices = {};
 
+
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.use(cors());
