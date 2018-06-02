@@ -210,7 +210,8 @@
             res.status(401).json({message: "Bad credentials", errors: {credentials: true}});
         } else {
             // TODO Send a JWT back to the client
-            res.status(200).json({message: "Successfully logged in"});
+            var token = jwt.sign({user}, 'secret_key', {expiresIn: "10000"});
+            res.status(200).json({message: "Successfully logged in", token: token});
         }
     }
 

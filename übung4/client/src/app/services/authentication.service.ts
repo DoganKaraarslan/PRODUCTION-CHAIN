@@ -1,6 +1,8 @@
 ﻿import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import '../models/customresponse.model';
+
 
 import {AuthenticationClient} from '../rest';
 import {SessionStorageService} from './session-storage.service';
@@ -14,14 +16,21 @@ export class AuthenticationService {
     return this.sessionStorageService.loggedIn;
   }
 
-  login(username: string, password: string): Observable<void> {
-    return this.restClient.authenticate({
+  login(username: string, password: string): Observable<CustomResponse> {
+    var response = this.restClient.authenticate({
       username: username, password: password
-    }).map(() => this.sessionStorageService.setLoggedIn(true));
+    });
+
+    response.subscribe(val => {
+      console.log(val.message);
+      console.log(val.token);
+    });
+
+    return response;
   }
 
   logout(): void {
     this.sessionStorageService.setLoggedIn(false);
   }
-  
+
 }
