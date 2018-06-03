@@ -92,7 +92,7 @@ export class DeviceService {
   }
 
   getProductCount(): Observable<number> {
-    /*var sum = 0;
+    var sum = 0;
 
     var endStorages = this.devices.map(devices => devices.filter(d => d.type === "end-storage"));
 
@@ -103,8 +103,8 @@ export class DeviceService {
         };
       sum = x;
       });
-*/
-    return Observable.of(0);
+
+    return Observable.of(sum);
 
   }
 

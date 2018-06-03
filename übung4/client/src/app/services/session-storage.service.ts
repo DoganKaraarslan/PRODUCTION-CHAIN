@@ -41,29 +41,18 @@ export class SessionStorageService {
     this._loggedIn = false;
   }
 
-
   get loggedIn(): boolean {
     return this._loggedIn;
   }
 
+  /*
   getTokenHeader(): HttpHeaders {
-
     if (this.token == null) {
       return null;
     }
-
     var headers = new HttpHeaders();
     headers =  headers.append("Authorization", "Bearer " + this.token);
     return headers;
   }
-
-/*setLoggedIn(loggedIn: boolean): void {
-    this._loggedIn = loggedIn;
-    if (loggedIn) {
-      localStorage.setItem('loggedIn', 'true');
-    } else {
-      localStorage.removeItem('loggedIn');
-    }
-  }*/
-
+  */
 }
