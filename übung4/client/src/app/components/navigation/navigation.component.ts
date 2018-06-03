@@ -20,9 +20,16 @@ export class NavigationComponent {
   }
 
   logout(): void {
-    this.authenticationService.logout();
+    this.authenticationService.logout().then(successfully => {
+      if (successfully) {
+        this.router.navigate(["/login"]);
+      } else {
+        window.alert("Sie konnten nicht abgemeldet werden.\nBitte versuchen Sie es erneut.");
+      }
+    });
+    
     // noinspection JSIgnoredPromiseFromCall
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
   }
 
   get showOverviewLink(): boolean {

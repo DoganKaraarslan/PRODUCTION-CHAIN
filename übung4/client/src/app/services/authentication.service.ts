@@ -1,7 +1,10 @@
 ﻿import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {HttpHeaders} from '@angular/common/http'
+
 import 'rxjs/add/operator/map';
 import '../models/customresponse.model';
+import 'rxjs/add/observable/of';
 
 
 import {AuthenticationClient} from '../rest';
@@ -16,21 +19,39 @@ export class AuthenticationService {
     return this.sessionStorageService.loggedIn;
   }
 
-  login(username: string, password: string): Observable<CustomResponse> {
-    var response = this.restClient.authenticate({
-      username: username, password: password
+  login(username: string, password: string): Observable<{}> {
+    var res = this.restClient.authenticate({username: username, password: password});
+
+    res.subscribe(val => {
+      console.log(val);
+      if(val["state"] === 200){
+        this.sessionStorageService.writeToken(val["token"]);
+      }
     });
 
-    response.subscribe(val => {
-      console.log(val.message);
-      console.log(val.token);
-    });
-
-    return response;
+    return res;
   }
 
-  logout(): void {
-    this.sessionStorageService.setLoggedIn(false);
+  logout(): Promise<boolean> {
+    /*var headers = this.sessionStorageService.getTokenHeader();
+    console.log(headers.get("Authorization"));
+    var res = this.restClient.logout(headers);*/
+    var token = this.sessionStorageService.readToken();
+    var res = this.restClient.logout(token);
+
+    this.sessionStorageService.removeToken();
+
+    return res.toPromise().then(val => {
+      console.log(val);
+      if(val["status"] === 200){
+        this.sessionStorageService.removeToken();
+        return true;
+      }else{
+        return false;
+      }
+    });
+
+
   }
 
 }

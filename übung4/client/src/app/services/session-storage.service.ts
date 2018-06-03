@@ -1,23 +1,69 @@
 ﻿import {Injectable} from '@angular/core';
+import {HttpHeaders} from '@angular/common/http'
+
 
 @Injectable()
 export class SessionStorageService {
   private _loggedIn: boolean;
 
+  private token_name = "access_token";
+
+  private token: string = null;
+
   constructor() {
-    this._loggedIn = !!localStorage.getItem('loggedIn');
+    this.readToken();
   }
+
+  readToken(): string{
+    var token = localStorage.getItem(this.token_name);
+
+    if(token){
+      this.token = token;
+    }
+
+    if(this.token != null){
+      this._loggedIn = true;
+    }else{
+      this._loggedIn = false;
+    }
+
+    return this.token;
+  }
+
+  writeToken(token:string){
+    this.token = token;
+    localStorage.setItem(this.token_name, this.token);
+    this._loggedIn = true;
+  }
+
+  removeToken(){
+    localStorage.removeItem(this.token_name);
+    this._loggedIn = false;
+  }
+
 
   get loggedIn(): boolean {
     return this._loggedIn;
   }
 
-  setLoggedIn(loggedIn: boolean): void {
+  getTokenHeader(): HttpHeaders {
+
+    if (this.token == null) {
+      return null;
+    }
+
+    var headers = new HttpHeaders();
+    headers =  headers.append("Authorization", "Bearer " + this.token);
+    return headers;
+  }
+
+/*setLoggedIn(loggedIn: boolean): void {
     this._loggedIn = loggedIn;
     if (loggedIn) {
       localStorage.setItem('loggedIn', 'true');
     } else {
       localStorage.removeItem('loggedIn');
     }
-  }
+  }*/
+
 }

@@ -21,12 +21,16 @@
     let available;
     let devices = {};
 
+    let invalid_tokens = [];
+
+    app.set('secret', 'superSecret_key');
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.use(cors());
 
     app.get("/devices/available", getAvailable);
     app.post("/authentication", authenticate);
+    app.post("/logout", logout);
     app.put("/password", changePassword);
 
     app.get("/devices", getDevices);
@@ -69,21 +73,55 @@
       res.end();
     });
 
-    app.ws('/subscribe', function(ws, req, res) {
+    app.ws('/subscribe', function(ws, req) {
       ws.on('message', function(msg) {
-          try{
+        var token = JSON.parse(msg).token;
+        console.log(token);
+        if(token){
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if(err || typeof decoded === "undefined" || invalid_tokens.indexOf(token) >= 0){
+              ws.send(JSON.stringify({type: 'error'}));
+              ws.close();
+            }else{
+              ws.flag = true;
               var device = JSON.parse(msg).device;
               var value = JSON.parse(msg).value;
               devices[device.index].control.current = value;
               ws.send(JSON.stringify({type: 'success'}));
-          } catch(err) {
-              ws.send(JSON.stringify({type: 'error'}));
-          }
+            }
+          });
+        }else{
+          ws.send(JSON.stringify({type: 'error'}));
+          ws.close();
+        }
+          // try{
+          //     var device = JSON.parse(msg).device;
+          //     var value = JSON.parse(msg).value;
+          //     devices[device.index].control.current = value;
+          //     ws.send(JSON.stringify({type: 'success'}));
+          // } catch(err) {
+          //     ws.send(JSON.stringify({type: 'error'}));
+          // }
 
       });
       console.log('socket', req.testing);
     });
 
+    function logout(req, res){
+      var token = req.body.token;
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+              invalid_tokens.push(token);
+              res.json({status: 200, message: "Logout successfully"});
+            }
+          });
+      } else {
+        res.json({status: 401, message: "Unauthorized"});
+      }
+    }
 
 
     /**
@@ -92,11 +130,11 @@
      * @param res The response
      */
     function getAvailable(req, res) {
-        if (!available) {
-            res.status(500).json({message: "Devices not loaded"});
-        } else {
-            res.status(200).json(available);
-        }
+      if (!available) {
+          res.status(500).json({message: "Devices not loaded"});
+      } else {
+          res.status(200).json(available);
+      }
     }
 
     /**
@@ -210,8 +248,8 @@
             res.status(401).json({message: "Bad credentials", errors: {credentials: true}});
         } else {
             // TODO Send a JWT back to the client
-            var token = jwt.sign({user}, 'secret_key', {expiresIn: "10000"});
-            res.status(200).json({message: "Successfully logged in", token: token});
+            var token = jwt.sign({user}, app.get('secret'), {expiresIn: "10m"});
+            res.status(200).json({state: 200, message: "Successfully logged in", token: token});
         }
     }
 

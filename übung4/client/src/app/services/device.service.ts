@@ -9,8 +9,8 @@ import 'rxjs/add/observable/of';
 
 import {AvailableDevice, Control, LogEntry} from '../models';
 import {DeviceClient} from '../rest';
-import '../models/arrow.model';
-import '../models/device.model';
+import {SessionStorageService} from './session-storage.service';
+
 
 @Injectable()
 export class DeviceService {
@@ -20,10 +20,10 @@ export class DeviceService {
   private readonly logUpdates: Subject<LogUpdate<any>>;
   private connection: WebSocket;
 
-  constructor(private readonly deviceClient: DeviceClient) {
+  constructor(private readonly deviceClient: DeviceClient, private sessionStorageService: SessionStorageService) {
     this.devices = new ReplaySubject();
     this.arrows = new ReplaySubject();
-
+    //var token = this.sessionStorageService.readToken();
     this.deviceClient.getDevices().subscribe(data => {
       // Transform the server device list to the device objects needed for the diagram
       const devices = data.map(dev => new Device(dev.index, dev.position, dev.type, dev.title, dev.control));
@@ -61,8 +61,6 @@ export class DeviceService {
                 this.setDeviceValue(suc, value);
             }
           );
-
-        console.log(event.data);
       }
 
     }
@@ -75,6 +73,7 @@ export class DeviceService {
   getAvailable(): Observable<AvailableDevice[]> {
     if (!this.available) {
       this.available = new BehaviorSubject([]);
+      //var token = this.sessionStorageService.readToken();
       this.deviceClient.getAvailable().subscribe(available => this.available.next(available));
     }
     return this.available;
@@ -93,21 +92,19 @@ export class DeviceService {
   }
 
   getProductCount(): Observable<number> {
-
-    var sum = 0;
+    /*var sum = 0;
 
     var endStorages = this.devices.map(devices => devices.filter(d => d.type === "end-storage"));
 
     endStorages.subscribe(val =>{
+      let x = 0;
         for(let device of val){
-          sum += device.control.current;
+          x += device.control.current;
         };
-      }
-    );
-
-    console.log(sum);
-
-    return Observable.of(sum);
+      sum = x;
+      });
+*/
+    return Observable.of(0);
 
   }
 
@@ -148,7 +145,8 @@ export class DeviceService {
 
   updateDevice<T>(device: Device<Control<T>>, value: T): void {
     // TODO Send updated values to server via WebSocket
-    this.connection.send(JSON.stringify({device: device, value: value}));
+    var token = this.sessionStorageService.readToken();
+    this.connection.send(JSON.stringify({device: device, value: value, token: token}));
     this.setDeviceValue(device, value);
   }
 
