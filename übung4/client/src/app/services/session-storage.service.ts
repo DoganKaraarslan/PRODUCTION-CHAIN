@@ -45,14 +45,19 @@ export class SessionStorageService {
     return this._loggedIn;
   }
 
-  /*
+
   getTokenHeader(): HttpHeaders {
     if (this.token == null) {
       return null;
     }
+    /*var current_time = new Date().getTime() / 1000;
+    if(current_time < this.token.exp){
+      this.router.navigate(['/login']);
+    }*/
     var headers = new HttpHeaders();
     headers =  headers.append("Authorization", "Bearer " + this.token);
+    headers = headers.set("withCredentials", "true");
     return headers;
   }
-  */
+
 }

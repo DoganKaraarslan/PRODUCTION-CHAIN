@@ -3,3 +3,4 @@ export * from './device.service';
 export * from './diagram.service';
 export * from './session-storage.service';
 export * from './user.service';
+export * from './interceptor';

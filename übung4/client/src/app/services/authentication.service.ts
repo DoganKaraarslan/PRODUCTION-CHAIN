@@ -33,11 +33,8 @@ export class AuthenticationService {
   }
 
   logout(): Promise<boolean> {
-    /*var headers = this.sessionStorageService.getTokenHeader();
-    console.log(headers.get("Authorization"));
-    var res = this.restClient.logout(headers);*/
-    var token = this.sessionStorageService.readToken();
-    var res = this.restClient.logout(token);
+    var headers = this.sessionStorageService.getTokenHeader();
+    var res = this.restClient.logout(headers);
 
     this.sessionStorageService.removeToken();
 

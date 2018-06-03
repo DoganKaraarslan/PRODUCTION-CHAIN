@@ -15,7 +15,7 @@ export class AuthenticationClient extends RestClient {
     return this.post('/authentication', authenticationRequest);
   }
 
-  public logout(token: string): Observable<{}> {
-    return this.post('/logout', {token: token});
+  public logout(headers : HttpHeaders): Observable<{}> {
+    return this.post('/logout', {headers: headers});
   }
 }

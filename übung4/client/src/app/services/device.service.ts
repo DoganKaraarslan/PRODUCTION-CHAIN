@@ -73,7 +73,6 @@ export class DeviceService {
   getAvailable(): Observable<AvailableDevice[]> {
     if (!this.available) {
       this.available = new BehaviorSubject([]);
-      //var token = this.sessionStorageService.readToken();
       this.deviceClient.getAvailable().subscribe(available => this.available.next(available));
     }
     return this.available;

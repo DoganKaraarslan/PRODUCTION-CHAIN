@@ -1,4 +1,4 @@
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -21,7 +21,7 @@ import {
 } from './components';
 import {AuthGuard} from './guards';
 import {AuthenticationClient, DeviceClient, PasswordClient} from './rest';
-import {AuthenticationService, DeviceService, DiagramService, SessionStorageService, UserService} from './services';
+import {AuthenticationService, DeviceService, DiagramService, SessionStorageService, UserService, Interceptor} from './services';
 import {ConfirmValidator, MaxValidator, MinValidator} from './validators';
 
 @NgModule({
@@ -50,6 +50,11 @@ import {ConfirmValidator, MaxValidator, MinValidator} from './validators';
     MinValidator
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    },
     AuthGuard,
     AuthenticationClient,
     DeviceClient,

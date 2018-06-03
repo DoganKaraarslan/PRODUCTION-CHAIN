@@ -94,21 +94,12 @@
           ws.send(JSON.stringify({type: 'error'}));
           ws.close();
         }
-          // try{
-          //     var device = JSON.parse(msg).device;
-          //     var value = JSON.parse(msg).value;
-          //     devices[device.index].control.current = value;
-          //     ws.send(JSON.stringify({type: 'success'}));
-          // } catch(err) {
-          //     ws.send(JSON.stringify({type: 'error'}));
-          // }
-
       });
       console.log('socket', req.testing);
     });
 
     function logout(req, res){
-      var token = req.body.token;
+      var token = getToken(req);
         if (token) {
           jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
             if (err || typeof decoded === "undefined") {
@@ -123,6 +114,12 @@
       }
     }
 
+    function getToken(req){
+      const auth = req.header("authorization");
+      var token = auth.split(' ')[1];
+      return token;
+    }
+
 
     /**
      * Send the list of available devices to the client
@@ -130,11 +127,23 @@
      * @param res The response
      */
     function getAvailable(req, res) {
-      if (!available) {
-          res.status(500).json({message: "Devices not loaded"});
+      var token = getToken(req);
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+              if (!available) {
+                  res.status(500).json({message: "Devices not loaded"});
+              } else {
+                  res.status(200).json(available);
+              }
+            }
+          });
       } else {
-          res.status(200).json(available);
+        res.json({status: 401, message: "Unauthorized"});
       }
+
     }
 
     /**
@@ -143,7 +152,18 @@
      * @param res The response
      */
     function getDevices(req, res) {
-        res.status(200).json(Object.keys(devices).map(index => devices[index]));
+      var token = getToken(req);
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+              res.status(200).json(Object.keys(devices).map(index => devices[index]));
+            }
+          });
+      } else {
+        res.json({status: 401, message: "Unauthorized"});
+      }
     }
 
     /**
@@ -152,19 +172,30 @@
      * @param res The response
      */
     function addDevice(req, res) {
-        if (devices[req.body.index]) {
-            res.status(415).json({message: "Device already exists"});
-        } else {
-            devices[req.body.index] = {
-                index: req.body.index,
-                type: req.body.type,
-                title: req.body.title,
-                position: req.body.position,
-                control: req.body.control,
-                successors: req.body.successors || []
-            };
-            res.status(200).json({message: "Device added"});
-        }
+      var token = getToken(req);
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+              if (devices[req.body.index]) {
+                  res.status(415).json({message: "Device already exists"});
+              } else {
+                  devices[req.body.index] = {
+                      index: req.body.index,
+                      type: req.body.type,
+                      title: req.body.title,
+                      position: req.body.position,
+                      control: req.body.control,
+                      successors: req.body.successors || []
+                  };
+                  res.status(200).json({message: "Device added"});
+              }
+            }
+          });
+      } else {
+        res.json({status: 401, message: "Unauthorized"});
+      }
     }
 
     /**
@@ -173,13 +204,25 @@
      * @param res The response
      */
     function deleteDevice(req, res) {
-        if (!devices[req.params.index]) {
-            res.status(404).json({message: "Device does not exist"});
-        } else {
-            delete devices[req.params.index];
-            Object.entries(devices).forEach(([key, device]) => deleteArrayEntry(device.successors, +req.params.index));
-            res.status(200).json({message: "Device deleted"});
-        }
+      var token = getToken(req);
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+              if (!devices[req.params.index]) {
+                  res.status(404).json({message: "Device does not exist"});
+              } else {
+                  delete devices[req.params.index];
+                  Object.entries(devices).forEach(([key, device]) => deleteArrayEntry(device.successors, +req.params.index));
+                  res.status(200).json({message: "Device deleted"});
+              }
+            }
+          });
+      } else {
+        res.json({status: 401, message: "Unauthorized"});
+      }
+
     }
 
     /**
@@ -188,12 +231,24 @@
      * @param res The response
      */
     function moveDevice(req, res) {
-        if (!devices[req.params.index]) {
-            res.status(404).json({message: "Device does not exist"});
-        } else {
-            devices[req.params.index].position = req.body.position;
-            res.status(200).json({message: "Device position updated"});
-        }
+      var token = getToken(req);
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+              if (!devices[req.params.index]) {
+                  res.status(404).json({message: "Device does not exist"});
+              } else {
+                  devices[req.params.index].position = req.body.position;
+                  res.status(200).json({message: "Device position updated"});
+              }
+            }
+          });
+      } else {
+        res.json({status: 401, message: "Unauthorized"});
+      }
+
     }
 
     /**
@@ -202,14 +257,26 @@
      * @param res The response
      */
     function addSuccessor(req, res) {
-        if (!devices[req.params.index]) {
-            res.status(404).json({message: "Start device does not exist"});
-        } else if (!devices[req.body.index]) {
-            res.status(400).json({message: "End does not exist"});
-        } else {
-            devices[req.params.index].successors.push(req.body.index);
-            res.status(200).json({message: "Arrow added"});
-        }
+      var token = getToken(req);
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+              if (!devices[req.params.index]) {
+                  res.status(404).json({message: "Start device does not exist"});
+              } else if (!devices[req.body.index]) {
+                  res.status(400).json({message: "End does not exist"});
+              } else {
+                  devices[req.params.index].successors.push(req.body.index);
+                  res.status(200).json({message: "Arrow added"});
+              }
+            }
+          });
+      } else {
+        res.json({status: 401, message: "Unauthorized"});
+      }
+
     }
 
     /**
@@ -218,11 +285,22 @@
      * @param res The response
      */
     function deleteSuccessor(req, res) {
-        const device = devices[req.params.predecessor];
-        if (device) {
-            deleteArrayEntry(device.successors, +req.params.successor);
-        }
-        res.status(200).json({message: "Arrow deleted"});
+      var token = getToken(req);
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+                const device = devices[req.params.predecessor];
+                if (device) {
+                    deleteArrayEntry(device.successors, +req.params.successor);
+                }
+                res.status(200).json({message: "Arrow deleted"});
+            }
+          });
+      } else {
+        res.json({status: 401, message: "Unauthorized"});
+      }
     }
 
     function deleteArrayEntry(array, entry) {
@@ -248,7 +326,7 @@
             res.status(401).json({message: "Bad credentials", errors: {credentials: true}});
         } else {
             // TODO Send a JWT back to the client
-            var token = jwt.sign({user}, app.get('secret'), {expiresIn: "10m"});
+            var token = jwt.sign({user}, app.get('secret'), {expiresIn: "5s"});
             res.status(200).json({state: 200, message: "Successfully logged in", token: token});
         }
     }
@@ -259,26 +337,38 @@
      * @param res The response
      */
     function changePassword(req, res) {
-        const oldPassword = req.body.oldPassword, newPassword = req.body.newPassword;
+      var token = getToken(req);
+        if (token) {
+          jwt.verify(token, app.get('secret'), {ignoreExpiration: false}, function (err, decoded) {
+            if (err || typeof decoded === "undefined") {
+              res.json({status: 401, message: "Unauthorized"});
+            } else {
+              const oldPassword = req.body.oldPassword, newPassword = req.body.newPassword;
 
-        if (!user) {
-            res.status(500).json({message: "User data not loaded"});
-        } else if (!oldPassword || !newPassword) {
-            res.status(400).json({message: "Bad request"});
-        } else if (oldPassword !== user.password) {
-            res.status(400).json({message: "Old password wrong", errors: {oldPassword: true}});
-        } else {
-            const data = `username: ${user.username}\npassword: ${newPassword}`;
-            fs.writeFile("./resources/login.config", data, {}, function(err) {
-                if (err) {
-                    console.log("Error writing user config: ", err);
-                    res.status(500).json({message: "Password could not be stored"});
-                } else {
-                    user.password = newPassword;
-                    res.status(200).json({message: "Password successfully updated"});
-                }
-            });
-        }
+              if (!user) {
+                  res.status(500).json({message: "User data not loaded"});
+              } else if (!oldPassword || !newPassword) {
+                  res.status(400).json({message: "Bad request"});
+              } else if (oldPassword !== user.password) {
+                  res.status(400).json({message: "Old password wrong", errors: {oldPassword: true}});
+              } else {
+                  const data = `username: ${user.username}\npassword: ${newPassword}`;
+                  fs.writeFile("./resources/login.config", data, {}, function(err) {
+                      if (err) {
+                          console.log("Error writing user config: ", err);
+                          res.status(500).json({message: "Password could not be stored"});
+                      } else {
+                          user.password = newPassword;
+                          res.status(200).json({message: "Password successfully updated"});
+                      }
+                  });
+              }
+            }
+          });
+      } else {
+        res.json({status: 401, message: "Unauthorized"});
+      }
+
     }
 
     /**
